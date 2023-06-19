@@ -7,8 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta charset="utf-8">
     <title>TRAVELER - Free Travel Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">

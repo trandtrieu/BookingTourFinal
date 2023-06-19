@@ -6,9 +6,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,12 +54,12 @@
                                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2 "></i>${t.dateEnd}</small>
                                         </div>
                                         <div class="d-flex justify-content-between mb-3">
-                                            <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
+\                                            <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
                                         </div>
                                         <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
-                                                <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
+                                                <h5 class="m-0"><c:out value="${String.format('%.0f', t.price)}" /> VND</h5>
                                             </div>
                                         </div>
                                     </div>

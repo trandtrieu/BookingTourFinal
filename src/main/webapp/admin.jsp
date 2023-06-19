@@ -13,6 +13,8 @@
     </head>
     <body>
         <h1>Day la Admin</h1>
+        <a href="ManagerTour">Quan ly</a>
+        <br>
         <a href="HomeController">Den trang chu</a>
 
     </body>

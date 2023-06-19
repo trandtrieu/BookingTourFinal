@@ -12,22 +12,23 @@ import java.util.Date;
  */
 public class Tour {
 
-        private int tourId;
-        private String tourName;
-        private float price;
-        private Date dateStart;
-        private Date dateEnd;
-        private String detailTour;
-        private String imageTour;
-        private Boolean statusTour;
-        private String placeName;
-        private String regionName;
-        private int numberDay;
-        private int guideId;
-        private String guideName;
-        private int seat;
+    private int tourId;
+    private String tourName;
+    private float price;
+    private Date dateStart;
+    private Date dateEnd;
+    private String detailTour;
+    private String imageTour;
+    private Boolean statusTour;
+    private String placeName;
+    private int placeId;
+    private int regionId;
+    private String regionName;
+    private int numberDay;
+    private int guideId;
+    private String guideName;
 
-    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName,int placeId,int regionId) {
         this.tourId = tourId;
         this.tourName = tourName;
         this.price = price;
@@ -40,11 +41,12 @@ public class Tour {
         this.regionName = regionName;
         this.guideId = guideId;
         this.guideName = guideName;
-        this.seat = seat;
+        this.placeId = placeId;
+        this.regionId= regionId;
 
     }
 
-    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, int seat) {
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName) {
         this.tourId = tourId;
         this.tourName = tourName;
         this.price = price;
@@ -54,10 +56,39 @@ public class Tour {
         this.imageTour = imageTour;
         this.statusTour = statusTour;
         this.placeName = placeName;
-        this.seat = seat;
-
+        
     }
 
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName) {
+        this.tourId = tourId;
+        this.tourName = tourName;
+        this.price = price;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.detailTour = detailTour;
+        this.imageTour = imageTour;
+        this.statusTour = statusTour;
+        this.placeName = placeName;
+        this.regionName = regionName;
+        this.guideId = guideId;
+        this.guideName = guideName;
+    }
+
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, int placeId, int regionId, int guideId) {
+        this.tourId = tourId;
+        this.tourName = tourName;
+        this.price = price;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.detailTour = detailTour;
+        this.imageTour = imageTour;
+        this.statusTour = statusTour;
+        this.placeId = placeId;
+        this.regionId = regionId;
+        this.guideId = guideId;
+    }
+
+    
     public Tour(int tourId) {
         this.tourId = tourId;
     }
@@ -161,6 +192,8 @@ public class Tour {
         this.placeName = placeName;
     }
 
+
+
     public int getGuideId() {
         return guideId;
     }
@@ -169,11 +202,22 @@ public class Tour {
         this.guideId = guideId;
     }
 
-    public int getSeat() {
-        return seat;
+    public int getPlaceId() {
+        return placeId;
     }
 
-    public void setSeat(int seat) {
-        this.seat = seat;
+    public void setPlaceId(int placeId) {
+        this.placeId = placeId;
     }
+
+    public int getRegionId() {
+        return regionId;
+    }
+
+    public void setRegionId(int regionId) {
+        this.regionId = regionId;
+    }
+
+
+
 }

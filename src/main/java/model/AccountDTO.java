@@ -11,7 +11,7 @@ package model;
 public class AccountDTO {
 
     private int id;
-    private String username, password, email, phone, avatar;
+    private String username, password, email, phone;
     private int role;
 
     public AccountDTO() {
@@ -34,15 +34,21 @@ public class AccountDTO {
         this.password = password;
     }
 
-    public AccountDTO(int id, String username, String password, String email, String phone, int role, String avatar) {
+    public AccountDTO(int id, String username, String password, String email, String phone, int role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.role = role;
-        this.avatar = avatar;
+    }
 
+    public AccountDTO(String username, String password, String email, String phone, int role) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.role = role;
     }
 
     public int getId() {
@@ -91,14 +97,6 @@ public class AccountDTO {
 
     public void setRole(int role) {
         this.role = role;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
 }

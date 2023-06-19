@@ -78,12 +78,10 @@
                     <div class="profile-tab-nav border-right">
                         <div class="p-4">
                             <div class="img-circle text-center mb-3">
-                                <img src="img/${account.getAvatar()}" alt="Image" class="shadow" />
+                                <img src="img/user.jpg" alt="Image" class="shadow" />
                             </div>
                             <a href="uploadImg">Upload</a>
                             <h4 class="text-center">${account.getUsername()}</h4>
-                            <h4 class="text-center">${account.getAvatar()}</h4>
-
 
                         </div>
                         <div

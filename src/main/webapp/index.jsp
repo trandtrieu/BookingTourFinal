@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home </title>
         <%@include file="includes/head.jsp" %>
 
@@ -50,7 +51,7 @@
 
 
         <%@include file="includes/aboutus.jsp" %>
-        <div class="container py-5">
+        <div class="container-fluid py-5">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Destination</h6>
@@ -61,7 +62,7 @@
                 <div class="row">
                     <c:forEach var="r" items="${myRegions}" varStatus="status">
 
-                        <div class="col-lg-4 col-md-4 mb-4">
+                        <div class="col-lg-4 col-md-3 mb-4">
                             <div class="destination-item position-relative overflow-hidden mb-2">
                                 <img class="img-thumbnail"  src="img/${r.regionImage}" alt="">
                                 <a class="destination-overlay text-white text-decoration-none" href="regionList?rid=${r.regionId}">
@@ -108,7 +109,7 @@
 
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
-                                            <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
+
 
                                         </div>
                                         <div  class= "link-margin text-center">
@@ -122,8 +123,8 @@
 
                                             </div>
                                         </div>
-                                        <div class="countdown" id="countdown-${t.tourId}" style="font-size: 17px; font-weight: bold; color: #7AB730;
-                                             text-align: center; padding: 5px; margin-top: 15px; background-color: #f2f2f2; border-radius: 20px"></div>
+                                        <div class="countdown" id="countdown-${t.tourId}" style="font-size: 17px; font-weight: bold; color: #ff0000;
+                                             text-align: center; padding: 5px; margin-top: 5px; background-color: #f2f2f2;"></div>
 
                                     </div>
                                 </div>
@@ -132,6 +133,7 @@
                     </c:forEach>
                 </div>
 
+                <!-- Hiển thị phân trang -->
                 <c:if test="${myTours.size() > itemsPerPage}">
                     <ul class="pagination justify-content-center mt-4">
                         <li class="page-item${currentPage eq 1 ? ' disabled' : ''}">
@@ -151,6 +153,7 @@
 
 
                 <div class="container">
+                    <!-- Các mã HTML khác -->
                     <div class="hotline-container">
                         <a href="tel:0789458707" class="hotline-link">Đường dây nóng 0789458707</a>
                     </div>
@@ -162,74 +165,71 @@
 
         <!-- Destination Start -->
 
+    </div>
+</div>
+<!-- Destination Start -->
 
-        <!-- Destination Start -->
-
-        <!-- Packages End -->
-        <%@include file="includes/footer.jsp" %>
+<!-- Packages End -->
+<%@include file="includes/footer.jsp" %>
 
 
-    </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script>
-        function updateCountdown(dateStart, tourId) {
-            var countdownElement = document.getElementById('countdown-' + tourId);
-            var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    function updateCountdown(dateStart, tourId) {
+        var countdownElement = document.getElementById('countdown-' + tourId);
+        var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
 
-            function updateTimer() {
-                var now = moment();
-                var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
+        function updateTimer() {
+            var now = moment();
+            var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
 
-                if (difference > 0) {
-                    var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
+            if (difference > 0) {
+                var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
 
-                    var days = duration.days();
-                    var hours = duration.hours();
-                    var minutes = duration.minutes();
-                    var seconds = duration.seconds();
+                var days = duration.days();
+                var hours = duration.hours();
+                var minutes = duration.minutes();
+                var seconds = duration.seconds();
 
-                    countdownElement.innerHTML =
-                            "Còn " + days + 'd ' + hours + 'h ';
-                } else {
-                    countdownElement.innerHTML = 'Tour đã bắt đầu!';
-                    clearInterval(intervalId);
-                }
+                countdownElement.innerHTML =
+                        "Còn " + days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+            } else {
+                countdownElement.innerHTML = 'Tour đã bắt đầu!';
+                clearInterval(intervalId);
             }
-
-            // Cập nhật đếm ngược ngay lập tức
-            updateTimer();
-
-            // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
-            var intervalId = setInterval(updateTimer, 1000);
         }
 
-        function updateAllCountdowns() {
-        <c:forEach var="t" items="${myTours}">
-            updateCountdown('${t.dateStart}', '${t.tourId}');
-        </c:forEach>
-        }
+        // Cập nhật đếm ngược ngay lập tức
+        updateTimer();
 
-        // Gọi hàm updateAllCountdowns sau khi trang đã tải
-        document.addEventListener("DOMContentLoaded", function () {
-            updateAllCountdowns();
-        });
+        // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
+        var intervalId = setInterval(updateTimer, 1000);
+    }
 
+    function updateAllCountdowns() {
+    <c:forEach var="t" items="${myTours}">
+        updateCountdown('${t.dateStart}', '${t.tourId}');
+    </c:forEach>
+    }
 
-
-
-
-    </script>
-
-
-    <script>
-        var today = new Date().toISOString().split('T')[0];
-        document.getElementsByName("dateStartSearch")[0].setAttribute('min', today);
-    </script>
+    // Gọi hàm updateAllCountdowns sau khi trang đã tải
+    document.addEventListener("DOMContentLoaded", function () {
+        updateAllCountdowns();
+    });
 
 
 
 
 
-    <%@include file="includes/foot.jsp" %>
+</script>
+
+
+
+
+
+
+
+<%@include file="includes/foot.jsp" %>
 
 </html>

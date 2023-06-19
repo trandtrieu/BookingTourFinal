@@ -57,9 +57,9 @@
             <!-- Navbar Start -->
             <div class="container-fluid position-relative nav-bar p-0">
                 <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-                    <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3">
+                    <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
                         <a href="HomeController" class="navbar-brand">
-                            <h1 class="m-0 text-primary"><span class="text-dark">Explore</span>Now</h1>
+                            <h1 class="m-0 text-primary"><span class="text-dark">VIET</span>NAM</h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -68,8 +68,6 @@
                             <div class="navbar-nav ml-auto py-0">
                                 <a href="HomeController" class="nav-item nav-link">Trang chủ</a>
                                 <a href="AboutServlet" class="nav-item nav-link">Giới thiệu</a>
-                                <a href="blog" class="nav-item nav-link">Blog</a>
-
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gói tour</a>
                                     <div class="dropdown-menu border-0 rounded-0 m-0">

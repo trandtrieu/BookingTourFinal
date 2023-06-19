@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="container">
+<div class="container">
             <div class="card-header my-3">All Orders</div>
             <table class="table table-light">
                 <thead>
@@ -23,20 +23,19 @@
                         <th scope="col">password</th>
                         <th scope="col">email </th>
                         <th scope="col">phone</th>
-                        <th scope="col">avatar</th>
+                        <th scope="col">isAdmin</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${acc}" var="a">
-                        <tr>
-                            <td>${a.id}</td>
-                            <td>${a.username}</td>
-                            <td>${a.password}</td>
-                            <td>${a.email}</td>
-                            <td>${a.phone}</td>
-                            <td><img src="img/${a.avatar}" width="100" height="100" alt="alt"/></td>
-
-                        </tr>
+                <c:forEach items="${acc}" var="a">
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.username}</td>
+                        <td>${a.password}</td>
+                        <td>${a.email}</td>
+                        <td>${a.phone}</td>
+                        <td>${a.isAdmin}</td>
+                    </tr>
                     </c:forEach>
 
                 </tbody>

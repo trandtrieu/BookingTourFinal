@@ -6,14 +6,12 @@ import java.sql.DriverManager;
 
 public class DBContext {
 
-    protected Connection connection;
-
     private final String servername = "localhost";
     private final String dbName = "bookingProject";
     private final String portNumber = "1433";
     private final String instance = "";
     private final String userID = "sa";
-    private final String password = "duyhai037";
+    private final String password = "123";
 
     public Connection getConnection() throws Exception {
         try {

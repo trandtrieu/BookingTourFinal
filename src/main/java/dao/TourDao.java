@@ -38,14 +38,17 @@ public class TourDao {
     public TourDao() {
     }
 
-    public List<Tour> getAllTours() {
+    public List<Tour> getAllTours() throws ClassNotFoundException {
         List<Tour> tours = new ArrayList<>();
-
-        try ( PreparedStatement pst = con.prepareStatement(
-                "SELECT *\n"
+        query = "SELECT *\n"
                 + "FROM tour\n"
                 + "JOIN place ON tour.placeId = place.placeId\n"
-                + "JOIN region ON tour.regionId = region.regionId");  ResultSet rs = pst.executeQuery()) {
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 Tour tour = extractTourFromResultSet(rs);
@@ -74,8 +77,10 @@ public class TourDao {
         tour.setStatusTour(rs.getBoolean("status"));
         tour.setPlaceName(rs.getString("placeName"));
         tour.setRegionName(rs.getString("regionName"));
-        tour.setSeat(rs.getInt("seat"));
-
+        tour.setGuideId(rs.getInt("guideId"));
+        tour.setGuideName(rs.getString("guideName"));
+        tour.setPlaceId(rs.getInt("placeId"));
+        tour.setRegionId(rs.getInt("regionId"));
         // Tính toán lịch trình từ dateStart đến dateEnd
         Date startDate = rs.getDate("dateStart");
         Date endDate = rs.getDate("dateEnd");
@@ -147,7 +152,8 @@ public class TourDao {
                         rs.getString("regionName"),
                         rs.getInt("guideId"),
                         rs.getString("guideName"),
-                        rs.getInt("seat"));
+                        rs.getInt("placeId"),
+                        rs.getInt("regionId"));
 
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -170,8 +176,7 @@ public class TourDao {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getBoolean(8),
-                        rs.getString(9),
-                        rs.getInt(10)));
+                        rs.getString(9)));
 
             }
         } catch (SQLException e) {
@@ -223,7 +228,6 @@ public class TourDao {
                 row.setStatusTour(rs.getBoolean("status"));
                 row.setPlaceName(rs.getString("placeName"));
                 row.setRegionName(rs.getString("regionName"));
-                row.setSeat(rs.getInt("seat"));
 
                 list.add(row);
             }
@@ -234,46 +238,6 @@ public class TourDao {
             Logger.getLogger(TourDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
-    }
-
-    public List<Tour> searchTours(String regionId, String placeId, String dateStart) {
-
-        List<Tour> searchResults = new ArrayList<>();
-
-        try {
-
-            query = "SELECT * FROM tour \n"
-                    + "JOIN place ON tour.placeId = place.placeId \n"
-                    + "JOIN region ON tour.regionId = region.regionId\n"
-                    + "WHERE region.regionId = ? AND place.placeId = ? AND tour.dateStart >= ?";
-            pst = this.con.prepareStatement(query);
-            pst.setString(1, regionId);
-            pst.setString(2, placeId);
-            pst.setString(3, dateStart);
-            rs = pst.executeQuery();
-
-            // Xử lý kết quả truy vấn
-            while (rs.next()) {
-                Tour row = new Tour();
-                row.setTourId(rs.getInt("tourId"));
-                row.setStatusTour(rs.getBoolean("status"));
-                row.setTourName(rs.getString("name"));
-                row.setImageTour(rs.getString("image"));
-                row.setPrice(rs.getFloat("price"));
-                row.setDateStart(rs.getDate("dateStart"));
-                row.setDateEnd(rs.getDate("dateEnd"));
-                row.setDetailTour(rs.getString("detail"));
-                row.setPlaceName(rs.getString("placeName"));
-                row.setRegionName(rs.getString("regionName"));
-                row.setSeat(rs.getInt("seat"));
-
-                searchResults.add(row);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return searchResults;
     }
 
     public List<Tour> getToursFromRegion(int id) {
@@ -305,8 +269,7 @@ public class TourDao {
                         rs.getString("placeName"),
                         rs.getString("regionName"),
                         rs.getInt("guideId"),
-                        rs.getString("guideName"),
-                        rs.getInt("seat"));
+                        rs.getString("guideName"));
                 tours.add(tour);
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -333,7 +296,6 @@ public class TourDao {
                 row.setImageTour(rs.getString("image"));
 //                row.setGuideName(rs.getString("guideName"));
                 row.setPrice(rs.getFloat("price"));
-                row.setSeat(rs.getInt("seat"));
 
             }
         } catch (Exception e) {
@@ -344,15 +306,94 @@ public class TourDao {
         return row;
     }
 
-    public void updateTour(Tour tour) {
+    //Moi them vao
+    public void deleteTour(String tourId) {
+        query = "delete from tour \n"
+                + "where tourId = ?";
         try {
-            query = "UPDATE tour SET seat = ? our SET seat = WHERE tourId = ?";
+            con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
-            pst.setInt(1, tour.getSeat());
-            pst.setInt(2, tour.getTourId());
+            pst.setString(1, tourId);
             pst.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+        }
+    }
+
+    public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
+        query = "insert into tour\n"
+                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?)";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, tourName);
+            pst.setString(2, price);
+            pst.setString(3, dateStart);
+            pst.setString(4, dateEnd);
+            pst.setString(5, detailTour);
+            pst.setString(6, imageTour);
+            pst.setString(7, statusTour);
+            pst.setString(8, placeId);
+            pst.setString(9, guideId);
+            pst.setString(10, regionId);
+//            pst.setString(8, placeName);
+//            pst.setString(9, regionName);
+
+            //pst.setString(11, guideName);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public Tour getTourById(String tourId) {
+        query = "select * from tour\n"
+                + "where tourId = ?";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, tourId);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                return new Tour(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getDate(4), rs.getDate(5),
+                        rs.getString(6), rs.getString(7), rs.getBoolean(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
+    }
+
+    public void updateTour(String tourId, String tourName, String price, String dateStart, String dateEnd,
+            String detailTour, String imageTour, String statusTour, String placeId, String regionId, String guideId) {
+        query = "update tour\n"
+                + "set [name] = ?,\n"
+                + "price = ?,\n"
+                + "dateStart = ?,\n"
+                + "dateEnd = ?,\n"
+                + "detail = ?,\n"
+                + "[image] = ?,\n"
+                + "[status]= ?,\n"
+                + "placeId = ?,\n"
+                + "guideId = ?,\n"
+                + "scheduleId = '1',\n"
+                + "regionId = ?\n"
+                + "where tourId = ?";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, tourName);
+            pst.setString(2, price);
+            pst.setString(3, dateStart);
+            pst.setString(4, dateEnd);
+            pst.setString(5, detailTour);
+            pst.setString(6, imageTour);
+            pst.setString(7, statusTour);
+            pst.setString(8, placeId);
+            pst.setString(9, guideId);
+            pst.setString(10, regionId);
+            pst.setString(11, tourId);
+            pst.executeUpdate();
+        } catch (Exception e) {
         }
     }
 

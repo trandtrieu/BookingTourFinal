@@ -53,32 +53,24 @@
         <servlet-class>servlet.PaymentServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FeedbackController</servlet-name>
-        <servlet-class>servlet.FeedbackController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>servlet.CheckOutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteFeedbackController</servlet-name>
-        <servlet-class>servlet.DeleteFeedbackController</servlet-class>
+        <servlet-name>ManagerTour</servlet-name>
+        <servlet-class>servlet.ManagerTour</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditFeedbackServlet</servlet-name>
-        <servlet-class>servlet.EditFeedbackServlet</servlet-class>
+        <servlet-name>DeleteTour</servlet-name>
+        <servlet-class>servlet.DeleteTour</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BlogController</servlet-name>
-        <servlet-class>servlet.BlogController</servlet-class>
+        <servlet-name>AddTourServlet</servlet-name>
+        <servlet-class>servlet.AddTourServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>BlogDetailController</servlet-name>
-        <servlet-class>servlet.BlogDetailController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchCondidion</servlet-name>
-        <servlet-class>servlet.SearchCondidion</servlet-class>
+        <servlet-name>UpdateTour</servlet-name>
+        <servlet-class>servlet.UpdateTour</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -133,32 +125,24 @@
         <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FeedbackController</servlet-name>
-        <url-pattern>/feedback</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteFeedbackController</servlet-name>
-        <url-pattern>/delete-feedback</url-pattern>
+        <servlet-name>ManagerTour</servlet-name>
+        <url-pattern>/ManagerTour</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditFeedbackServlet</servlet-name>
-        <url-pattern>/edit-feedback</url-pattern>
+        <servlet-name>DeleteTour</servlet-name>
+        <url-pattern>/DeleteTour</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BlogController</servlet-name>
-        <url-pattern>/blog</url-pattern>
+        <servlet-name>AddTourServlet</servlet-name>
+        <url-pattern>/AddTourServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>BlogDetailController</servlet-name>
-        <url-pattern>/blogDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchCondidion</servlet-name>
-        <url-pattern>/SearchCondidion</url-pattern>
+        <servlet-name>UpdateTour</servlet-name>
+        <url-pattern>/UpdateTour</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

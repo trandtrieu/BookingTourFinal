@@ -21,32 +21,11 @@
                 width: 100%;
                 height: auto;
             }
-            .reviews-rating {
-                position: absolute;
-                top: 0;
-                padding: 0px 10px;
-            }
-            .reviews-rating__star{
-                width: 8px;
-                height: 8px;
-                margin: 0 2px;
-                background-image: url(../..//images/star-none.svg);
-                display: inline-block;
-            }
-            .is-active{
-                background-image: url(../..//images/star.svg);
-            }
-            .is-half{
-                background-image: url(../..//images/star-half.svg);
-            }
         </style>
     </head>
     <body>
-        <div id="notification"></div>
-
         <%@include file="includes/topbar.jsp" %>
         <div class="container py-5">
-
             <div class="row">
                 <div class="col-md-6">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -118,17 +97,15 @@
                         <h1>${detail.tourName} <span class="badge badge-danger">New</span></h1>
 
 <!--                         <h2> ${detail.tourName} </h2>-->
-                        <p><strong>Giá vé trên một người:  </strong><fmt:formatNumber value="  ${detail.price}" pattern="#,##0" /> VND</p>
+                        <p><strong>Price: </strong><fmt:formatNumber value=" ${detail.price}" pattern="#,##0" /> VND</p>
 
-                        <p><strong>Ngày khởi hành:</strong> ${detail.dateStart}</p>
-                        <p><strong>Ngày kết thúc:</strong> ${detail.dateEnd}</p>
-                        <p><strong>Số chỗ còn trống:</strong> ${detail.seat}</p>
-
-                        <p><strong>Địa điểm:</strong> ${detail.placeName}</p>
+                        <p><strong>Departure Date:</strong> ${detail.dateStart}</p>
+                        <p><strong>Return Date:</strong> ${detail.dateEnd}</p>
+                        <p><strong>Place:</strong> ${detail.placeName}</p>
                         <p><a href="detailGuide?gid=${detail.guideId}">
-                                <strong>Hướng dẫn viên du lịch:</strong> ${detail.guideName}
+                                <strong>Your guide:</strong> ${detail.guideName}
                             </a></p>
-                        <p>${detail.detailTour}</p>
+                        <p>${detail.detailTour}</p> 
 
 
                         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">Book Now</button>
@@ -189,142 +166,16 @@
                 </div>
             </div>
 
-            <div class="modal fade col-md-12" role="dialog" id="feedback">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
-                        <div class="modal-header">
-                            <h2 style="margin-left: 35%">Bình luận</h2>
-                        </div>
-                        <div class="modal-body">
-                            <form action="feedback">
-                                <input type="hidden" name="tid" value="${detail.tourId}"/>
-                                <b>Viết bình luận:</b>&nbsp;&nbsp;
-                                <div class="form-group">
-                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px"></textarea>
-                                </div>
-
-                                <b>Đánh giá:</b>&nbsp;&nbsp;
-                                <div class="form-group" >
-                                    <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option >Ðánh giá sao cho tour </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5" selected>5</option>
-                                    </select>
-                                </div>
-                                <br>
 
 
-                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
+            <!-- Blog End -->
 
-                            </form>
-                            <br><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade col-md-12" role="dialog" id="feedbackEdit">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
-                        <div class="modal-header">
-                            <h2 style="margin-left: 35%">Bình luận</h2>
-                        </div>
-                        <div class="modal-body">
-                            <form action="edit-feedback" method="post">
-                                <input type="hidden" name="id" value="${detail.tourId}">
-                                <div class="form-group">
-                                    <textarea name="subject" placeholder="Viết bình luận.." style="height: 200px; width: 460px" value=""></textarea>
-                                </div>
-                                <h1>hello ${update.subject}</h1>
-                                <div class="form-group">
-                                    <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option>Ðánh giá sao cho tour </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>                      `
-                                    </select>
-                                </div>
-                                <br>
-                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
-                            </form>
-                            <br><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <c:if test="${total == 0}">
-                <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
-            </c:if>        
-            <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-                <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">${total} Comments</h4>
-                <c:if test="${acc != null}">
-
-                    <a data-toggle="modal" data-dismiss="modal" data-target="#feedback">
-                        <h4 >
-                            Viết nhận xét của bạn
-                        </h4>
-                    </a>
-                </c:if>
-                <c:forEach items="${listfeedbackbyproduct}" var="f">
-                    <div class="media mb-4">
-                        <img src="img/${f.avatar}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 65px;">
-
-                        <br/>
-                        <div class="media-body">
-                            <h6><a href="">${f.username}</a> <small><i>${f.date}</i></small></h6>
-                            <c:if test="${f.u_id eq acc.id}">
-                                <a href="delete-feedback?id=${f.id}" class="float-right btn btn-outline-danger">Xóa</a>
-
-                            </c:if>
-
-                            <c:if test="${f.u_id eq acc.id}">
-                                <a href="edit-feedback?id=${f.id}" class="float-right btn btn-outline-danger" data-toggle="modal" data-dismiss="modal" data-target="#feedbackEdit">Edit</a>
-                            </c:if>
-
-
-                            <p class="mb-0">${f.feedback}</p>
-
-                            <c:forEach var="i" begin="0" end="4">
-                                <c:if test="${(f.rated_star - i) >= 1}">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                </c:if>    
-                                <c:if test="${(f.rated_star - i) < 1 && (f.rated_star - i) > 0}">
-                                    <div class="reviews-rating__star is-active is-half"></div> 
-                                </c:if>
-                                <c:if test="${(f.rated_star - i) <= 0}">
-                                    <div class="reviews-rating__star"></div> 
-                                </c:if>
-                            </c:forEach>
-                        </div>
-
-                    </div>
-                </c:forEach>
-
-
-            </div>
-
-        </div>
-
-        <%@include file="includes/footer.jsp" %>
+            <%@include file="includes/footer.jsp" %>
 
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://web8802.com/wp-content/themes/hienads/assets/js/quanhuyen.js"></script>
-    <script>
-                                            // Kiểm tra số chỗ còn trống
-                                            var seatCount = ${detail.seat};
-                                            if (seatCount === 0) {
-                                                // Hiển thị thông báo "Tour đã hết chỗ"
-                                                alert("Tour đã hết chỗ");
-                                            }
 
-    </script>
     <%@include file="includes/foot.jsp" %>
 
 </html>

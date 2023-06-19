@@ -40,7 +40,7 @@ public class AccountDAO {
             rs = ps.executeQuery();
             ArrayList<AccountDTO> list = new ArrayList<>();
             while (rs.next()) {
-                AccountDTO a = new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+                AccountDTO a = new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
                 list.add(a);
             }
             return list;
@@ -67,7 +67,6 @@ public class AccountDAO {
                 acc.setUsername(rs.getString("username"));
                 acc.setPassword(rs.getString("password"));
                 acc.setRole(rs.getInt("role"));
-                acc.setAvatar(rs.getString("avatar"));
 
                 return acc;
             }
@@ -85,15 +84,15 @@ public class AccountDAO {
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+                return new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return null;
     }
-
-    public static AccountDTO checkAccountExistt(String username) {
+    
+        public static AccountDTO checkAccountExistt(String username) {
         try {
             String query = "select * from account \n"
                     + "where username = ?;";
@@ -102,7 +101,7 @@ public class AccountDAO {
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+                return new AccountDTO(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -113,7 +112,7 @@ public class AccountDAO {
     public void register(String username, String pass, String email, String phone) {
         try {
             String query = "insert into account\n"
-                    + "values(?,?,?,?,0, NULL)";
+                    + "values(?,?,?,?,0)";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, username);

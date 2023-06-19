@@ -50,6 +50,9 @@ public class BookingServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+
         String fullName = request.getParameter("fullName");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
@@ -92,14 +95,8 @@ public class BookingServlet extends HttpServlet {
                 boolean result = orderDao.insertOrder(orderModel);
 
                 if (result) {
-                    // Update the remaining seats in the tour
-                    int remainingSeats = tour.getSeat();
-                    remainingSeats -= (adults + children);
-                    tour.setSeat(remainingSeats);
-                    tourDao.updateTour(tour);
-
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
-                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
+                    request.getRequestDispatcher("orderSuccess.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");
                 }

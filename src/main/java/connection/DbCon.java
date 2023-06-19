@@ -20,7 +20,7 @@ public class DbCon {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         if (connection == null) {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=bookingProject", "sa", "duyhai037");
+            connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=bookingProject", "sa", "123");
             System.out.print("connected");
         }
         return connection;

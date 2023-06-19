@@ -6,6 +6,7 @@ package servlet;
 
 import connection.DbCon;
 import dao.BlogDAO;
+import dao.PlaceDao;
 import dao.TourDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Blog;
+import model.Place;
 import model.Tour;
 import model.TourSchedule;
 
@@ -66,18 +68,29 @@ public class SearchCondidion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String regionSearch = request.getParameter("regionSearch");
-            String placeSearch = request.getParameter("placeSearch");
-            String dateStartSearch = request.getParameter("dateStartSearch");
+            PlaceDao p = new PlaceDao(DbCon.getConnection());
 
-            TourDao r = new TourDao(DbCon.getConnection());
-            List<Tour> searchResults = r.searchTours(regionSearch, placeSearch, dateStartSearch);
+            try {
+                String placeSearch = request.getParameter("placeSearch");
+                String dateStartSearch = request.getParameter("dateStartSearch");
+                String priceSearch = request.getParameter("priceSearch");
+                float price = Float.parseFloat(priceSearch);
+                List<Place> places = p.getAllPlaces();
 
-            // Đưa kết quả tìm kiếm vào attribute của request để hiển thị trên view
-            request.setAttribute("listS", searchResults);
+                TourDao r = new TourDao(DbCon.getConnection());
+                List<Tour> searchResults = r.searchTours(placeSearch, dateStartSearch, price);
+            int count = searchResults.size();
 
-            // Forward yêu cầu đến trang kết quả tìm kiếm
-            request.getRequestDispatcher("searchResult.jsp").forward(request, response);
+                request.setAttribute("listS", searchResults);
+                request.getServletContext().setAttribute("myPlaces", places);
+
+                request.getRequestDispatcher("searchResult.jsp").forward(request, response);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

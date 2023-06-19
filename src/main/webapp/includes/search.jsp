@@ -16,16 +16,7 @@
                     <div class="col-md-10">
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3 mb-md-0">
-                                    <select class="custom-select px-4" style="height: 47px;" name="regionSearch">
-                                        <c:forEach var="r" items="${myRegions}" varStatus="status">
-                                            <option value="${r.regionId}">${r.regionName}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
 
-                            </div>
                             <div class="col-md-4">
                                 <div class="mb-3 mb-md-0">
                                     <select class="custom-select px-4" style="height: 47px;" name="placeSearch">
@@ -42,6 +33,17 @@
                                         <input type="text" name="dateStartSearch" class="form-control p-4 datetimepicker-input" placeholder="Ngày khởi hành" data-target="#date1" data-toggle="datetimepicker"/>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" style="height: 47px;" name="priceSearch">
+                                        <option value="1000000">Từ triệu</option>
+                                        <option value="2000000">Từ 2.000.000 triệu</option>
+                                        <option value="3000000">Từ 3.000.000 triệu</option>
+                                        <option value="4000000">Từ 4.000.000 triệu</option>
+                                    </select>
+                                </div>
+
                             </div>
                         </div>
                     </div>

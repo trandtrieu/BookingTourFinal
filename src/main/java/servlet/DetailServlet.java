@@ -32,15 +32,14 @@ public class DetailServlet extends HttpServlet {
         AccountDTO acc = (AccountDTO) session.getAttribute("acc");
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("tid"));
-
         TourDao dao = new TourDao();
         FeedbackDao fed = new FeedbackDao();
+        int averageStar = fed.getAVGStar(id);
 
         Tour t = dao.getTourByID(id);
         List<Tour> tourRelated = dao.getTop4();
         int Total = fed.getTotalFeedback(id);
         List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(id);
-
 
         request.getServletContext().setAttribute("tRelated", tourRelated);
         request.setAttribute("total", Total);
@@ -48,6 +47,7 @@ public class DetailServlet extends HttpServlet {
         request.setAttribute("detail", t);
         session.setAttribute("historyUrl", "detail?tid=" + id);
         request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
+        request.setAttribute("averageStar", averageStar);
         request.getRequestDispatcher("single.jsp").forward(request, response);
 
     }

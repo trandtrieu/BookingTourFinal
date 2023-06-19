@@ -114,12 +114,13 @@ public class FeedbackDao {
             System.out.println(ex);
         }
     }
+
     public Feedback getSingleFeedbackById(int id) {
         Feedback row = null;
         try {
             String sql = "select * from feedbackTour where feedback_id=? ";
 
-             con = DbCon.getConnection();
+            con = DbCon.getConnection();
             st = con.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
@@ -140,4 +141,26 @@ public class FeedbackDao {
 
         return row;
     }
+
+    public int getAVGStar(int id) {
+        String sql = "SELECT [tourId], AVG([rated_star]) AS average_star\n"
+                + "FROM [bookingProject].[dbo].[feedbackTour]\n"
+                + "WHERE [tourId] = ?\n"
+                + "GROUP BY [tourId]";
+        try {
+            con = DbCon.getConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, id); // Thiết lập giá trị cho tham số "?"
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("average_star");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+
 }

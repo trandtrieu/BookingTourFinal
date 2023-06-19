@@ -15,12 +15,28 @@
     </head>
     <body>
         <%@include file="includes/topbar.jsp" %>
+        <div class="container-fluid page-header">
+            <div class="container">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                    <h3 class="display-4 text-white text-uppercase">Search Result</h3>
+                    <div class="d-inline-flex text-white">
+                        <p class="m-0 text-uppercase"><a class="text-white" href="HomeController">Home</a></p>
+                        <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                        <p class="m-0 text-uppercase">Search result</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%@include file="includes/search.jsp" %>
 
         <div class="container-fluid py-5">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Khám phá</h6>
                     <h1>Danh sách tua</h1>
+                    <h4 class="text-primary">Có ${listS.size()} kết quả tìm kiếm</h4>
+
                     <c:if test="${empty listS}">
                         <div class="alert alert-warning d-flex justify-content-center align-items-center" role="alert">
                             <div class="text-center">
@@ -52,6 +68,8 @@
 
                                     <div class="d-flex justify-content-between mb-3">
                                         <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
+                                        <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
+
                                     </div>
 
                                     <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>

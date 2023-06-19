@@ -13,9 +13,11 @@
 
         <title>JSP Page</title>
     </head>
+
+
     <body>
         <%@include file="includes/topbar.jsp" %>
-        
+
 
         <section style="background-color: #eee;">
             <div class="container py-5">
@@ -116,7 +118,7 @@
                                         <p class="text-muted mb-0">${detail.guideYearExperience}</p>
                                     </div>
                                 </div>
-                                    <hr>
+                                <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Giới tính</p>
@@ -199,7 +201,7 @@
                 </div>
             </div>
         </section>
-            <%@include file="includes/footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
 
     </body>
     <%@include file="includes/foot.jsp" %>

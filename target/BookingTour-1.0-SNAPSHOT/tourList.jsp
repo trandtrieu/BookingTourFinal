@@ -4,8 +4,10 @@
     Author     : DELL
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +60,7 @@
                                         <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
-                                                <h5 class="m-0">${t.price} VND</h5>
+                                                <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
                                             </div>
                                         </div>
                                     </div>

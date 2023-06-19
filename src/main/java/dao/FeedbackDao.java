@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Feedback;
+import model.Tour;
 
 public class FeedbackDao {
 
@@ -59,38 +61,83 @@ public class FeedbackDao {
         return 0;
     }
 
-  
-    public void addNewFeedback(String username, int star, String subject, int tourId, int u_id, String avatar) throws ClassNotFoundException {
-    try {
-        String sql = "INSERT INTO [dbo].[feedbackTour] ([username], [rated_star], [feedback], [tourId], [u_id], [avatar]) VALUES (?, ?, ?, ?, ?, ?)";
-        con = DbCon.getConnection();
-        st = con.prepareStatement(sql);
-        st.setString(1, username);
-        st.setInt(2, star);
-        st.setString(3, subject);
-        st.setInt(4, tourId);
-        st.setInt(5, u_id);
-        st.setString(6, avatar);
-        st.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println(e);
+    public void addNewFeedback(String username, int star, String subject, int tourId, int u_id, Date date, String avatar) throws ClassNotFoundException {
+        try {
+            String sql = "INSERT INTO [dbo].[feedbackTour] ([username], [rated_star], [feedback], [tourId], [u_id], [date], [avatar]) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            con = DbCon.getConnection();
+            st = con.prepareStatement(sql);
+            st.setString(1, username);
+            st.setInt(2, star);
+            st.setString(3, subject);
+            st.setInt(4, tourId);
+            st.setInt(5, u_id);
+            st.setDate(6, new java.sql.Date(date.getTime()));
+            st.setString(7, avatar);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
-}
 
+    public void deleteFeedbacktById(int id) throws ClassNotFoundException {
+        String sql = "DELETE FROM [dbo].[feedbackTour]\n"
+                + "      WHERE feedBack_id = ?";
+        try {
+            con = DbCon.getConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
 
-//    private void closeResources() {
-//        try {
-//            if (rs != null) {
-//                rs.close();
-//            }
-//            if (st != null) {
-//                st.close();
-//            }
-//            if (con != null) {
-//                con.close();
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
-//    }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editFeedbacktById(int id, int star, String subject, int tourId, int u_id, Date date) throws ClassNotFoundException {
+        try {
+            String sql = "UPDATE [dbo].[feedbackTour]\n"
+                    + "SET\n"
+                    + "[rated_star] = ?\n"
+                    + ",[feedback] = ?\n"
+                    + ",[date] = ?\n"
+                    + "WHERE [feedback_id] = ?";
+            con = DbCon.getConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, star);
+            st.setString(2, subject);
+            st.setDate(3, new java.sql.Date(date.getTime()));
+            st.setInt(4, tourId);
+
+            st.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    public Feedback getSingleFeedbackById(int id) {
+        Feedback row = null;
+        try {
+            String sql = "select * from feedbackTour where feedback_id=? ";
+
+             con = DbCon.getConnection();
+            st = con.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                row = new Feedback();
+                row.setTourId(rs.getInt("tourId"));
+                row.setFeedback(rs.getString("subject"));
+                row.setRated_star(rs.getInt("rated_star"));
+                row.setU_id(rs.getInt("u_id"));
+                row.setUsername(rs.getString("username"));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return row;
+    }
 }

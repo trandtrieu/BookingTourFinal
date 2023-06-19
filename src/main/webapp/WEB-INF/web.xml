@@ -53,12 +53,32 @@
         <servlet-class>servlet.PaymentServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>servlet.FeedbackController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>servlet.CheckOutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FeedbackController</servlet-name>
-        <servlet-class>servlet.FeedbackController</servlet-class>
+        <servlet-name>DeleteFeedbackController</servlet-name>
+        <servlet-class>servlet.DeleteFeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditFeedbackServlet</servlet-name>
+        <servlet-class>servlet.EditFeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>servlet.BlogController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogDetailController</servlet-name>
+        <servlet-class>servlet.BlogDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCondidion</servlet-name>
+        <servlet-class>servlet.SearchCondidion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -113,12 +133,32 @@
         <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FeedbackController</servlet-name>
-        <url-pattern>/feedback</url-pattern>
+        <servlet-name>DeleteFeedbackController</servlet-name>
+        <url-pattern>/delete-feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditFeedbackServlet</servlet-name>
+        <url-pattern>/edit-feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogController</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogDetailController</servlet-name>
+        <url-pattern>/blogDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCondidion</servlet-name>
+        <url-pattern>/SearchCondidion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

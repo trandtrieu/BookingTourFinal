@@ -113,7 +113,7 @@ public class AccountDAO {
     public void register(String username, String pass, String email, String phone) {
         try {
             String query = "insert into account\n"
-                    + "values(?,?,?,?,0)";
+                    + "values(?,?,?,?,0, NULL)";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, username);

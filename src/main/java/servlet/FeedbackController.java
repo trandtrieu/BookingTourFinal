@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AccountDTO;
@@ -28,7 +30,7 @@ public class FeedbackController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-
+        Date date = new Date();
         AccountDTO acc = (AccountDTO) session.getAttribute("acc");
         if (acc != null) {
             try ( PrintWriter out = response.getWriter()) {
@@ -36,8 +38,9 @@ public class FeedbackController extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("tid"));
                 String subject = request.getParameter("subject");
                 int star = Integer.parseInt(request.getParameter("star"));
+
                 FeedbackDao fed = new FeedbackDao();
-                fed.addNewFeedback(acc.getUsername(), star, subject,  id, acc.getId(), acc.getAvatar());
+                fed.addNewFeedback(acc.getUsername(), star, subject, id, acc.getId(),date, acc.getAvatar());
                 String historyUrl = (String) session.getAttribute("historyUrl");
                 response.sendRedirect(historyUrl);
             }

@@ -10,10 +10,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>About</title>
         <%@include file="includes/head.jsp" %>
 
     </head>
+        <style>
+        .img-fixed-size {
+            width: 100%;
+            height: 390px; /* Định rõ chiều cao */
+        }
+        .link-margin {
+            font-size: 1px;
+            height: 35px;
+        }
+    </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
         <div class="container-fluid page-header">
@@ -45,7 +55,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-6 pb-1">
                             <div class="team-item bg-white mb-4">
                                 <div class="team-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src="img/${g.guideImage}" alt="">
+                                    <img class="img-fluid w-100 img-fixed-size" src="img/${g.guideImage}" alt="">
                                     <div class="team-social">
                                         <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-twitter"></i></a>
                                         <a class="btn btn-outline-primary btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -55,8 +65,8 @@
                                 </div>
                                 <div class="text-center p y-4">
                                     <a href="detailGuide?gid=${g.guideId}">
-                                       <h5 class="text-truncate" style="margin: 10px">${g.guideName}</h5></a>
-                                    <p class="m-0">Designation</p>
+                                       <h5 class="text-truncate pb-3" style="margin: 10px">${g.guideName}</h5></a>
+<!--                                    <p class="m-0">Designation</p>-->
                                 </div>
                             </div>
                         </div>
@@ -72,4 +82,4 @@
 
     <%@include file="includes/foot.jsp" %>
 
-</html>s
+</html>

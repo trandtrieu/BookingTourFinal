@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.AccountDTO;
 import model.Feedback;
 import model.Tour;
 
@@ -28,6 +29,7 @@ public class DetailServlet extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException {
         HttpSession session = request.getSession();
 
+        AccountDTO acc = (AccountDTO) session.getAttribute("acc");
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("tid"));
 
@@ -38,6 +40,7 @@ public class DetailServlet extends HttpServlet {
         List<Tour> tourRelated = dao.getTop4();
         int Total = fed.getTotalFeedback(id);
         List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(id);
+
 
         request.getServletContext().setAttribute("tRelated", tourRelated);
         request.setAttribute("total", Total);

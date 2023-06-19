@@ -12,7 +12,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home </title>
         <%@include file="includes/head.jsp" %>
 
@@ -222,6 +221,10 @@
     </script>
 
 
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("dateStartSearch")[0].setAttribute('min', today);
+    </script>
 
 
 

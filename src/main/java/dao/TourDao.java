@@ -236,6 +236,46 @@ public class TourDao {
         return list;
     }
 
+    public List<Tour> searchTours(String regionId, String placeId, String dateStart) {
+
+        List<Tour> searchResults = new ArrayList<>();
+
+        try {
+
+            query = "SELECT * FROM tour \n"
+                    + "JOIN place ON tour.placeId = place.placeId \n"
+                    + "JOIN region ON tour.regionId = region.regionId\n"
+                    + "WHERE region.regionId = ? AND place.placeId = ? AND tour.dateStart >= ?";
+            pst = this.con.prepareStatement(query);
+            pst.setString(1, regionId);
+            pst.setString(2, placeId);
+            pst.setString(3, dateStart);
+            rs = pst.executeQuery();
+
+            // Xử lý kết quả truy vấn
+            while (rs.next()) {
+                Tour row = new Tour();
+                row.setTourId(rs.getInt("tourId"));
+                row.setStatusTour(rs.getBoolean("status"));
+                row.setTourName(rs.getString("name"));
+                row.setImageTour(rs.getString("image"));
+                row.setPrice(rs.getFloat("price"));
+                row.setDateStart(rs.getDate("dateStart"));
+                row.setDateEnd(rs.getDate("dateEnd"));
+                row.setDetailTour(rs.getString("detail"));
+                row.setPlaceName(rs.getString("placeName"));
+                row.setRegionName(rs.getString("regionName"));
+                row.setSeat(rs.getInt("seat"));
+
+                searchResults.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return searchResults;
+    }
+
     public List<Tour> getToursFromRegion(int id) {
         List<Tour> tours = new ArrayList<>();
 
@@ -303,17 +343,17 @@ public class TourDao {
 
         return row;
     }
-    
+
     public void updateTour(Tour tour) {
-    try {
-        query = "UPDATE tour SET seat = ? WHERE tourId = ?";
-        pst = con.prepareStatement(query);
-        pst.setInt(1, tour.getSeat());
-        pst.setInt(2, tour.getTourId());
-        pst.executeUpdate();
-    } catch (SQLException e) {
-        e.printStackTrace();
+        try {
+            query = "UPDATE tour SET seat = ? our SET seat = WHERE tourId = ?";
+            pst = con.prepareStatement(query);
+            pst.setInt(1, tour.getSeat());
+            pst.setInt(2, tour.getTourId());
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
 
 }

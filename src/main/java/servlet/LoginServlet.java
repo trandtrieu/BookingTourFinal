@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(acc.getRole());
 
             if (acc.getRole() == 1) {
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("ManagerTour");
 
                 return;
             }

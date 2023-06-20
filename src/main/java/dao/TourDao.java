@@ -38,14 +38,17 @@ public class TourDao {
     public TourDao() {
     }
 
-    public List<Tour> getAllTours() {
+    public List<Tour> getAllTours() throws ClassNotFoundException {
         List<Tour> tours = new ArrayList<>();
-
-        try ( PreparedStatement pst = con.prepareStatement(
-                "SELECT *\n"
+        query = "SELECT *\n"
                 + "FROM tour\n"
                 + "JOIN place ON tour.placeId = place.placeId\n"
-                + "JOIN region ON tour.regionId = region.regionId");  ResultSet rs = pst.executeQuery()) {
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 Tour tour = extractTourFromResultSet(rs);
@@ -79,6 +82,11 @@ public class TourDao {
         // Tính toán lịch trình từ dateStart đến dateEnd
         Date startDate = rs.getDate("dateStart");
         Date endDate = rs.getDate("dateEnd");
+        tour.setGuideId(rs.getInt("guideId"));
+
+        tour.setPlaceId(rs.getInt("placeId"));
+        tour.setRegionId(rs.getInt("regionId"));
+        tour.setGuideName(rs.getString("guideName"));
         int numberOfDays = calculateNumberOfDays(startDate, endDate);
 
         // Thiết lập lịch trình và số ngày chuyến đi
@@ -108,51 +116,6 @@ public class TourDao {
             System.out.println(e.getMessage());
         }
         return count;
-    }
-
-    public Tour getTourByID(int id) {
-
-        String query = "SELECT *    "
-                + "FROM tour\n"
-                + "JOIN place ON tour.placeId = place.placeId \n"
-                + "JOIN region ON tour.regionId = region.regionId\n"
-                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
-                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
-                + "where tourId = ?";
-        try {
-            this.con = DbCon.getConnection();
-
-            pst = this.con.prepareStatement(query);
-            pst.setInt(1, id);
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                return new TourSchedule(
-                        rs.getInt("scheduleId"),
-                        rs.getString("day1"),
-                        rs.getString("day2"),
-                        rs.getString("day3"),
-                        rs.getString("day4"),
-                        rs.getString("day5"),
-                        rs.getString("day6"),
-                        rs.getString("day7"),
-                        rs.getInt("tourId"),
-                        rs.getString("name"),
-                        rs.getFloat("price"),
-                        rs.getDate("dateStart"),
-                        rs.getDate("dateEnd"),
-                        rs.getString("detail"),
-                        rs.getString("image"),
-                        rs.getBoolean("status"),
-                        rs.getString("placeName"),
-                        rs.getString("regionName"),
-                        rs.getInt("guideId"),
-                        rs.getString("guideName"),
-                        rs.getInt("seat"));
-
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-        }
-        return null;
     }
 
     public List<Tour> getTop4() {
@@ -374,7 +337,7 @@ public class TourDao {
 
     public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
         query = "insert into tour\n"
-                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?)";
+                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?, '30')";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
@@ -398,8 +361,13 @@ public class TourDao {
         }
     }
 
-    public Tour getTourById(String tourId) {
-        query = "select * from tour\n"
+    public Tour getTourByIdd(String tourId) {
+        query = "SELECT *    "
+                + "FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId \n"
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
                 + "where tourId = ?";
         try {
             con = new DbCon().getConnection();
@@ -407,8 +375,31 @@ public class TourDao {
             pst.setString(1, tourId);
             rs = pst.executeQuery();
             while (rs.next()) {
-                return new Tour(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getDate(4), rs.getDate(5),
-                        rs.getString(6), rs.getString(7), rs.getBoolean(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
+                return new TourSchedule(
+                        rs.getInt("scheduleId"),
+                        rs.getString("day1"),
+                        rs.getString("day2"),
+                        rs.getString("day3"),
+                        rs.getString("day4"),
+                        rs.getString("day5"),
+                        rs.getString("day6"),
+                        rs.getString("day7"),
+                        rs.getInt("tourId"),
+                        rs.getString("name"),
+                        rs.getFloat("price"),
+                        rs.getDate("dateStart"),
+                        rs.getDate("dateEnd"),
+                        rs.getString("detail"),
+                        rs.getString("image"),
+                        rs.getBoolean("status"),
+                        rs.getString("placeName"),
+                        rs.getString("regionName"),
+                        rs.getString("guideName"),
+                        rs.getInt("guideId"),
+                        rs.getInt("placeId"),
+                        rs.getInt("regionId"),
+                        rs.getInt("seat"));
+
             }
         } catch (Exception e) {
         }
@@ -416,20 +407,66 @@ public class TourDao {
         return null;
     }
 
+    public Tour getTourByID(int id) {
+
+        String query = "SELECT *    "
+                + "FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId \n"
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
+                + "where tourId = ?";
+        try {
+            this.con = DbCon.getConnection();
+
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                return new TourSchedule(
+                        rs.getInt("scheduleId"),
+                        rs.getString("day1"),
+                        rs.getString("day2"),
+                        rs.getString("day3"),
+                        rs.getString("day4"),
+                        rs.getString("day5"),
+                        rs.getString("day6"),
+                        rs.getString("day7"),
+                        rs.getInt("tourId"),
+                        rs.getString("name"),
+                        rs.getFloat("price"),
+                        rs.getDate("dateStart"),
+                        rs.getDate("dateEnd"),
+                        rs.getString("detail"),
+                        rs.getString("image"),
+                        rs.getBoolean("status"),
+                        rs.getString("placeName"),
+                        rs.getString("regionName"),
+                        rs.getInt("guideId"),
+                        rs.getString("guideName"),
+                        rs.getInt("seat"));
+
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+        }
+        return null;
+    }
+
     public void updateTour(String tourId, String tourName, String price, String dateStart, String dateEnd,
             String detailTour, String imageTour, String statusTour, String placeId, String regionId, String guideId) {
         query = "update tour\n"
-                + "set [name] = ?,\n"
+                + "set name = ?,\n"
                 + "price = ?,\n"
                 + "dateStart = ?,\n"
                 + "dateEnd = ?,\n"
                 + "detail = ?,\n"
-                + "[image] = ?,\n"
-                + "[status]= ?,\n"
+                + "image = ?,\n"
+                + "status= ?,\n"
                 + "placeId = ?,\n"
                 + "guideId = ?,\n"
                 + "scheduleId = '1',\n"
-                + "regionId = ?\n"
+                + "regionId = ?,\n"
+                + "seat = '30'\n"
                 + "where tourId = ?";
         try {
             con = new DbCon().getConnection();
@@ -445,6 +482,21 @@ public class TourDao {
             pst.setString(9, guideId);
             pst.setString(10, regionId);
             pst.setString(11, tourId);
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(); // In thông báo lỗi ra màn hình
+            // Hoặc ghi log lỗi vào một tệp log
+        }
+
+    }
+
+    public void deleteTour(String tourId) {
+        query = "delete from tour \n"
+                + "where tourId = ?";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, tourId);
             pst.executeUpdate();
         } catch (Exception e) {
         }

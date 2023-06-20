@@ -86,14 +86,21 @@
                                     <a href="Login" class="nav-item nav-link">Đăng nhập</a>
                                 </c:if>
                                 <c:if test="${sessionScope.acc != null}">
-                                    <a href="LogoutServlet" class="nav-item nav-link">Đăng xuất</a>
-                                </c:if>
 
-                                <c:if test="${sessionScope.acc != null}">
-                                    <a class="nav-item nav-link" style="text-decoration: none" href="Profile">
-                                        Hello ${sessionScope.acc.username}
-                                    </a>
-                                </c:if> 
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Tài khoản </a>
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a class="dropdown-item" style="text-decoration: none" href="Profile">
+                                                Hello ${sessionScope.acc.username}
+                                            </a>
+
+                                            <a href="LogoutServlet" class="dropdown-item">Đăng xuất</a>
+
+
+                                        </div>   
+                                    </c:if>                                
+
+                                </div>
                             </div>
                         </div>
                     </nav>

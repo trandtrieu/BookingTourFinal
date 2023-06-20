@@ -21,8 +21,20 @@ public class TourSchedule extends Tour {
     private String day6;
     private String day7;
 
-    public TourSchedule(String day1, String day2, String day3, String day4, String day5, String day6, String day7, int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
+//    public TourSchedule(String day1, String day2, String day3, String day4, String day5, String day6, String day7, int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
+//        super(tourId, tourName, price, dateStart, dateEnd, detailTour, imageTour, statusTour, placeName, regionName, guideId, guideName, seat);
+//        this.day1 = day1;
+//        this.day2 = day2;
+//        this.day3 = day3;
+//        this.day4 = day4;
+//        this.day5 = day5;
+//        this.day6 = day6;
+//        this.day7 = day7;
+//    }
+
+    public TourSchedule(int scheduleId, String day1, String day2, String day3, String day4, String day5, String day6, String day7, int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
         super(tourId, tourName, price, dateStart, dateEnd, detailTour, imageTour, statusTour, placeName, regionName, guideId, guideName, seat);
+        this.scheduleId = scheduleId;
         this.day1 = day1;
         this.day2 = day2;
         this.day3 = day3;
@@ -32,8 +44,8 @@ public class TourSchedule extends Tour {
         this.day7 = day7;
     }
 
-    public TourSchedule(int scheduleId, String day1, String day2, String day3, String day4, String day5, String day6, String day7, int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
-        super(tourId, tourName, price, dateStart, dateEnd, detailTour, imageTour, statusTour, placeName, regionName, guideId, guideName, seat);
+    public TourSchedule(int scheduleId, String day1, String day2, String day3, String day4, String day5, String day6, String day7, int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName,String guideName, int guideId,   int placeId, int regionId, int seat) {
+        super(tourId, tourName, price, dateStart, dateEnd, detailTour, imageTour, statusTour, placeName, regionName, guideId, guideName, seat, placeId, regionId);
         this.scheduleId = scheduleId;
         this.day1 = day1;
         this.day2 = day2;

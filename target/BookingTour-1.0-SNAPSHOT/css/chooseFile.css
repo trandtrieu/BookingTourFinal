@@ -1,0 +1,9 @@
+input[type=file] {
+    width: 200px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+
+    border: 1px solid #555;
+}

@@ -66,7 +66,7 @@ public class BookingServlet extends HttpServlet {
             try {
                 request.setAttribute("acc", acc);
                 String tourId = request.getParameter("id");
-                BookTour orderModel = new BookTour();
+                BookTour orderModel = new BookTour(); 
                 orderModel.setOrderId(Integer.parseInt(tourId));
                 orderModel.setUser_id(acc.getId());
                 orderModel.setQuantityAd(adults);
@@ -97,7 +97,6 @@ public class BookingServlet extends HttpServlet {
                     remainingSeats -= (adults + children);
                     tour.setSeat(remainingSeats);
                     tourDao.updateTour(tour);
-
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
                     request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
                 } else {

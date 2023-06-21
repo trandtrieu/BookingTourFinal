@@ -93,10 +93,7 @@
                                             <a class="dropdown-item" style="text-decoration: none" href="Profile">
                                                 Hello ${sessionScope.acc.username}
                                             </a>
-
                                             <a href="LogoutServlet" class="dropdown-item">Đăng xuất</a>
-
-
                                         </div>   
                                     </c:if>                                
 

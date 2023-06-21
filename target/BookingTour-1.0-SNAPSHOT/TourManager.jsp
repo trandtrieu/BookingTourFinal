@@ -56,7 +56,7 @@
                                                 <td>${x.price}</td>
                                                 <td>${x.dateStart}</td>
                                                 <td>${x.dateEnd}</td>
-                                                <td>${x.detailTour}</td>
+                                                <td >${x.detailTour}</td>
                                                 <!--                                                <td >
                                                                                                     <img class="rounded-circle w-50" src="img/${x.imageTour}">
                                                 

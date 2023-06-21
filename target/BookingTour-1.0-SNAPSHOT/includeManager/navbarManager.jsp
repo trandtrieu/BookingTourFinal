@@ -9,7 +9,7 @@
 <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
         <a class="navbar-brand" href="index.html">
-            <h1 class="tm-site-title mb-0">Product Admin</h1>
+            <h1 class="tm-site-title mb-0">Tour Booking Admin</h1>
         </a>
         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -20,11 +20,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
+                    <a class="nav-link " href="HomeController">
+                        <i class="fa fa-browser"></i> Website 
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="HomeAdmin.jsp">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -39,7 +46,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="ManagerTour">
-                        <i class="fas fa-shopping-cart"></i> Products
+                        <i class="fas fa-shopping-cart"></i> Tours
                     </a>
                 </li>
 

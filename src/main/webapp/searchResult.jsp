@@ -5,6 +5,8 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -76,7 +78,7 @@
 
                                     <div class="border-top mt-4 pt-4">
                                         <div class="d-flex justify-content-between">
-                                            <h5 class="m-0"><c:out value="${String.format('%.0f', t.price)}" /> VND</h5>
+                                                <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +104,14 @@
 <%@include file="includes/footer.jsp" %>
 
 </body>
+  <script>
+        $(document).ready(function () {
+            var today = new Date().toISOString().split('T')[0];
+            $("#dateStartSearch").attr('min', today);
+        });
 
+
+    </script>
 
 <%@include file="includes/foot.jsp" %>
 

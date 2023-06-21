@@ -10,6 +10,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +45,6 @@
         </style>
     </head>
     <body>
-        <div id="notification"></div>
 
         <%@include file="includes/topbar.jsp" %>
         <div class="container py-5">
@@ -111,6 +113,7 @@
                     </div>
 
                 </div>
+               
 
                 <div class="col-md-6">
 
@@ -200,7 +203,7 @@
                                 <input type="hidden" name="tid" value="${detail.tourId}"/>
                                 <b>Viết bình luận:</b>&nbsp;&nbsp;
                                 <div class="form-group">
-                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px"></textarea>
+                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px;" ></textarea>
                                 </div>
 
                                 <b>Đánh giá:</b>&nbsp;&nbsp;
@@ -217,7 +220,7 @@
                                 <br>
 
 
-                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
+                                <center><button type="submit" class="btn" style="padding-right: 160px;padding-left: 160px; border-radius: 100px; background-color: #7AB730">Bình luận</button></center>
 
                             </form>
                             <br><br>
@@ -225,38 +228,6 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade col-md-12" role="dialog" id="feedbackEdit">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
-                        <div class="modal-header">
-                            <h2 style="margin-left: 35%">Bình luận</h2>
-                        </div>
-                        <div class="modal-body">
-                            <form action="edit-feedback" method="post">
-                                <input type="hidden" name="id" value="${detail.tourId}">
-                                <div class="form-group">
-                                    <textarea name="subject" placeholder="Viết bình luận.." style="height: 200px; width: 460px" value=""></textarea>
-                                </div>
-                                <h1>hello ${update.subject}</h1>
-                                <div class="form-group">
-                                    <select name="star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option>Ðánh giá sao cho tour </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>                      `
-                                    </select>
-                                </div>
-                                <br>
-                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
-                            </form>
-                            <br><br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <c:if test="${total == 0}">
                 <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
@@ -281,13 +252,7 @@
                             <c:if test="${f.u_id eq acc.id}">
                                 <a href="delete-feedback?id=${f.id}" class="float-right btn btn-outline-danger">Xóa</a>
 
-                            </c:if>
-
-                            <c:if test="${f.u_id eq acc.id}">
-                                <a href="edit-feedback?id=${f.id}" class="float-right btn btn-outline-danger" data-toggle="modal" data-dismiss="modal" data-target="#feedbackEdit">Edit</a>
-                            </c:if>
-
-
+                            </c:if>                          
                             <p class="mb-0">${f.feedback}</p>
 
                             <c:forEach var="i" begin="0" end="4">
@@ -325,6 +290,7 @@
                                             }
 
     </script>
+
     <%@include file="includes/foot.jsp" %>
 
 </html>

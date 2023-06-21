@@ -27,4 +27,65 @@
 <script src="js/main.js"></script>
 <script src="js/moment.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        var today = new Date().toISOString().split('T')[0];
+        $("#dateStartSearch").attr('min', today);
+    });
+</script>
+<script>
+        function updateCountdown(dateStart, tourId) {
+            var countdownElement = document.getElementById('countdown-' + tourId);
+            var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
+
+            function updateTimer() {
+                var now = moment();
+                var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
+
+                if (difference > 0) {
+                    var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
+
+                    var days = duration.days();
+                    var hours = duration.hours();
+                    var minutes = duration.minutes();
+                    var seconds = duration.seconds();
+
+                    countdownElement.innerHTML =
+                            "Còn " + days + 'd ' + hours + 'h ';
+                } else {
+                    countdownElement.innerHTML = 'Tour đã bắt đầu!';
+                    clearInterval(intervalId);
+                }
+            }
+
+            // Cập nhật đếm ngược ngay lập tức
+            updateTimer();
+
+            // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
+            var intervalId = setInterval(updateTimer, 1000);
+        }
+
+        function updateAllCountdowns() {
+        <c:forEach var="t" items="${myTours}">
+            updateCountdown('${t.dateStart}', '${t.tourId}');
+        </c:forEach>
+        }
+
+        // Gọi hàm updateAllCountdowns sau khi trang đã tải
+        document.addEventListener("DOMContentLoaded", function () {
+            updateAllCountdowns();
+        });
+
+
+
+
+
+    </script>
+
 

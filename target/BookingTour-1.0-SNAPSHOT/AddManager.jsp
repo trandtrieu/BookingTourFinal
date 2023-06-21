@@ -113,13 +113,7 @@
                                                 for="placeId"
                                                 >Place ID
                                             </label>
-<!--                                            <input
-                                                id="placeId"
-                                                name="placeId"
-                                                type="text"
-                                                class="form-control validate"
-                                                required
-                                                />-->
+
                                             <select class="custom-select " style="height: 47px;" name="placeId">
                                                 <c:forEach var="p" items="${myPlaces}" varStatus="status">
                                                     <option value="${p.placeId}">${p.placeId}. ${p.placeName}</option>

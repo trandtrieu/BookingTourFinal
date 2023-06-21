@@ -85,7 +85,7 @@
 
 
                 <div class="row">
-                    <c:set var="itemsPerPage" value="6" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
+                    <c:set var="itemsPerPage" value="12" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
                     <c:set var="currentPage" value="${param.pageNumber eq null ? 1 : param.pageNumber}" /> <!-- Trang hiện tại, mặc định là trang 1 -->
                     <c:set var="totalPages" value="${(myTours.size() + itemsPerPage - 1) / itemsPerPage}" /> <!-- Tổng số trang -->
 
@@ -113,6 +113,22 @@
                                         </div>
                                         <div  class= "link-margin text-center">
                                             <a class="h5 text-decoration-none " href="detail?tid=${t.tourId}">${t.tourName}</a>
+                                        </div>
+                                        <div class="border-top mt-4 pt-4">
+                                            <!-- In ra số sao trung bình của tour -->
+                                            <h6 class="m-0 text-center">
+                                                <c:set var="yellowStars" value="${t.averageStar}" />
+                                                <c:set var="grayStars" value="${5 - t.averageStar}" />
+
+                                                <c:forEach begin="1" end="${yellowStars}">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                </c:forEach>
+
+                                                <c:forEach begin="1" end="${grayStars}">
+                                                    <i class="far fa-star"></i>
+                                                </c:forEach>
+                                            </h6>
+
                                         </div>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
@@ -171,60 +187,11 @@
 
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script>
-        function updateCountdown(dateStart, tourId) {
-            var countdownElement = document.getElementById('countdown-' + tourId);
-            var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
-
-            function updateTimer() {
-                var now = moment();
-                var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
-
-                if (difference > 0) {
-                    var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
-
-                    var days = duration.days();
-                    var hours = duration.hours();
-                    var minutes = duration.minutes();
-                    var seconds = duration.seconds();
-
-                    countdownElement.innerHTML =
-                            "Còn " + days + 'd ' + hours + 'h ';
-                } else {
-                    countdownElement.innerHTML = 'Tour đã bắt đầu!';
-                    clearInterval(intervalId);
-                }
-            }
-
-            // Cập nhật đếm ngược ngay lập tức
-            updateTimer();
-
-            // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
-            var intervalId = setInterval(updateTimer, 1000);
-        }
-
-        function updateAllCountdowns() {
-        <c:forEach var="t" items="${myTours}">
-            updateCountdown('${t.dateStart}', '${t.tourId}');
-        </c:forEach>
-        }
-
-        // Gọi hàm updateAllCountdowns sau khi trang đã tải
-        document.addEventListener("DOMContentLoaded", function () {
-            updateAllCountdowns();
-        });
 
 
 
 
 
-    </script>
-
-
-    <script>
-        var today = new Date().toISOString().split('T')[0];
-        document.getElementsByName("dateStartSearch")[0].setAttribute('min', today);
-    </script>
 
 
 

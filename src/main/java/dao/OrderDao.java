@@ -50,7 +50,7 @@ public class OrderDao {
                 order.setTourName(tour.getTourName());
                 order.setDateStart(tour.getDateStart());
                 order.setPrice(tour.getPrice() * rs.getInt("book_quantityAd"));
-                order.setQuantityAd(rs.getInt("book_quantityChild"));
+                order.setQuantityAd(rs.getInt("book_quantityAd"));
                 order.setQuantityChildren(rs.getInt("book_quantityChild"));
                 order.setDate(rs.getString("book_date"));
                 order.setAddress(rs.getString("book_address"));

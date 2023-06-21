@@ -1,6 +1,7 @@
 package servlet;
 
 import connection.DbCon;
+import dao.FeedbackDao;
 import dao.PlaceDao;
 import dao.TourDao;
 import java.io.IOException;
@@ -30,7 +31,12 @@ public class HomeController extends HttpServlet {
             List<Tour> tours = t.getAllTours();
             List<Region> regions = r.getAllRegions();
             List<Place> places = p.getAllPlaces();
-
+            FeedbackDao feedbackDao = new FeedbackDao();
+            for (Tour tour : tours) {
+                int tourId = tour.getTourId();
+                int averageStar = feedbackDao.getAVGStar(tourId);
+                tour.setAverageStar(averageStar);
+            }
             int tourCount = t.getAllToursCount();
 
             request.getServletContext().setAttribute("myTours", tours);

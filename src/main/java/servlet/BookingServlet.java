@@ -66,7 +66,7 @@ public class BookingServlet extends HttpServlet {
             try {
                 request.setAttribute("acc", acc);
                 String tourId = request.getParameter("id");
-                BookTour orderModel = new BookTour(); 
+                BookTour orderModel = new BookTour();
                 orderModel.setOrderId(Integer.parseInt(tourId));
                 orderModel.setUser_id(acc.getId());
                 orderModel.setQuantityAd(adults);
@@ -82,9 +82,17 @@ public class BookingServlet extends HttpServlet {
                 TourDao tourDao = new TourDao(DbCon.getConnection());
                 int tId = Integer.parseInt(tourId);
                 Tour tour = tourDao.getSingleTour(tId);
+                int remainingSeats = tour.getSeat();
+
                 float adultPrice = tour.getPrice();
                 float childrenPrice = adultPrice / 2;
                 float totalAmount = (adultPrice * adults) + (childrenPrice * children);
+                if ((adults + children) > remainingSeats) {
+                    response.getWriter().println("The number of adults and children exceeds the available seats.");
+                    request.setAttribute("exceedSeats", true);
+                    return;
+                }
+
                 orderModel.setTotalAmount(totalAmount);
 
                 // Insert the order into the database
@@ -93,7 +101,7 @@ public class BookingServlet extends HttpServlet {
 
                 if (result) {
                     // Update the remaining seats in the tour
-                    int remainingSeats = tour.getSeat();
+                    remainingSeats = tour.getSeat();
                     remainingSeats -= (adults + children);
                     tour.setSeat(remainingSeats);
                     tourDao.updateTour(tour);

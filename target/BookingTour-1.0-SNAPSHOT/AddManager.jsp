@@ -106,6 +106,7 @@
                                                 type="text"
                                                 class="form-control validate"
                                                 data-large-mode="true"
+                                                value ="0"
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">

@@ -15,6 +15,16 @@
         <title>Search Result </title>
         <%@include file="includes/head.jsp" %>
     </head>
+    <style>
+        .img-fixed-size {
+            width: 100%;
+            height: 250px; /* Định rõ chiều cao */
+        }
+        .link-margin {
+            font-size: 1px;
+            height: 35px;
+        }
+    </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
         <div class="container-fluid page-header">
@@ -52,10 +62,11 @@
 
                 <div class="row">
 
+
                     <c:forEach var="t" items="${listS}" varStatus="status">
                         <div class="col-lg-4 col-md-6 mb-4" >
                             <div class="package-item bg-white mb-2">
-                                <img class="img-fluid" src="img/${t.imageTour}" alt="">
+                                <img class="img-fluid img-fixed-size" src="img/${t.imageTour}" alt="">
                                 <div class="p-4">
                                     <div class="d-flex justify-content-between mb-3">
                                         <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${t.placeName}                                            
@@ -73,14 +84,35 @@
                                         <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
 
                                     </div>
+                                    <div  class= "link-margin text-center">
+                                        <a class="h5 text-decoration-none " href="detail?tid=${t.tourId}">${t.tourName}</a>
+                                    </div>
+                                    <div class="border-top mt-4 pt-4">
+                                        <!-- In ra số sao trung bình của tour -->
+                                        <h6 class="m-0 text-center">
+                                            <c:set var="yellowStars" value="${t.averageStar}" />
+                                            <c:set var="grayStars" value="${5 - t.averageStar}" />
 
-                                    <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
+                                            <c:forEach begin="1" end="${yellowStars}">
+                                                <i class="fas fa-star text-warning"></i>
+                                            </c:forEach>
 
+                                            <c:forEach begin="1" end="${grayStars}">
+                                                <i class="far fa-star"></i>
+                                            </c:forEach>
+                                        </h6>
+
+                                    </div>
                                     <div class="border-top mt-4 pt-4">
                                         <div class="d-flex justify-content-between">
-                                                <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
+                                            <h6 class="m-0"><i class="fa fa-calendar-day text-primary mr-2"></i>${t.numberDay}<small> ngày</small></h6>
+                                            <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
+
+
                                         </div>
                                     </div>
+                                   
+
                                 </div>
                             </div>
                         </div>
@@ -98,20 +130,22 @@
 
     </div>
 </div>
+
+</div>
 <!-- Destination Start -->
 
 <!-- Packages End -->
 <%@include file="includes/footer.jsp" %>
 
 </body>
-  <script>
-        $(document).ready(function () {
-            var today = new Date().toISOString().split('T')[0];
-            $("#dateStartSearch").attr('min', today);
-        });
+<script>
+    $(document).ready(function () {
+        var today = new Date().toISOString().split('T')[0];
+        $("#dateStartSearch").attr('min', today);
+    });
 
 
-    </script>
+</script>
 
 <%@include file="includes/foot.jsp" %>
 

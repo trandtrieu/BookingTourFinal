@@ -218,6 +218,7 @@ public class TourDao {
             // Process the query result
             while (rs.next()) {
                 Tour row = new Tour();
+
                 row.setTourId(rs.getInt("tourId"));
                 row.setStatusTour(rs.getBoolean("status"));
                 row.setTourName(rs.getString("name"));
@@ -225,11 +226,16 @@ public class TourDao {
                 row.setPrice(rs.getFloat("price"));
                 row.setDateStart(rs.getDate("dateStart"));
                 row.setDateEnd(rs.getDate("dateEnd"));
+                Date startDate = rs.getDate("dateStart");
+                Date endDate = rs.getDate("dateEnd");
                 row.setDetailTour(rs.getString("detail"));
                 row.setPlaceName(rs.getString("placeName"));
                 row.setRegionName(rs.getString("regionName"));
                 row.setSeat(rs.getInt("seat"));
+                int numberOfDays = calculateNumberOfDays(startDate, endDate);
 
+                // Thiết lập lịch trình và số ngày chuyến đi
+                row.setNumberDay(numberOfDays);
                 searchResults.add(row);
             }
         } catch (SQLException e) {
@@ -501,4 +507,7 @@ public class TourDao {
         } catch (Exception e) {
         }
     }
+    
+    
+    
 }

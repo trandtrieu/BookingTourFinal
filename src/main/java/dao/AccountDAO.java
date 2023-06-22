@@ -124,4 +124,17 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
+
+    public void deleteAccount(String id) {
+
+        try {
+            String query = "delete from account\n"
+                    + "where u_id=?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 }

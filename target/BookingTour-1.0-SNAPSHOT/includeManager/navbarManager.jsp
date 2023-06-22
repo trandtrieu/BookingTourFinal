@@ -51,7 +51,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="accounts.html">
+                    <a class="nav-link" href="ListUser">
                         <i class="far fa-user"></i> Accounts
                     </a>
                 </li>
@@ -70,7 +70,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link d-block" href="login.html">
+                    <a class="nav-link d-block" href="LogoutServlet">
                         Admin, <b>Logout</b>
                     </a>
                 </li>

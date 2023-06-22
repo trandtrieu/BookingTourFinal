@@ -43,7 +43,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:set var="itemsPerPage" value="6" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
+                                    <c:set var="itemsPerPage" value="12" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
                                     <c:set var="currentPage" value="${param.pageNumber eq null ? 1 : param.pageNumber}" /> <!-- Trang hiện tại, mặc định là trang 1 -->
                                     <c:set var="totalPages" value="${(listTour.size() + itemsPerPage - 1) / itemsPerPage}" /> <!-- Tổng số trang -->
 
@@ -51,7 +51,9 @@
                                         <c:if test="${status.index >= (currentPage - 1) * itemsPerPage && status.index < currentPage * itemsPerPage}">
                                             <tr>
 
-                                                <td>${x.tourId}</td>
+<!--                                                <td>${x.tourId}</td>-->
+                                                <td><a href="HistoryServlet?tid=${x.tourId}">${x.tourId} </a></td>
+
                                                 <td>${x.tourName}</td>
                                                 <td>${x.price}</td>
                                                 <td>${x.dateStart}</td>
@@ -62,7 +64,7 @@
                                                 
                                                                                                 </td>-->
                                                 <td >
-                                                  ${x.imageTour}
+                                                    ${x.imageTour}
 
                                                 </td>
 
@@ -107,57 +109,16 @@
                         </div>
                         <!-- table container -->
                         <a href="AddManager.jsp" class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-                        <button class="btn btn-primary btn-block text-uppercase">
+<!--                        <button class="btn btn-primary btn-block text-uppercase">
                             Delete selected products
-                        </button>
+                        </button>-->
                     </div>
                 </div>
 
 
 
 
-                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 tm-block-col">
-                    <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-                        <h1 class="tm-block-title">Manager Place</h1>
-                        <div class="tm-product-table-container">
-                            <table class="table tm-table-small tm-product-table">
-                                <thead>
-                                    <tr>
-                                        <td></td>
-                                        <td>Place ID</td>
-                                        <td>Place Name</td>
-                                        <td>Place Content</td>
-                                        <td>Place Image</td>
-                                        <td>Region ID</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><input type="checkbox" /></th>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
-                                        <td>ABC</td>
 
-                                        <td>
-                                            <a href="#" class="tm-product-delete-link">
-                                                <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- table container -->
-                        <button class="btn btn-primary btn-block text-uppercase mb-3">
-                            Add new category
-                        </button>
-                    </div>
-                </div> -->
             </div>
         </div>
         <footer class="tm-footer row tm-mt-small">

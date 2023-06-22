@@ -13,7 +13,8 @@
         <%@include file="includes/head.jsp" %>
 
     </head>
-
+    <style>
+        </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
         <div class="container-fluid page-header">
@@ -41,7 +42,7 @@
                                         <div class="position-relative">
                                             <img class="img-fluid w-100" src="img/${b.thumbnail}" alt="">
                                             <div class="blog-date">
-                                                <h6 class="font-weight-bold mb-n1">${b.updated_date}</h6>
+                                                <h6 class="font-weight-bold mb-n1 pl-2">${b.updated_date}</h6>
                                             </div>
                                         </div>
                                         <div class="bg-white p-4">
@@ -72,7 +73,7 @@
                                     <img class="img-fluid" src="img/blog-100x100.jpg" alt="">
                                     <div class="pl-3">
                                         <h6 class="m-1">${b.title}</h6>
-                                        <small>Jan 01, 2050</small>
+                                        <small>${b.updated_date}</small>
                                     </div>
                                 </a>
                             </c:forEach>

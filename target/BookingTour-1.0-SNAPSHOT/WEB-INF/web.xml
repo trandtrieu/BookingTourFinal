@@ -96,6 +96,14 @@
         <servlet-name>UpdateTour</servlet-name>
         <servlet-class>servlet.UpdateTour</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HistoryServlet</servlet-name>
+        <servlet-class>servlet.HistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccount</servlet-name>
+        <servlet-class>servlet.DeleteAccount</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>UpdateTour</servlet-name>
         <url-pattern>/UpdateTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryServlet</servlet-name>
+        <url-pattern>/HistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccount</servlet-name>
+        <url-pattern>/DeleteAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

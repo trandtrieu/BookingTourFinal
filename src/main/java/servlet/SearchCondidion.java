@@ -6,6 +6,7 @@ package servlet;
 
 import connection.DbCon;
 import dao.BlogDAO;
+import dao.FeedbackDao;
 import dao.PlaceDao;
 import dao.TourDao;
 import java.io.IOException;
@@ -68,29 +69,30 @@ public class SearchCondidion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            FeedbackDao feedbackDao = new FeedbackDao();
             PlaceDao p = new PlaceDao(DbCon.getConnection());
 
-            try {
-                String placeSearch = request.getParameter("placeSearch");
-                String dateStartSearch = request.getParameter("dateStartSearch");
-                String priceSearch = request.getParameter("priceSearch");
-                float price = Float.parseFloat(priceSearch);
-                List<Place> places = p.getAllPlaces();
+            String placeSearch = request.getParameter("placeSearch");
+            String dateStartSearch = request.getParameter("dateStartSearch");
+            String priceSearch = request.getParameter("priceSearch");
+            float price = Float.parseFloat(priceSearch);
+            
+            List<Place> places = p.getAllPlaces();
+            TourDao t = new TourDao(DbCon.getConnection());
+            
+            List<Tour> searchResults = t.searchTours(placeSearch, dateStartSearch, price);
 
-                TourDao r = new TourDao(DbCon.getConnection());
-                List<Tour> searchResults = r.searchTours(placeSearch, dateStartSearch, price);
-            int count = searchResults.size();
-
-                request.setAttribute("listS", searchResults);
-                request.getServletContext().setAttribute("myPlaces", places);
-
-                request.getRequestDispatcher("searchResult.jsp").forward(request, response);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
+            for (Tour tour : searchResults) {
+                int tourId = tour.getTourId();
+                int averageStar = feedbackDao.getAVGStar(tourId);
+                tour.setAverageStar(averageStar);
             }
+            
+            
+            request.setAttribute("listS", searchResults);
+            request.getServletContext().setAttribute("myPlaces", places);
 
+            request.getRequestDispatcher("searchResult.jsp").forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SearchCondidion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

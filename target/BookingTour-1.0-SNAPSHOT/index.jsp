@@ -76,7 +76,7 @@
 
         </div>
         <!-- Packages Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5" id="tour-card">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Khám phá</h6>

@@ -104,6 +104,18 @@
         <servlet-name>DeleteAccount</servlet-name>
         <servlet-class>servlet.DeleteAccount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingPayment</servlet-name>
+        <servlet-class>servlet.BookingPayment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingPaymentVer2</servlet-name>
+        <servlet-class>servlet.BookingPaymentVer2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListJobGuide</servlet-name>
+        <servlet-class>servlet.ListJobGuide</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -207,6 +219,18 @@
     <servlet-mapping>
         <servlet-name>DeleteAccount</servlet-name>
         <url-pattern>/DeleteAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingPayment</servlet-name>
+        <url-pattern>/BookingPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingPaymentVer2</servlet-name>
+        <url-pattern>/BookingPaymentVer2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListJobGuide</servlet-name>
+        <url-pattern>/ListJobGuide</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

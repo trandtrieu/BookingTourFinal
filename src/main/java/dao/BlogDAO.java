@@ -84,7 +84,6 @@ public class BlogDAO {
                 String thumbnail = rs.getString("thumbnail");
                 String briefInfo = rs.getString("brief_infor");
                 boolean status = rs.getBoolean("status");
-
                 Blog c = new Blog(blog_id, title, authorId, updated_date, content, thumbnail, briefInfo, status);
                 return c;
             }

@@ -113,7 +113,7 @@
                     </div>
 
                 </div>
-               
+
 
                 <div class="col-md-6">
 
@@ -150,17 +150,31 @@
                                     <label for="email">Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" value="" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="address">Address:</label>
-                                    <input type="address" class="form-control" name="address" id="address" placeholder="Nhập địa chỉ" value="" required>
+                              
+
+                                <div  class="form-group">
+                                    <label for="address">Địa chỉ: </label>
+
+                                    <select class="form-select form-select-sm mb-3 form-control" id="city" aria-label=".form-select-sm" name="city">
+                                        <option value="" selected>Chọn tỉnh thành</option>           
+                                    </select>
+
+                                    <select class="form-select form-select-sm mb-3 form-control" id="district" aria-label=".form-select-sm" name="district" >
+                                        <option value="" selected>Chọn quận huyện</option>
+                                    </select>
+
+                                    <select class="form-select form-select-sm form-control" id="ward" aria-label=".form-select-sm" name="ward">
+                                        <option value="" selected>Chọn phường xã</option>
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="adults">Số lượng người lớn:</label>
                                     <input type="number" class="form-control" id="adults" name="adults" placeholder="Nhập số lượng người lớn" min="1" value="1">
                                 </div>
                                 <div class="form-group">
                                     <label for="children">Số lượng trẻ em:</label>
-                                    <input type="number" class="form-control" id="children" name="children" placeholder="Nhập số lượng trẻ em" min="0">
+                                    <input type="number" class="form-control" id="children" name="children" placeholder="Nhập số lượng trẻ em" min="0" value="0">
                                 </div>
 
                                 <div class="form-group">
@@ -174,6 +188,8 @@
                                 <button type="submit" class="btn btn-primary">Đặt vé</button>
                             </form>
                         </div>
+                                
+                                
                         <div class="col-md-12 mt-5">
                             <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Some new tours</h4>
                             <c:forEach var="r" items="${tRelated}" varStatus="status">
@@ -186,6 +202,8 @@
                                 </div>
                             </c:forEach>
                         </div>
+                                
+                                
                     </div>
 
 
@@ -287,6 +305,51 @@
                                             if (seatCount === 0) {
                                                 // Hiển thị thông báo "Tour đã hết chỗ"
                                                 alert("Tour đã hết chỗ");
+                                            }
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+                                            var citis = document.getElementById("city");
+                                            var districts = document.getElementById("district");
+                                            var wards = document.getElementById("ward");
+                                            var Parameter = {
+                                                url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+                                                method: "GET",
+                                                responseType: "application/json",
+                                            };
+                                            var promise = axios(Parameter);
+                                            promise.then(function (result) {
+                                                renderCity(result.data);
+                                            });
+
+                                            function renderCity(data) {
+                                                for (const x of data) {
+                                                    citis.options[citis.options.length] = new Option(x.Name, x.Name); // Lưu trữ tên thay vì Id
+                                                }
+                                                citis.onchange = function () {
+                                                    district.length = 1;
+                                                    ward.length = 1;
+                                                    if (this.value != "") {
+                                                        const result = data.filter(n => n.Name === this.value); // So sánh với tên thay vì Id
+
+                                                        for (const k of result[0].Districts) {
+                                                            district.options[district.options.length] = new Option(k.Name, k.Name); // Lưu trữ tên thay vì Id
+                                                        }
+                                                    }
+                                                };
+                                                district.onchange = function () {
+                                                    ward.length = 1;
+                                                    const dataCity = data.filter((n) => n.Name === citis.value); // So sánh với tên thay vì Id
+                                                    if (this.value != "") {
+                                                        const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards; // So sánh với tên thay vì Id
+
+                                                        for (const w of dataWards) {
+                                                            wards.options[wards.options.length] = new Option(w.Name, w.Name); // Lưu trữ tên thay vì Id
+                                                        }
+                                                    }
+                                                };
                                             }
 
     </script>

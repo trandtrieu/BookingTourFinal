@@ -68,7 +68,6 @@ public class AccountDAO {
                 acc.setPassword(rs.getString("password"));
                 acc.setRole(rs.getInt("role"));
                 acc.setAvatar(rs.getString("avatar"));
-
                 return acc;
             }
         } catch (Exception e) {

@@ -40,52 +40,75 @@
     });
 </script>
 <script>
-        function updateCountdown(dateStart, tourId) {
-            var countdownElement = document.getElementById('countdown-' + tourId);
-            var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
+    function updateCountdown(dateStart, tourId) {
+        var countdownElement = document.getElementById('countdown-' + tourId);
+        var startDate = moment(dateStart, "YYYY-MM-DD"); // Chuyển đổi ngày bắt đầu thành đối tượng Moment
 
-            function updateTimer() {
-                var now = moment();
-                var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
+        function updateTimer() {
+            var now = moment();
+            var difference = startDate.diff(now); // Tính toán khoảng thời gian còn lại (diff)
 
-                if (difference > 0) {
-                    var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
+            if (difference > 0) {
+                var duration = moment.duration(difference); // Chuyển đổi khoảng thời gian thành đối tượng Duration
 
-                    var days = duration.days();
-                    var hours = duration.hours();
-                    var minutes = duration.minutes();
-                    var seconds = duration.seconds();
+                var days = duration.days();
+                var hours = duration.hours();
 
-                    countdownElement.innerHTML =
-                            "Còn " + days + 'd ' + hours + 'h ';
+                countdownElement.innerHTML =
+                        "Còn " + days + 'd ' + hours + 'h ';
+            } else {
+                countdownElement.innerHTML = 'Tour đã bắt đầu!';
+                clearInterval(intervalId);
+            }
+        }
+
+        // Cập nhật đếm ngược ngay lập tức
+        updateTimer();
+
+        // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
+        var intervalId = setInterval(updateTimer, 1000);
+    }
+
+    function updateAllCountdowns() {
+    <c:forEach var="t" items="${myTours}">
+        updateCountdown('${t.dateStart}', '${t.tourId}');
+            </c:forEach>
+    }
+
+    // Gọi hàm updateAllCountdowns sau khi trang đã tải
+    document.addEventListener("DOMContentLoaded", function () {
+        updateAllCountdowns();
+    });
+
+
+
+
+
+</script>
+<script type="text/javascript">
+    $("#frmCreateOrder").submit(function () {
+        var postData = $("#frmCreateOrder").serialize();
+        var submitUrl = $("#frmCreateOrder").attr("action");
+        $.ajax({
+            type: "POST",
+            url: submitUrl,
+            data: postData,
+            dataType: 'JSON',
+            success: function (x) {
+                if (x.code === '00') {
+                    if (window.vnpay) {
+                        vnpay.open({width: 768, height: 600, url: x.data});
+                    } else {
+                        location.href = x.data;
+                    }
+                    return false;
                 } else {
-                    countdownElement.innerHTML = 'Tour đã bắt đầu!';
-                    clearInterval(intervalId);
+                    alert(x.Message);
                 }
             }
-
-            // Cập nhật đếm ngược ngay lập tức
-            updateTimer();
-
-            // Cập nhật đếm ngược mỗi giây (1000 milliseconds)
-            var intervalId = setInterval(updateTimer, 1000);
-        }
-
-        function updateAllCountdowns() {
-        <c:forEach var="t" items="${myTours}">
-            updateCountdown('${t.dateStart}', '${t.tourId}');
-        </c:forEach>
-        }
-
-        // Gọi hàm updateAllCountdowns sau khi trang đã tải
-        document.addEventListener("DOMContentLoaded", function () {
-            updateAllCountdowns();
         });
-
-
-
-
-
-    </script>
+        return false;
+    });
+</script>
 
 

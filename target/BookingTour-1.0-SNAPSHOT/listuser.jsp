@@ -5,14 +5,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+        <title>List User</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
         <style>
             body {
                 color: #566787;
@@ -239,7 +237,7 @@
                 font-weight: normal;
             }
         </style>
-        
+
     </head>
     <body>
         <div class="container-xl">
@@ -252,7 +250,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                                						
+
                             </div>
                         </div>
                     </div>
@@ -270,7 +268,7 @@
                         </thead>
                         <tbody>
 
-                            <c:forEach items="${acc}" var="a">
+                            <c:forEach items="${ac}" var="a">
                                 <tr>
                                     <td>${a.id}</td>
                                     <td>${a.username}</td>
@@ -285,10 +283,20 @@
                                         <c:if test="${a.role == 0}">
                                             Customer
                                         </c:if>  
+                                        <c:if test="${a.role == 2}">
+                                            Tour guide
+                                        </c:if>  
                                     </td>
                                     <td>
                                         <a href="#" class="edit" data-toggle=""><i class="fa fa-pen" style="color: #ffae00;"></i></a>
-                                        <a href="DeleteAccount?aid=${a.id}" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
+                                            <c:choose>
+                                                <c:when test="${a.role == 1}">
+                                                <!-- Ẩn thẻ <a> khi role = 1 -->
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="DeleteAccount?aid=${a.id}" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
+                                                </c:otherwise>
+                                            </c:choose>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -298,14 +306,17 @@
                 </div>
             </div>        
         </div>
-        
+
     </body>
     <script>
         function  showMess(id) {
-                var option = confirm('are you sure delete');
-                if (option === true) {
-                    window.location.href = 'DeleteTour?aid=' + id;
-                }
+            var option = confirm('are you sure delete');
+            if (option === true) {
+                window.location.href = 'DeleteTour?aid=' + id;
             }
+        }
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </html>

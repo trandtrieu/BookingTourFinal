@@ -27,15 +27,13 @@ import model.AccountDTO;
 //@WebFilter(filterName = "AuthFilter", urlPatterns = {"/admin.jsp"})
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"/ManagerTour"})
 
-
 public class AuthFilter implements Filter {
 
     public AuthFilter() {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
@@ -47,10 +45,11 @@ public class AuthFilter implements Filter {
         }
         if (user.getRole() == 1) {
             chain.doFilter(request, response);
+        } else if (user.getRole() == 2) {
+            chain.doFilter(request, response);
         } else {
             res.sendRedirect("HomeController");
         }
-
     }
 
     @Override

@@ -50,10 +50,17 @@ public class BookingServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName");
+    String fullName = request.getParameter("fullName");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        String address = request.getParameter("address");
+        String city = request.getParameter("city");
+        String district = request.getParameter("district");
+        String ward = request.getParameter("ward");
+
+        // Tiếp tục xử lý địa chỉ
+        // Ví dụ: In ra giá trị địa chỉ
+        String address = city + ", " + district + ", " + ward;
+//        String address = request.getParameter("address");
         int adults = Integer.parseInt(request.getParameter("adults"));
         int children = Integer.parseInt(request.getParameter("children"));
         String note = request.getParameter("note");
@@ -64,7 +71,7 @@ public class BookingServlet extends HttpServlet {
 
         if (acc != null) {
             try {
-                request.setAttribute("acc", acc);
+//                request.setAttribute("acc", acc);
                 String tourId = request.getParameter("id");
                 BookTour orderModel = new BookTour();
                 orderModel.setOrderId(Integer.parseInt(tourId));
@@ -106,6 +113,8 @@ public class BookingServlet extends HttpServlet {
                     tour.setSeat(remainingSeats);
                     tourDao.updateTour(tour);
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
+//                                        request.getRequestDispatcher("confirmPage.jsp").forward(request, response);
+
                     request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");

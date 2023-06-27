@@ -44,17 +44,19 @@ public class AddTourServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         TourDao t = new TourDao(DbCon.getConnection());
         RegionDao r = new RegionDao(DbCon.getConnection());
-        PlaceDao p = new PlaceDao(DbCon.getConnection());
         GuideDao g = new GuideDao(DbCon.getConnection());
+        PlaceDao p = new PlaceDao(DbCon.getConnection());
 
         List<Tour> tours = t.getAllTours();
         List<Region> regions = r.getAllRegions();
-        List<Place> places = p.getAllPlaces();
         List<GuideTour> guides = g.getAllGuides();
+
+        List<Place> places = p.getAllPlaces();
         request.getServletContext().setAttribute("myTours", tours);
         request.getServletContext().setAttribute("myRegions", regions);
-        request.getServletContext().setAttribute("myPlaces", places);
         request.getServletContext().setAttribute("myGuides", guides);
+
+        request.getServletContext().setAttribute("myPlaces", places);
 
         request.getRequestDispatcher("AddManager.jsp").forward(request, response);
 

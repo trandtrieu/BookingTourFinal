@@ -70,6 +70,10 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("ManagerTour");
 
                 return;
+            } else if (acc.getRole() == 2) {
+                response.sendRedirect("ListJobGuide");
+
+                return;
             }
             response.sendRedirect("HomeController");
 

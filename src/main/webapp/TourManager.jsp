@@ -51,23 +51,16 @@
                                         <c:if test="${status.index >= (currentPage - 1) * itemsPerPage && status.index < currentPage * itemsPerPage}">
                                             <tr>
 
-<!--                                                <td>${x.tourId}</td>-->
                                                 <td><a href="HistoryServlet?tid=${x.tourId}">${x.tourId} </a></td>
 
                                                 <td>${x.tourName}</td>
                                                 <td>${x.price}</td>
                                                 <td>${x.dateStart}</td>
                                                 <td>${x.dateEnd}</td>
-                                                <td >${x.detailTour}</td>
-                                                <!--                                                <td >
-                                                                                                    <img class="rounded-circle w-50" src="img/${x.imageTour}">
-                                                
-                                                                                                </td>-->
+                                                <td >${x.detailTour}</td>                                            
                                                 <td >
                                                     ${x.imageTour}
-
                                                 </td>
-
                                                 <td>${x.statusTour}</td>
                                                 <td>${x.placeId}</td>
                                                 <td>${x.placeName}</td>
@@ -109,9 +102,9 @@
                         </div>
                         <!-- table container -->
                         <a href="AddManager.jsp" class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-<!--                        <button class="btn btn-primary btn-block text-uppercase">
-                            Delete selected products
-                        </button>-->
+                        <!--                        <button class="btn btn-primary btn-block text-uppercase">
+                                                    Delete selected products
+                                                </button>-->
                     </div>
                 </div>
 

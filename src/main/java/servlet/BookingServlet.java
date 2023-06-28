@@ -57,10 +57,7 @@ public class BookingServlet extends HttpServlet {
         String district = request.getParameter("district");
         String ward = request.getParameter("ward");
 
-        // Tiếp tục xử lý địa chỉ
-        // Ví dụ: In ra giá trị địa chỉ
         String address = city + ", " + district + ", " + ward;
-//        String address = request.getParameter("address");
         int adults = Integer.parseInt(request.getParameter("adults"));
         int children = Integer.parseInt(request.getParameter("children"));
         String note = request.getParameter("note");
@@ -99,9 +96,7 @@ public class BookingServlet extends HttpServlet {
                     request.setAttribute("exceedSeats", true);
                     return;
                 }
-
                 orderModel.setTotalAmount(totalAmount);
-
                 // Insert the order into the database
                 OrderDao orderDao = new OrderDao(DbCon.getConnection());
                 boolean result = orderDao.insertOrder(orderModel);
@@ -113,7 +108,6 @@ public class BookingServlet extends HttpServlet {
                     tour.setSeat(remainingSeats);
                     tourDao.updateTour(tour);
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
-//                                        request.getRequestDispatcher("confirmPage.jsp").forward(request, response);
 
                     request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
                 } else {
@@ -128,7 +122,6 @@ public class BookingServlet extends HttpServlet {
                 Logger.getLogger(BookingServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            // Người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
             response.sendRedirect("Login");
             return;
         }

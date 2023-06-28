@@ -86,24 +86,31 @@
                                     <a href="Login" class="nav-item nav-link">Đăng nhập</a>
                                 </c:if>
                                 <c:if test="${sessionScope.acc != null}">
-
                                     <div class="nav-item dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Tài khoản </a>
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
                                         <div class="dropdown-menu border-0 rounded-0 m-0">
                                             <a class="dropdown-item" style="text-decoration: none" href="Profile">
                                                 Hello ${sessionScope.acc.username}
                                             </a>
+                                            <c:if test="${sessionScope.acc.getRole() == 2}">
+                                                <a href="ListJobGuide" class="dropdown-item">Job</a>
+                                            </c:if>
+                                            <c:if test="${sessionScope.acc.getRole() == 1}">
+                                                <a href="ManagerTour" class="dropdown-item">Admin</a>
+                                            </c:if>
                                             <a href="LogoutServlet" class="dropdown-item">Đăng xuất</a>
-                                        </div>   
-                                    </c:if>                                
+                                        </div>
+                                    </div>
+                                </c:if>
 
-                                </div>
+
                             </div>
                         </div>
-                    </nav>
                 </div>
+                </nav>
             </div>
         </div>
-        <!-- Navbar End -->
-    </body>
+    </div>
+    <!-- Navbar End -->
+</body>
 </html>

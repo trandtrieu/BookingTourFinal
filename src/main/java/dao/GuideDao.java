@@ -102,12 +102,13 @@ public class GuideDao {
 
         List<TourSchedule> guides = new ArrayList<TourSchedule>();
         try {
-            query = "SELECT * from tour\n"
-                    + " JOIN place ON tour.placeId = place.placeId\n"
-                    + "JOIN region ON tour.regionId = region.regionId \n"
-                    + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
-                    + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
-                    + "where tourGuider.u_id = ?";
+            query = "SELECT * FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId\n"
+                + "JOIN region ON tour.regionId = region.regionId \n"
+                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
+                + "WHERE tourGuider.u_id = ?\n"
+                + "ORDER BY dateStart ASC";
             pst = this.con.prepareStatement(query);
             pst.setInt(1, u_id);
 

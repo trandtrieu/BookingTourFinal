@@ -116,6 +116,14 @@
         <servlet-name>ListJobGuide</servlet-name>
         <servlet-class>servlet.ListJobGuide</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListMemberTour</servlet-name>
+        <servlet-class>servlet.ListMemberTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TourChart</servlet-name>
+        <servlet-class>servlet.TourChart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -231,6 +239,14 @@
     <servlet-mapping>
         <servlet-name>ListJobGuide</servlet-name>
         <url-pattern>/ListJobGuide</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListMemberTour</servlet-name>
+        <url-pattern>/ListMemberTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TourChart</servlet-name>
+        <url-pattern>/TourChart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+    
 package com.vnpay.common;
 
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -14,22 +12,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import jakarta.servlet.http.HttpServletRequest;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
- * @author thong
+ * @author CTT VNPAY
  */
-public class Config{
+public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = "http://localhost:9999/BookingTour/vnpay_return.jsp";
-    public static String vnp_TmnCode = "13HPGUXI";
-    public static String vnp_HashSecret = "ORAZPDHQASXJCFAHBKMZPKDZEPHZJVJV";
-    public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+    public static String vnp_Returnurl = "http://localhost:9999/vnpay_jsp/vnpay_return.jsp";
+    public static String vnp_TmnCode = "P2KKI321";
+    public static String vnp_HashSecret = "VBNBEOJONVYSOQXMFKSLKILIKZNVIWWC";
+    public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
 
     public static String md5(String message) {
         String digest = null;
@@ -85,9 +81,9 @@ public class Config{
                 sb.append("&");
             }
         }
-        return hmacSHA512(vnp_HashSecret, sb.toString());
+        return hmacSHA512(vnp_HashSecret,sb.toString());
     }
-
+    
     public static String hmacSHA512(final String key, final String data) {
         try {
 
@@ -134,5 +130,3 @@ public class Config{
         return sb.toString();
     }
 }
-
-

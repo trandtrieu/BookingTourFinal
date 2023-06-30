@@ -43,13 +43,13 @@
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-                        <div class="tm-bg-primary-tm-block">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                        <div class="tm-bg-primary-dark tm-block">
                             <h2 class="tm-block-title text-center">Số tiền vé khách hàng đặt theo từng tháng</h2>
                             <canvas id="horizontalBar"></canvas>
                         </div>
                     </div>
-<!--                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
                         <div class="tm-bg-primary-dark tm-block">
 
                             <div class="input-group mb-3">
@@ -66,12 +66,12 @@
                             </div>
                         </div>
 
-                    </div>-->
+                    </div>
 
                 </div>
             </div>
             <footer class="tm-footer row tm-mt-small">
-                <div class="col-12 font-weight-light">
+                <div class="col-12 font-weight-light ">
                     <p class="text-center text-white mb-0 px-4 small">
                         Copyright &copy; <b>2018</b> All rights reserved. 
 
@@ -202,45 +202,45 @@
             });
         </script>
         <script>
-    new Chart(document.getElementById("horizontalBar"), {
-        "type": "horizontalBar",
-        "data": {
-            "labels": [
-                <c:forEach var="customer" items="${amountsByMonth}">
+            new Chart(document.getElementById("horizontalBar"), {
+            "type": "horizontalBar",
+                    "data": {
+                    "labels": [
+            <c:forEach var="customer" items="${amountsByMonth}">
                     "${customer.month}",
-                </c:forEach>
-            ],
-            "datasets": [{
-                "label": "Số tiền ",
-                "data": [
-                    <c:forEach var="customer" items="${amountsByMonth}">
-                        ${customer.totalAmount / 1000000},
-                    </c:forEach> 
-                ],
-                "fill": false,
-                "backgroundColor": [
-                    "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
-                    "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
-                    "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
-                ],
-                "borderColor": [
-                    "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
-                    "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"
-                ],
-                "borderWidth": 1
-            }]
-        },
-        "options": {
-            "scales": {
-                "xAxes": [{
+            </c:forEach>
+                    ],
+                            "datasets": [{
+                            "label": "Số tiền ",
+                                    "data": [
+            <c:forEach var="customer" items="${amountsByMonth}">
+                ${customer.totalAmount / 1000000},
+            </c:forEach>
+                                    ],
+                                    "fill": false,
+                                    "backgroundColor": [
+                                            "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+                                            "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
+                                            "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"
+                                    ],
+                                    "borderColor": [
+                                            "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+                                            "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"
+                                    ],
+                                    "borderWidth": 1
+                            }]
+                    },
+                    "options": {
+                    "scales": {
+                    "xAxes": [{
                     "ticks": {
-                        "beginAtZero": true
+                    "beginAtZero": true
                     }
-                }]
-            }
-        }
-    });
-</script>
+                    }]
+                    }
+                    }
+            });
+        </script>
 
     </body>
 

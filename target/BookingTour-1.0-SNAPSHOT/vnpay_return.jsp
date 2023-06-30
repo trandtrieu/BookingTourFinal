@@ -1,8 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
-<%@page import="vnpay.Config"%>
+<%@page import="com.vnpay.common.Config"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -17,23 +15,21 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <jsp:include page="include/headTag.jsp"></jsp:include>
-            <title>VNPAY RESPONSE</title>
-            <!-- Bootstrap core CSS -->
-            <link href="./css/bootstrap.min.css" rel="stylesheet"/>
-            <!-- Custom styles for this template -->
-            <link href="./css/jumbotron-narrow.css" rel="stylesheet"> 
-        </head>
-        <body>
-            <div class="container-xxl bg-white p-0">
-                <div class="container-xxl py-1 bg-dark hero-header mb-3">
-                    <div class="container text-center my-3 pt-3 pb-2">
-                        <h1 class="display-3 text-white mb-3 animated slideInDown">BOOKING PAYMENT</h1>
-                    </div>
-                </div>
-            </div>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Invoice Details</title>
+        <!-- Bootstrap core CSS -->
+        <link href="/vnpay_jsp/assets/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Custom styles for this template -->
+        <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet"> 
+        <script src="/vnpay_jsp/assets/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
         <%
-            //check is paymetn or not
             //Begin process return from VNPAY
             Map fields = new HashMap();
             for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
@@ -52,52 +48,66 @@
                 fields.remove("vnp_SecureHash");
             }
             String signValue = Config.hashAllFields(fields);
+
         %>
         <!--Begin display -->
-        <div class="container container-xl">
+        <div class="container">
             <div class="header clearfix">
-                <h3 class="text-muted text-center">VNPAY RESPONSE</h3>
+                <h3 class="text-muted">INVOICE DETAILS</h3>
             </div>
-            <table class="table-responsive" style="margin: 0 auto">
-               
-                <tr class="form-group">
-                    <td >Merchant Transaction Code:</td>
-                    <td><%=request.getParameter("vnp_TxnRef")%></td>
-                </tr>    
-                <tr class="form-group">
-                    <td >Amount:</td>
-                    <td><%=request.getParameter("vnp_Amount")%></td>
-                </tr>  
-                <tr class="form-group">
-                    <td >Order info:</td>
-                    <td><%=request.getParameter("vnp_OrderInfo")%></td>
-                </tr> 
-                <tr class="form-group">
-                    <td >VNPAY Response Code:</td>
-                    <td ><%=request.getParameter("vnp_ResponseCode")%></td>
-                </tr> 
-                <tr class="form-group">
-                    <td >VNPAY Transaction Code:</td>
-                    <td><%=request.getParameter("vnp_TransactionNo")%></td>
-                </tr> 
-                <tr class="form-group">
-                    <td >Bank Code:</td>
-                    <td><%=request.getParameter("vnp_BankCode")%></td>
-                </tr> 
-                <tr class="form-group">
-                    <td >Pay Date:</td>
-                    <td><%=request.getParameter("vnp_PayDate")%></td>
-                </tr> 
-                
-            </table>
+            <div class="table-responsive">
+                <div class="form-group">
+                    <label >Merchant Transaction Code:</label>
+                    <label><%=request.getParameter("vnp_TxnRef")%></label>
+                </div>    
+                <div class="form-group">
+                    <label >Amount:</label>
+                    <label><%=request.getParameter("vnp_Amount")%></label>
+                </div>  
+                <div class="form-group">
+                    <label >Order info:</label>
+                    <label><%=request.getParameter("vnp_OrderInfo")%></label>
+                </div> 
+                <div class="form-group">
+                    <label >VNPAY Response Code:</label>
+                    <label><%=request.getParameter("vnp_ResponseCode")%></label>
+                </div> 
+                <div class="form-group">
+                    <label >VNPAY Transaction Code:</label>
+                    <label><%=request.getParameter("vnp_TransactionNo")%></label>
+                </div> 
+                <div class="form-group">
+                    <label >Bank Code:</label>
+                    <label><%=request.getParameter("vnp_BankCode")%></label>
+                </div> 
+                <div class="form-group">
+                    <label >Pay Date:</label>
+                    <label><%=request.getParameter("vnp_PayDate")%></label>
+                </div> 
+                <div class="form-group">
+                    <label >Payment Status:</label>
+                    <label>
+                        <%
+                            if (signValue.equals(vnp_SecureHash)) {
+                                if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
+                                    out.print("Success");
+                                } else {
+                                    out.print("Failed");
+                                }
+
+                            } else {
+                                out.print("invalid signature");
+                            }
+                        %></label>
+                </div> 
+                <button style="background-color:#7AB730; border: none; "><a href="HomeController" style="text-decoration: none; color: #fff; font-size: 20px; ">Trở Về Trang Chủ</a></button>
+            </div>
             <p>
                 &nbsp;
             </p>
-            <footer class="footer text-center">
+            <footer class="footer">
                 <p>&copy; VNPAY 2020</p>
             </footer>
-        </div>
-        <jsp:include page="include/footer.jsp"></jsp:include>
-        <jsp:include page="include/javascriptLibrary.jsp"></jsp:include>
+        </div>  
     </body>
 </html>

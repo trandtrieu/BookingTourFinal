@@ -69,14 +69,14 @@
                                                 />
                                         </div>
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
-                                            <labelfor for="dateEnd">Date End</label>
-                                                <input
-                                                    id="minDateEnd"
-                                                    name="dateEnd"
-                                                    type="date"
-                                                    class="form-control validate"
-                                                    required
-                                                    />
+                                            <label  for="dateEnd">Date End</label>
+                                            <input
+                                                id="minDateEnd"
+                                                name="dateEnd"
+                                                type="date"
+                                                class="form-control validate"
+                                                required
+                                                />
                                         </div>
 
                                     </div>
@@ -122,13 +122,13 @@
                                             </select>
 
                                         </div>
-                                        
+
                                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                                             <label
                                                 for="regionId"
                                                 >Region ID
                                             </label>
-                                           <select class="custom-select " style="height: 47px;" name="regionId">
+                                            <select class="custom-select " style="height: 47px;" name="regionId">
                                                 <c:forEach var="r" items="${myRegions}" varStatus="status">
                                                     <option value="${r.regionId}">${r.regionId}. ${r.regionName}</option>
                                                 </c:forEach>

@@ -4,110 +4,86 @@
     Author     : DELL
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
     <%@include file="includes/head.jsp" %>
-
+    <link href="/BookingTour/assets/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="/BookingTour/assets/jumbotron-narrow.css" rel="stylesheet">      
+    
+    <script src="/BookingTour/assets/jquery-1.11.3.min.js"></script>
 </head>
 
 <body>
     <%@include file="includes/topbar.jsp" %>
-    <!-- Hướng dẫn thanh toán -->
 
-    <!-- Hướng dẫn thanh toán bằng video -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="min-width: 50%">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Hướng dẫn thanh toán bằng video</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <video style="max-width: 100%;" src="https://sandbox.vnpayment.vn/apis/assets/images/Gioi-thieu-CTT-VNPAY.mp4" controls></video>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container mt-5 mb-5">
-        <div class="row" style="margin-top: 9%;">
-            <div class="col-md-6 border-right">
-                <div class="p-3 py-5">
-                    <div class="col-md-12 text-center" style="">
-                        <img style="width: 40%;" src="images/cart-completion/checked.png">
-                    </div><br>
-                    <div class="col-md-12">
-                        <h3>Cảm ơn vì đã đặt hàng</h3>
-                    </div><br>
-                    <div class="col-md-12">
-                        <h6><i>Chúng tôi sẽ gửi cho bạn một email xác nhận đơn hàng <br> với thông tin chi tiết và hướng dẫn thanh toán</i></h6>
-                    </div><br>
-                    <button type="button" class="btn btn-dark mt-3" data-toggle="modal" data-target="#exampleModalLong">
-                        Hướng dẫn thanh toán
-                    </button>
-                    <button type="button" class="btn btn-light btn-outline-dark mt-3" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                        Hướng dẫn thanh toán bằng video
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h3 class="text-right">Hình thức thanh toán</h3>
-                    </div>
-                    <div class="radio-buttons">
-                        <div>
-                            <form>
-                                <label class="payment-method__item">
-                                    <span class="payment-method__item-custom-checkbox custom-radio">
-                                        <input type="radio" id="payment-COD" name="payment-method" value="COD">
-                                        <span class="checkmark">
-                                        </span>
-                                    </span>
-                                    <span class="payment-method__item-icon-wrapper"><img
-                                            src="https://www.coolmate.me/images/COD.svg"></span>
-                                    <span class="payment-method__item-name">COD <br>Thanh toán khi nhận hàng
-                                    </span>
-                                </label>
-                                
-                                
-                                <label class="payment-method__item">
-                                    <span class="payment-method__item-custom-checkbox custom-radio">
-                                        <input type="radio" id="payment-vnpay" name="payment-method" value="vnpay">
-                                        <span class="checkmark"> </span>
-                                    </span>
-                                    <span class="payment-method__item-icon-wrapper">
-                                        <img src="https://www.coolmate.me/images/vnpay.png">
-                                    </span>
-                                    <span class="payment-method__item-name">
-                                        Thẻ ATM / Internet Banking<br>Thẻ tín dụng (Credit card) / Thẻ ghi nợ (Debit
-                                        card)<br>VNPay QR
-                                    </span>
-                                </label>
-                                <div class="mt-5 text-center"><button class="btn btn-primary" type="submit">Thanh
-                                        toán</button></div>
-                            </form>
-                        </div>
-                    </div>
+        <c:set var="orderModel" value="${requestScope.orderModel}"/>
+        <form  action="/BookingTour/vnpayajax" id="frmCreateOrder" class="form_order" method="post">
+            <div class="card " style="width: 80% ;margin-left: 100px">
+                <div class="card-body" style="margin-left: 100px">
+                    <h5 class="card-title text-center" style="font-size: 35px">Chi tiết đặt tour</h5><br>
+                    <div class="card-body" style="margin-left: 90px">
+                        <p class="card-title "><i class="fas fa-user"></i> Người đặt Tour: ${orderModel.getName()}</p><br>
+                        <p class="card-title "><i class="fas fa-mobile-alt"></i> Số điện thoại: ${orderModel.getPhone()}</p><br>
+                        <p class="card-title "><i class="far fa-envelope"></i> Email: ${orderModel.getEmail()}</p><br>
+                        <p class="card-title "><i class="fas fa-map-marker-alt"></i> Địa Chỉ: ${orderModel.getAddress()}</p><br>
+                        <p class="card-title "><i class="fas fa-user-friends"></i> Số lượng người lớn: ${orderModel.getQuantityAd()}</p><br>
+                        <p class="card-title "><i class="fas fa-baby"></i> Số lượng trẻ em: ${orderModel.getQuantityChildren()}</p><br>
+<!--                        <p class="card-title "> Thành Tiền: ${orderModel.getTotalAmount()}</p>-->
+                        <h5 class="card-title m-0">Thành Tiền: <fmt:formatNumber value="${orderModel.getTotalAmount()}" pattern="#,##0" /> VND</h5>
 
+<!--                        <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>-->
+
+                    </div>
+                    <div class="mt-5 text-center">
+                        <input type="hidden"data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" name="amount" value="${orderModel.getTotalAmount()}">
+                        <input type="hidden" id="bankCode" name="bankCode" value="">
+                        <input type="hidden" id="language" name="language" value="vn">
+                        <button class="btn btn-primary" type="submit" href>Thanh toán</button></div>
                 </div>
             </div>
 
-        </div>
+        </form>
+
     </div>
+
     <!-- Footer-->
     <%@include file="includes/footer.jsp" %>
 
     <!-- Bootstrap core JS-->
-
+    <link href="https://pay.vnpay.vn/lib/vnpay/vnpay.css" rel="stylesheet" />
+    <script src="https://pay.vnpay.vn/lib/vnpay/vnpay.min.js"></script>
+    <script type="text/javascript">
+        $("#frmCreateOrder").submit(function () {
+            var postData = $("#frmCreateOrder").serialize();
+            var submitUrl = $("#frmCreateOrder").attr("action");
+            $.ajax({
+                type: "POST",
+                url: submitUrl,
+                data: postData,
+                dataType: 'JSON',
+                success: function (x) {
+                    if (x.code === '00') {
+                        if (window.vnpay) {
+                            vnpay.open({width: 768, height: 600, url: x.data});
+                        } else {
+                            location.href = x.data;
+                        }
+                        return false;
+                    } else {
+                        alert(x.Message);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>       
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

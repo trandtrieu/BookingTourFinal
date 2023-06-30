@@ -50,7 +50,7 @@ public class BookingServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    String fullName = request.getParameter("fullName");
+        String fullName = request.getParameter("fullName");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String city = request.getParameter("city");
@@ -107,9 +107,10 @@ public class BookingServlet extends HttpServlet {
                     remainingSeats -= (adults + children);
                     tour.setSeat(remainingSeats);
                     tourDao.updateTour(tour);
-                    EmailSender.sendConfirmationEmail(email, orderModel, tour);
+                    request.setAttribute("orderModel", orderModel);
 
-                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
+                    EmailSender.sendConfirmationEmail(email, orderModel, tour);
+                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");
                 }

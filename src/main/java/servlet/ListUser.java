@@ -6,6 +6,7 @@ package servlet;
 
 import connection.DbCon;
 import dao.AccountDAO;
+import dao.RoleDao;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -17,41 +18,43 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AccountDTO;
+import model.Role;
 
 /**
  *
- * @author DELL 
+ * @author DELL
  */
 public class ListUser extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-    
-            AccountDAO t = new AccountDAO();
-            
-            List<AccountDTO> nick = t.getListAccounts();
-            
-            request.getServletContext().setAttribute("ac", nick);
-            
-            request.getRequestDispatcher("listuser.jsp").forward(request, response);
-            
-       
-        
+
+        AccountDAO t = new AccountDAO();
+        RoleDao r = new RoleDao();
+
+        List<AccountDTO> nick = t.getListAccounts();
+        List<Role> roles = r.getListRoles();
+
+        request.getServletContext().setAttribute("roles", roles);
+        request.getServletContext().setAttribute("ac", nick);
+
+        request.getRequestDispatcher("listuser.jsp").forward(request, response);
+
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";

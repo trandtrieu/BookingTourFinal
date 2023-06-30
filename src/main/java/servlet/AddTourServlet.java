@@ -15,10 +15,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.AccountDTO;
 import model.GuideTour;
 import model.Place;
 import model.Region;
@@ -41,25 +44,32 @@ public class AddTourServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
+        HttpSession session = request.getSession();
+        AccountDTO acc = (AccountDTO) session.getAttribute("acc");
+
         response.setContentType("text/html;charset=UTF-8");
-        TourDao t = new TourDao(DbCon.getConnection());
-        RegionDao r = new RegionDao(DbCon.getConnection());
-        GuideDao g = new GuideDao(DbCon.getConnection());
-        PlaceDao p = new PlaceDao(DbCon.getConnection());
 
-        List<Tour> tours = t.getAllTours();
-        List<Region> regions = r.getAllRegions();
-        List<GuideTour> guides = g.getAllGuides();
+        if (acc != null) {
+            TourDao t = new TourDao(DbCon.getConnection());
+            RegionDao r = new RegionDao(DbCon.getConnection());
+            GuideDao g = new GuideDao(DbCon.getConnection());
+            PlaceDao p = new PlaceDao(DbCon.getConnection());
 
-        List<Place> places = p.getAllPlaces();
-        request.getServletContext().setAttribute("myTours", tours);
-        request.getServletContext().setAttribute("myRegions", regions);
-        request.getServletContext().setAttribute("myGuides", guides);
+            List<Tour> tours = t.getAllTours();
+            List<Region> regions = r.getAllRegions();
+            List<GuideTour> guides = g.getAllGuides();
 
-        request.getServletContext().setAttribute("myPlaces", places);
+            List<Place> places = p.getAllPlaces();
+            request.getServletContext().setAttribute("myTours", tours);
+            request.getServletContext().setAttribute("myRegions", regions);
+            request.getServletContext().setAttribute("myGuides", guides);
+            request.getServletContext().setAttribute("myPlaces", places);
 
-        request.getRequestDispatcher("AddManager.jsp").forward(request, response);
+            request.getRequestDispatcher("AddManager.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("Login");
 
+        }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

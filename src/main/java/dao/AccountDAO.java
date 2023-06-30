@@ -136,4 +136,72 @@ public class AccountDAO {
         } catch (Exception e) {
         }
     }
+
+    public void insertAccount(String username, String password, String email, String phone, String role, String avatar) {
+        String query = "insert into account\n"
+                + "values(?,?,?,?,?,?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            ps.setString(4, phone);
+            ps.setString(5, role);
+            ps.setString(6, avatar);
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
+
+    public AccountDTO getAccountByID(String id) {
+        String query = "select * from account\n"
+                + "where u_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new AccountDTO(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getInt(6),
+                        rs.getString(7));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public void updateAccount(String id, String username, String password, String email, String phone, String role, String avatar) {
+        String query = "update account\n"
+                + "set username = ?,\n"
+                + "password = ?,\n"
+                + "email = ?,\n"
+                + "phone = ?,\n"
+                + "role = ?,\n"
+                + "avatar = ?\n"
+                + "where u_id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            ps.setString(4, phone);
+            ps.setString(5, role);
+            ps.setString(6, avatar);
+            ps.setString(7, id);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+
+
 }

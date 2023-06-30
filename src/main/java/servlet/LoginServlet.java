@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(p);
             System.out.println(acc.getRole());
 
-            if (acc.getRole() == 1) {
+            if (acc.getRole() == 1 || acc.getRole() == 3) {
                 response.sendRedirect("ManagerTour");
 
                 return;

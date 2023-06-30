@@ -32,7 +32,7 @@ import model.TourSchedule;
  */
 public class ListJobGuide extends HttpServlet {
 
-protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
 
@@ -59,32 +59,31 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(ListJobGuide.class.getName()).log(Level.SEVERE, null, ex);
                 // Handle the exceptions appropriately, e.g., display error message or redirect to an error page.
-            } 
+            }
         } else {
             response.sendRedirect("Login");
             return;
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ListJobGuide.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListJobGuide.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    try {
-        processRequest(request, response);
-    } catch (SQLException ex) {
-        Logger.getLogger(ListJobGuide.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ListJobGuide.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

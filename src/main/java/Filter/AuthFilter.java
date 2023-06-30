@@ -43,9 +43,9 @@ public class AuthFilter implements Filter {
             res.sendRedirect("HomeController");
             return;
         }
-        if (user.getRole() == 1) {
+        if (user.getRole() == 1 || user.getRole() == 3) {
             chain.doFilter(request, response);
-        } else if (user.getRole() == 2) {
+        } else if (user.getRole() == 2 ) {
             chain.doFilter(request, response);
         } else {
             res.sendRedirect("HomeController");

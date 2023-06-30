@@ -95,7 +95,7 @@
                                             <c:if test="${sessionScope.acc.getRole() == 2}">
                                                 <a href="ListJobGuide" class="dropdown-item">Job</a>
                                             </c:if>
-                                            <c:if test="${sessionScope.acc.getRole() == 1}">
+                                            <c:if test="${sessionScope.acc.getRole() == 1 || sessionScope.acc.getRole() == 3}">
                                                 <a href="ManagerTour" class="dropdown-item">Admin</a>
                                             </c:if>
                                             <a href="LogoutServlet" class="dropdown-item">Đăng xuất</a>

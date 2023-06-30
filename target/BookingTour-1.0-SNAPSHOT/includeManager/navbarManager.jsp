@@ -25,7 +25,7 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>   
-                <c:if test="${sessionScope.acc.getRole() == 2}">
+                <c:if test="${sessionScope.acc.getRole() == 1 || sessionScope.acc.getRole() == 3}">
                     <li class="nav-item">
                         <a class="nav-link " href="TourChart">
                             <i class="fas fa-tachometer-alt"></i> Dashboard
@@ -35,12 +35,7 @@
                     </li>
                 </c:if>
 
-                <li class="nav-item">
-                    <a class="nav-link " href="HomeAdmin.jsp">
-                        <i class="fas fa-tachometer-alt"></i> Order
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
+       
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

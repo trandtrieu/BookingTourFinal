@@ -124,6 +124,30 @@
         <servlet-name>TourChart</servlet-name>
         <servlet-class>servlet.TourChart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAccountServlet</servlet-name>
+        <servlet-class>servlet.AddAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <servlet-class>servlet.UpdateAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>com.vnpay.common.ajaxServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>vnpayQuery</servlet-name>
+        <servlet-class>com.vnpay.common.vnpayQuery</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>vnpayRefund</servlet-name>
+        <servlet-class>com.vnpay.common.vnpayRefund</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListUserByRole</servlet-name>
+        <servlet-class>servlet.ListUserByRole</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -247,6 +271,30 @@
     <servlet-mapping>
         <servlet-name>TourChart</servlet-name>
         <url-pattern>/TourChart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAccountServlet</servlet-name>
+        <url-pattern>/AddAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountServlet</servlet-name>
+        <url-pattern>/UpdateAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/vnpayajax/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vnpayQuery</servlet-name>
+        <url-pattern>/vnpayquery/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>vnpayRefund</servlet-name>
+        <url-pattern>/vnpayrefund/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListUserByRole</servlet-name>
+        <url-pattern>/ListUserByRole</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

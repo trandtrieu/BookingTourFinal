@@ -76,6 +76,8 @@
                                         <c:forEach var="r" items="${myRegions}" varStatus="status">
                                             <a href="regionList?rid=${r.regionId}" class="dropdown-item">${r.regionName}</a>
                                         </c:forEach>
+                                        <a href="ListAllTour" class="dropdown-item">Toàn b? tour</a>
+
                                     </div>
                                 </div>
                                 <a href="#footerContact" class="nav-item nav-link">Liên hệ</a>

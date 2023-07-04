@@ -18,16 +18,23 @@
 
     </head>
     <style>
-
+        .img-fixed-size {
+            width: 100%;
+            height: 250px; /* Định rõ chiều cao */
+        }
+        .link-margin {
+            font-size: 1px;
+            height: 70px;
+        }
     </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
 
 
-        
 
 
-      
+
+
         <!-- Packages Start -->
         <div class="container-fluid py-5">
             <div class="container pt-5 pb-3">
@@ -41,11 +48,11 @@
                     <c:set var="totalPages" value="${(regionTours.size() + itemsPerPage - 1) / itemsPerPage}" /> <!-- Tổng số trang -->
 
                     <c:forEach var="t" items="${regionTours}" varStatus="status">
-                        
+
                         <c:if test="${status.index >= (currentPage - 1) * itemsPerPage && status.index < currentPage * itemsPerPage}">
                             <div class="col-lg-4 col-md-6 mb-4" >
                                 <div class="package-item bg-white mb-2">
-                                    <img class="img-fluid" src="img/${t.imageTour}" alt="">
+                                    <img class="img-fluid img-fixed-size" src="img/${t.imageTour}" alt="">
                                     <div class="p-4">
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${t.placeName}                                            
@@ -59,7 +66,10 @@
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
                                         </div>
-                                        <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
+                                        <div  class= "link-margin text-center">
+
+                                            <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
+                                        </div>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
                                                 <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>

@@ -17,52 +17,85 @@
 
     </head>
     <style>
-
+        .img-fixed-size {
+            width: 100%;
+            height: 250px; /* Định rõ chiều cao */
+        }
+        .link-margin {
+            font-size: 1px;
+            height: 70px;
+        }
     </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
 
-
-        
-
-
-      
         <!-- Packages Start -->
         <div class="container-fluid py-5">
             <div class="container pt-5 pb-3">
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Khám phá</h6>
                     <h1>Danh sách tua</h1>
+                    <%@include file="includes/sort.jsp" %>
+
+
                 </div>
                 <div class="row">   
-                    <c:set var="itemsPerPage" value="12" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
-                    <c:set var="currentPage" value="${param.pageNumber eq null ? 1 : param.pageNumber}" /> <!-- Trang hiện tại, mặc định là trang 1 -->
-                    <c:set var="totalPages" value="${(myTours.size() + itemsPerPage - 1) / itemsPerPage}" /> <!-- Tổng số trang -->
+                    <c:set var="itemsPerPage" value="12" /> 
+                    <c:set var="currentPage" value="${param.pageNumber eq null ? 1 : param.pageNumber}" /> 
+                    <c:set var="totalPages" value="${(myTours.size() + itemsPerPage - 1) / itemsPerPage}" />
 
                     <c:forEach var="t" items="${myTours}" varStatus="status">
                         <c:if test="${status.index >= (currentPage - 1) * itemsPerPage && status.index < currentPage * itemsPerPage}">
                             <div class="col-lg-4 col-md-6 mb-4" >
                                 <div class="package-item bg-white mb-2">
-                                    <img class="img-fluid" src="img/${t.imageTour}" alt="">
+                                    <img class="img-fluid img-fixed-size" src="img/${t.imageTour}" alt="">
                                     <div class="p-4">
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${t.placeName}                                            
                                             </small>
                                             <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
                                         </div>
+
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>${t.dateStart}</small>
                                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2 "></i>${t.dateEnd}</small>
                                         </div>
+
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
+                                            <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
+
                                         </div>
-                                        <a class="h5 text-decoration-none" href="detail?tid=${t.tourId}">${t.tourName}  <span class="badge badge-danger">HOT</span></a>
+                                        <div  class= "link-margin text-center">
+                                            <a class="h5 text-decoration-none " href="detail?tid=${t.tourId}">${t.tourName}</a>
+                                        </div>
+                                        <div class="border-top mt-4 pt-4">
+                                            <!-- In ra số sao trung bình của tour -->
+                                            <h6 class="m-0 text-center">
+                                                <c:set var="yellowStars" value="${t.averageStar}" />
+                                                <c:set var="grayStars" value="${5 - t.averageStar}" />
+
+                                                <c:forEach begin="1" end="${yellowStars}">
+                                                    <i class="fas fa-star text-warning"></i>
+                                                </c:forEach>
+
+                                                <c:forEach begin="1" end="${grayStars}">
+                                                    <i class="far fa-star"></i>
+                                                </c:forEach>
+                                            </h6>
+
+                                        </div>
                                         <div class="border-top mt-4 pt-4">
                                             <div class="d-flex justify-content-between">
+                                                <h6 class="m-0"><i class="fa fa-calendar-day text-primary mr-2"></i>${t.numberDay}<small> ngày</small></h6>
                                                 <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>
+
+
                                             </div>
                                         </div>
+                                        <div class="countdown" id="countdown-${t.tourId}" style="font-size: 17px; font-weight: bold; color: #7AB730;
+                                             text-align: center; padding: 5px; margin-top: 15px; background-color: #f2f2f2; border-radius: 20px"></div>
+
                                     </div>
                                 </div>
                             </div>

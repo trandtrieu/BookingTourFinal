@@ -41,8 +41,8 @@ public class FeedbackController extends HttpServlet {
 
                 FeedbackDao fed = new FeedbackDao();
                 fed.addNewFeedback(acc.getUsername(), star, subject, id, acc.getId(),date, acc.getAvatar());
-//                String historyUrl = (String) session.getAttribute("historyUrl");
-//                response.sendRedirect(historyUrl);
+                String historyUrl = (String) session.getAttribute("historyUrl");
+                response.sendRedirect(historyUrl);
             }
         } else {
             response.sendRedirect("Login");

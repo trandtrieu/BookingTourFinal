@@ -148,6 +148,26 @@
         <servlet-name>ListUserByRole</servlet-name>
         <servlet-class>servlet.ListUserByRole</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListAllTour</servlet-name>
+        <servlet-class>servlet.ListAllTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTourBySortHighToLow</servlet-name>
+        <servlet-class>servlet.GetTourBySortHighToLow</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTourBySortLowToHigh</servlet-name>
+        <servlet-class>servlet.GetTourBySortLowToHigh</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTourByDateSoon</servlet-name>
+        <servlet-class>servlet.GetTourByDateSoon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTourByTopRating</servlet-name>
+        <servlet-class>servlet.GetTourByTopRating</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -295,6 +315,26 @@
     <servlet-mapping>
         <servlet-name>ListUserByRole</servlet-name>
         <url-pattern>/ListUserByRole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllTour</servlet-name>
+        <url-pattern>/ListAllTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTourBySortHighToLow</servlet-name>
+        <url-pattern>/GetTourBySortHighToLow</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTourBySortLowToHigh</servlet-name>
+        <url-pattern>/GetTourBySortLowToHigh</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTourByDateSoon</servlet-name>
+        <url-pattern>/GetTourByDateSoon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTourByTopRating</servlet-name>
+        <url-pattern>/GetTourByTopRating</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

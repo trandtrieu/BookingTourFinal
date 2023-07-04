@@ -60,11 +60,6 @@
 
                     <div class="col-lg-4 mt-5 mt-lg-0">
 
-
-
-                        <!-- Category List -->
-
-
                         <!-- Recent Post -->
                         <div class="mb-5">
                             <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>

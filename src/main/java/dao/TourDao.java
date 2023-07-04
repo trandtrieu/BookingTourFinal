@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 import model.Tour;
 import model.TourSchedule;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  *
@@ -44,14 +46,25 @@ public class TourDao {
                 + "FROM tour\n"
                 + "JOIN place ON tour.placeId = place.placeId\n"
                 + "JOIN region ON tour.regionId = region.regionId\n"
-                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId";
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n";
+
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Tour tour = extractTourFromResultSet(rs);
+                TourSchedule tour = extractTourFromResultSet(rs);
+                java.util.Date currentDate = new java.util.Date(); // Ngày hiện tại
+                java.util.Date tourDate = tour.getDateStart();
+
+                // Chỉ lấy ngày từ ngày hiện tại
+                currentDate = removeTimeFromDate(currentDate);
+                tourDate = removeTimeFromDate(tourDate);
+
+                if (tourDate.equals(currentDate)) {
+                    tour.setStatusTour(true);
+                }
                 tours.add(tour);
             }
         } catch (SQLException e) {
@@ -60,44 +73,6 @@ public class TourDao {
         }
 
         return tours;
-    }
-
-    private TourSchedule extractTourFromResultSet(ResultSet rs) throws SQLException {
-        TourSchedule tour = new TourSchedule();
-        tour.setTourId(rs.getInt("tourId"));
-        tour.setTourName(rs.getString("name"));
-        tour.setImageTour(rs.getString("image"));
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
-        float price = rs.getFloat("price");
-        String formattedPrice = decimalFormat.format(price);
-        tour.setPrice(Float.parseFloat(formattedPrice));
-        tour.setDateStart(rs.getDate("dateStart"));
-        tour.setDateEnd(rs.getDate("dateEnd"));
-        tour.setDetailTour(rs.getString("detail"));
-        tour.setStatusTour(rs.getBoolean("status"));
-        tour.setPlaceName(rs.getString("placeName"));
-        tour.setRegionName(rs.getString("regionName"));
-        tour.setSeat(rs.getInt("seat"));
-
-        // Tính toán lịch trình từ dateStart đến dateEnd
-        Date startDate = rs.getDate("dateStart");
-        Date endDate = rs.getDate("dateEnd");
-        tour.setGuideId(rs.getInt("guideId"));
-
-        tour.setPlaceId(rs.getInt("placeId"));
-        tour.setRegionId(rs.getInt("regionId"));
-        tour.setGuideName(rs.getString("guideName"));
-        int numberOfDays = calculateNumberOfDays(startDate, endDate);
-
-        // Thiết lập lịch trình và số ngày chuyến đi
-        tour.setNumberDay(numberOfDays);
-
-        return tour;
-    }
-
-    private int calculateNumberOfDays(Date startDate, Date endDate) {
-        long timeDifference = endDate.getTime() - startDate.getTime();
-        return (int) TimeUnit.DAYS.convert(timeDifference, TimeUnit.MILLISECONDS);
     }
 
     public int getAllToursCount() {
@@ -507,7 +482,141 @@ public class TourDao {
         } catch (Exception e) {
         }
     }
-    
-    
-    
+
+    public List<Tour> getAllTourFromHighToLow() throws ClassNotFoundException {
+        List<Tour> tours = new ArrayList<>();
+        query = "SELECT *\n"
+                + "FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId\n"
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
+                + "ORDER BY tour.price DESC";
+
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Tour tour = extractTourFromResultSet(rs);
+                tours.add(tour);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return tours;
+    }
+
+    public List<Tour> getAllTourFromLowToHigh() throws ClassNotFoundException {
+        List<Tour> tours = new ArrayList<>();
+        query = "SELECT *\n"
+                + "FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId\n"
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
+                + "ORDER BY tour.price ASC";
+
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Tour tour = extractTourFromResultSet(rs);
+                tours.add(tour);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return tours;
+    }
+
+    public List<Tour> getAllTourByDateSoon() throws ClassNotFoundException {
+        List<Tour> tours = new ArrayList<>();
+        query = "SELECT *\n"
+                + "FROM tour\n"
+                + "JOIN place ON tour.placeId = place.placeId\n"
+                + "JOIN region ON tour.regionId = region.regionId\n"
+                + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
+                + "ORDER BY [dateStart] ASC;";
+
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Tour tour = extractTourFromResultSet(rs);
+                tours.add(tour);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+        return tours;
+    }
+
+    private TourSchedule extractTourFromResultSet(ResultSet rs) throws SQLException {
+        TourSchedule tour = new TourSchedule();
+        tour.setTourId(rs.getInt("tourId"));
+        tour.setTourName(rs.getString("name"));
+        tour.setImageTour(rs.getString("image"));
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        float price = rs.getFloat("price");
+        String formattedPrice = decimalFormat.format(price);
+        tour.setPrice(Float.parseFloat(formattedPrice));
+        tour.setDateStart(rs.getDate("dateStart"));
+        tour.setDateEnd(rs.getDate("dateEnd"));
+        tour.setDetailTour(rs.getString("detail"));
+        java.util.Date currentDate = new java.util.Date(); // Ngày hiện tại
+        java.util.Date tourDate = tour.getDateStart();
+
+        // Chỉ lấy ngày từ ngày hiện tại
+        currentDate = removeTimeFromDate(currentDate);
+        tourDate = removeTimeFromDate(tourDate);
+
+        if (tourDate.equals(currentDate)) {
+            tour.setStatusTour(true);
+        } else {
+            tour.setStatusTour(rs.getBoolean("status"));
+        }
+        tour.setPlaceName(rs.getString("placeName"));
+        tour.setRegionName(rs.getString("regionName"));
+        tour.setSeat(rs.getInt("seat"));
+
+        // Tính toán lịch trình từ dateStart đến dateEnd
+        Date startDate = rs.getDate("dateStart");
+        Date endDate = rs.getDate("dateEnd");
+        tour.setGuideId(rs.getInt("guideId"));
+
+        tour.setPlaceId(rs.getInt("placeId"));
+        tour.setRegionId(rs.getInt("regionId"));
+        tour.setGuideName(rs.getString("guideName"));
+        int numberOfDays = calculateNumberOfDays(startDate, endDate);
+
+        // Thiết lập lịch trình và số ngày chuyến đi
+        tour.setNumberDay(numberOfDays);
+
+        return tour;
+    }
+
+    private int calculateNumberOfDays(Date startDate, Date endDate) {
+        long timeDifference = endDate.getTime() - startDate.getTime();
+        return (int) TimeUnit.DAYS.convert(timeDifference, TimeUnit.MILLISECONDS);
+    }
+
+    private java.util.Date removeTimeFromDate(java.util.Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
 }

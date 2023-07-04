@@ -7,14 +7,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <html>
     <%@include file="includes/head.jsp" %>
     <link href="/BookingTour/assets/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
     <link href="/BookingTour/assets/jumbotron-narrow.css" rel="stylesheet">      
-    
     <script src="/BookingTour/assets/jquery-1.11.3.min.js"></script>
 </head>
 
@@ -30,16 +27,12 @@
                     <h5 class="card-title text-center" style="font-size: 35px">Chi tiết đặt tour</h5><br>
                     <div class="card-body" style="margin-left: 90px">
                         <p class="card-title "><i class="fas fa-user"></i> Người đặt Tour: ${orderModel.getName()}</p><br>
-                        <p class="card-title "><i class="fas fa-mobile-alt"></i> Số điện thoại: ${orderModel.getPhone()}</p><br>
-                        <p class="card-title "><i class="far fa-envelope"></i> Email: ${orderModel.getEmail()}</p><br>
-                        <p class="card-title "><i class="fas fa-map-marker-alt"></i> Địa Chỉ: ${orderModel.getAddress()}</p><br>
-                        <p class="card-title "><i class="fas fa-user-friends"></i> Số lượng người lớn: ${orderModel.getQuantityAd()}</p><br>
-                        <p class="card-title "><i class="fas fa-baby"></i> Số lượng trẻ em: ${orderModel.getQuantityChildren()}</p><br>
-<!--                        <p class="card-title "> Thành Tiền: ${orderModel.getTotalAmount()}</p>-->
-                        <h5 class="card-title m-0">Thành Tiền: <fmt:formatNumber value="${orderModel.getTotalAmount()}" pattern="#,##0" /> VND</h5>
-
-<!--                        <h5 class="m-0"><fmt:formatNumber value="${t.price}" pattern="#,##0" /> VND</h5>-->
-
+                    <p class="card-title "><i class="fas fa-mobile-alt"></i> Số điện thoại: ${orderModel.getPhone()}</p><br>
+                    <p class="card-title "><i class="far fa-envelope"></i> Email: ${orderModel.getEmail()}</p><br>
+                    <p class="card-title "><i class="fas fa-map-marker-alt"></i> Địa Chỉ: ${orderModel.getAddress()}</p><br>
+                    <p class="card-title "><i class="fas fa-user-friends"></i> Số lượng người lớn: ${orderModel.getQuantityAd()}</p><br>
+                    <p class="card-title "><i class="fas fa-baby"></i> Số lượng trẻ em: ${orderModel.getQuantityChildren()}</p><br>
+                    <p class="card-title "> Thành Tiền: ${orderModel.getTotalAmount()}</p>
                     </div>
                     <div class="mt-5 text-center">
                         <input type="hidden"data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" name="amount" value="${orderModel.getTotalAmount()}">

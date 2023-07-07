@@ -168,6 +168,14 @@
         <servlet-name>GetTourByTopRating</servlet-name>
         <servlet-class>servlet.GetTourByTopRating</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LuckySpinServlet</servlet-name>
+        <servlet-class>servlet.LuckySpinServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrder</servlet-name>
+        <servlet-class>servlet.DeleteOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -335,6 +343,14 @@
     <servlet-mapping>
         <servlet-name>GetTourByTopRating</servlet-name>
         <url-pattern>/GetTourByTopRating</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LuckySpinServlet</servlet-name>
+        <url-pattern>/LuckySpinServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrder</servlet-name>
+        <url-pattern>/DeleteOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

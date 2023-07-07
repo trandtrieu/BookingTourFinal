@@ -6,6 +6,7 @@ package servlet;
 
 import connection.DbCon;
 import dao.ListDao;
+import dao.TourDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.BookTour;
+import model.Tour;
 
 /**
  *
@@ -24,15 +26,7 @@ import model.BookTour;
  */
 public class HistoryServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,27 +44,24 @@ public class HistoryServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             ListDao dao = new ListDao(DbCon.getConnection());
+            TourDao daoo = new TourDao();
+
             String tid = request.getParameter("tid");
             int tourId = Integer.parseInt(tid); // Convert the String id to int
 
             List<BookTour> list = dao.getListOrder(tourId);
+            Tour t = daoo.getTourByID(tourId);
 
             //set data
             request.setAttribute("listH", list);
+            request.setAttribute("detail", t);
+
             request.getRequestDispatcher("HomeAdmin.jsp").forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(HistoryServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,25 +70,14 @@ public class HistoryServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
     @Override
     public String getServletInfo() {
         return "Short description";

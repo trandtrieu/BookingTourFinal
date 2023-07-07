@@ -6,21 +6,29 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>List Tour Page</title>
         <%@include file="includeManager/headManager.jsp" %>
     </head>
+    <style>.tm-product-table-container {
+            max-height: 520px;
+
+        }</style>
     <body id="reportsPage">
         <%@include file="includeManager/navbarManager.jsp" %>
-        <div class="container-fluid mt-5">
+        <div class="container-fluid">
             <div class="row tm-content-row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-products">
                         <h1 class="tm-block-title">Manager Tour</h1>
                         <div class="tm-product-table-container">
+                            <input class="form-control bg-dark" id="myInput" type="text" placeholder="Search..">
+
                             <table class="table table-hover tm-table-small tm-product-table">
                                 <thead>
                                     <tr>
@@ -30,81 +38,54 @@
                                         <th scope="col">Price</th>
                                         <th scope="col">Date Start</th>
                                         <th scope="col">Date End</th>
-                                        <th scope="col">Details</th>
+                                        <!--                                        <th scope="col">Details</th>-->
                                         <th scope="col">Image</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Place ID</th>
                                         <th scope="col">Place Name</th>
-                                        <th scope="col">Region ID</th>
                                         <th scope="col">Region Name</th>
-                                        <th scope="col">Guide Id</th>
                                         <th scope="col">Guide Name</th>
+                                        <th scope="col">Action</th>
 
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <c:set var="itemsPerPage" value="12" /> <!-- Số lượng mục hiển thị trên mỗi trang -->
-                                    <c:set var="currentPage" value="${param.pageNumber eq null ? 1 : param.pageNumber}" /> <!-- Trang hiện tại, mặc định là trang 1 -->
-                                    <c:set var="totalPages" value="${(listTour.size() + itemsPerPage - 1) / itemsPerPage}" /> <!-- Tổng số trang -->
+                                <tbody id="myTours">
 
-                                    <c:forEach var="x" items="${listTour}" varStatus="status">
-                                        <c:if test="${status.index >= (currentPage - 1) * itemsPerPage && status.index < currentPage * itemsPerPage}">
-                                            <tr>
 
-                                                <td><a href="HistoryServlet?tid=${x.tourId}">${x.tourId} </a></td>
+                                    <c:forEach var="x" items="${listTour}">
+                                        <tr>
 
-                                                <td>${x.tourName}</td>
-                                                <td>${x.price}</td>
-                                                <td>${x.dateStart}</td>
-                                                <td>${x.dateEnd}</td>
-                                                <td >${x.detailTour}</td>                                            
-                                                <td >
-                                                    ${x.imageTour}
-                                                </td>
-                                                <td>${x.statusTour}</td>
-                                                <td>${x.placeId}</td>
-                                                <td>${x.placeName}</td>
-                                                <td>${x.regionId}</td>
-                                                <td>${x.regionName}</td>
-                                                <td>${x.guideId}</td>
-                                                <td>${x.guideName}</td>
+                                            <td><a href="HistoryServlet?tid=${x.tourId}">${x.tourId} </a></td>
 
-                                                <td>
-                                                    <a href="UpdateTour?tid=${x.tourId}" class="edit" data-toggle=""><i class="fa fa-pen" style="color: #ffae00;"></i></a>
-                                                    <a href="#" onclick="showMess(${x.tourId})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
-                                                </td>
-                                            </tr>
+                                            <td>${x.tourName}</td>
+                                            <td><fmt:formatNumber value="${x.price}" pattern="#,##0" /> VND</td>
 
-                                        </c:if>
+                                            <td>${x.dateStart}</td>
+                                            <td>${x.dateEnd}</td>
+<!--                                                <td >${x.detailTour}</td>                                            -->
+                                            <td >
+                                                ${x.imageTour}
+                                            </td>
+                                            <td>${x.statusTour}</td>
+                                            <td>${x.placeName}</td>
+                                            <td>${x.regionName}</td>
+                                            <td>${x.guideName}</td>
+
+                                            <td>
+                                                <a href="UpdateTour?tid=${x.tourId}" class="edit" data-toggle=""><i class="fa fa-pen" style="color: #ffae00;"></i></a>
+                                                <a href="#" onclick="showMess(${x.tourId})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
+                                            </td>
+                                        </tr>
+
                                     </c:forEach>
 
 
                                 </tbody>
                             </table>
 
-                            <!-- Hiển thị phân trang -->
-                            <c:if test="${listTour.size() > itemsPerPage}">
-                                <ul class="pagination justify-content-center mt-4">
-                                    <li class="page-item${currentPage eq 1 ? ' disabled' : ''}">
-                                        <a class="page-link" href="?pageNumber=${currentPage - 1}">&laquo; Previous</a>
-                                    </li>
-                                    <c:forEach var="page" begin="1" end="${totalPages}">
-                                        <c:url var="pageURL" value="?pageNumber=${page}" />
-                                        <li class="page-item${page eq currentPage ? ' active' : ''}">
-                                            <a class="page-link" href="${pageURL}">${page}</a>
-                                        </li>
-                                    </c:forEach>
-                                    <li class="page-item${currentPage eq totalPages ? ' disabled' : ''}">
-                                        <a class="page-link" href="?pageNumber=${currentPage + 1}">Next &raquo;</a>
-                                    </li>
-                                </ul>
-                            </c:if>    
+
                         </div>
-                        <!-- table container -->
                         <a href="AddManager.jsp" class="btn btn-primary btn-block text-uppercase mb-3">Add new tour</a>
-                        <!--                        <button class="btn btn-primary btn-block text-uppercase">
-                                                    Delete selected products
-                                                </button>-->
+
                     </div>
                 </div>
 
@@ -137,6 +118,16 @@
                     window.location.href = 'DeleteTour?tid=' + tourId;
                 }
             }
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("#myInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTours tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
         </script>
     </body>
 </html>

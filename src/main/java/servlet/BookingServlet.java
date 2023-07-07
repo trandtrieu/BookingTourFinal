@@ -50,6 +50,7 @@ public class BookingServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        String valueu = request.getParameter("value");
         String fullName = request.getParameter("fullName");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
@@ -68,7 +69,6 @@ public class BookingServlet extends HttpServlet {
 
         if (acc != null) {
             try {
-//                request.setAttribute("acc", acc);
                 String tourId = request.getParameter("id");
                 BookTour orderModel = new BookTour();
                 orderModel.setOrderId(Integer.parseInt(tourId));
@@ -110,7 +110,11 @@ public class BookingServlet extends HttpServlet {
                     request.setAttribute("orderModel", orderModel);
 
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
-                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
+//                                request.setAttribute("notification", "thanh toán thành công");
+
+                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
+
+//                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");
                 }

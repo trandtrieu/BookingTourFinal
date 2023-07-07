@@ -102,14 +102,13 @@
                                         </td>
                                         <td>
 
-                                            <a href="UpdateAccountServlet?aid=${a.id}" class="edit" data-toggle=""><i class="fa fa-pencil" style="color: #ffae00;"></i></a>
+                                            <a href="UpdateAccountServlet?aid=${a.id}" class="edit" data-toggle=""><i class="fa fa-pen mb-3" style="color: #ffae00;"></i></a><br>
                                                 <c:choose>
                                                     <c:when test="${a.role == 1 || a.role == 3 }">
                                                     <!-- Ẩn thẻ <a> khi role = 1 -->
-                                                </c:when>
+                                                </c:when>                                                   
                                                 <c:otherwise>
                                                     <a href="#" onclick="showMess(${a.id})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
-
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
@@ -117,7 +116,6 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <!-- Hiển thị phân trang -->
                     </div>
                 </div>
 

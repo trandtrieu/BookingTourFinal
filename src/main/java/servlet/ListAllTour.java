@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +44,13 @@ public class ListAllTour extends HttpServlet {
             }
             int tourCount = t.getAllToursCount();
 
-            request.getServletContext().setAttribute("myTours", tours);
+            List<Tour> filteredTours = new ArrayList<>();
+            for (Tour tour : tours) {
+                if (tour.getStatusTour() != true) {
+                    filteredTours.add(tour);
+                }
+            }
+            request.setAttribute("myTours", filteredTours);
             request.setAttribute("tourCount", tourCount);
             request.getRequestDispatcher("tourList.jsp").forward(request, response);
         } catch (ClassNotFoundException ex) {

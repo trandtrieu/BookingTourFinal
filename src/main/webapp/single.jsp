@@ -19,31 +19,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Single Tour Detail</title>
         <%@include file="includes/head.jsp" %>
-        <style>
-            .tour-image {
-                width: 100%;
-                height: auto;
-            }
-            .reviews-rating {
-                position: absolute;
-                top: 0;
-                padding: 0px 10px;
-            }
-            .reviews-rating__star{
-                width: 8px;
-                height: 8px;
-                margin: 0 2px;
-                background-image: url(../..//images/star-none.svg);
-                display: inline-block;
-            }
-            .is-active{
-                background-image: url(../..//images/star.svg);
-            }
-            .is-half{
-                background-image: url(../..//images/star-half.svg);
-            }
-        </style>
+
     </head>
+
     <body>
 
         <%@include file="includes/topbar.jsp" %>
@@ -119,8 +97,6 @@
 
                     <div class="col-md-12">
                         <h1>${detail.tourName} <span class="badge badge-danger">New</span></h1>
-
-<!--                         <h2> ${detail.tourName} </h2>-->
                         <p><strong>Giá vé trên một người:  </strong><fmt:formatNumber value="  ${detail.price}" pattern="#,##0" /> VND</p>
 
                         <p><strong>Ngày khởi hành:</strong> ${detail.dateStart}</p>
@@ -150,7 +126,7 @@
                                     <label for="email">Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Nhập địa chỉ email" value="" required>
                                 </div>
-                              
+
 
                                 <div  class="form-group">
                                     <label for="address">Địa chỉ: </label>
@@ -185,11 +161,17 @@
 
 
                                 <input type="hidden" name="id" value="${detail.tourId}">
+                                <input type="hidden" name="value" id="hidden-value">
+
                                 <button type="submit" class="btn btn-primary">Đặt vé</button>
+
+                                <div class="col-md-12 mt-5">
+
+                                </div> 
                             </form>
                         </div>
-                                
-                                
+
+
                         <div class="col-md-12 mt-5">
                             <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Some new tours</h4>
                             <c:forEach var="r" items="${tRelated}" varStatus="status">
@@ -202,158 +184,111 @@
                                 </div>
                             </c:forEach>
                         </div>
-                                
-                                
-                    </div>
+
+                    </div>     
+
 
 
                 </div>
+
+
             </div>
+        </div>
 
-            <div class="modal fade col-md-12" role="dialog" id="feedback">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
-                        <div class="modal-header">
-                            <h2 style="margin-left: 35%">Bình luận</h2>
-                        </div>
-                        <div class="modal-body">
-                            <form action="feedback">
-                                <input type="hidden" name="tid" value="${detail.tourId}"/>
-                                <b>Viết bình luận:</b>&nbsp;&nbsp;
-                                <div class="form-group">
-                                    <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px;" ></textarea>
-                                </div>
+        <div class="modal fade col-md-12" role="dialog" id="feedback">
+            <div class="modal-dialog">
+                <div class="modal-content" style="border-radius: 10px; margin-top: 60px;">
+                    <div class="modal-header">
+                        <h2 style="margin-left: 35%">Bình luận</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="feedback">
+                            <input type="hidden" name="tid" value="${detail.tourId}"/>
+                            <b>Viết bình luận:</b>&nbsp;&nbsp;
+                            <div class="form-group">
+                                <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px;" ></textarea>
+                            </div>
 
-                                <b>Đánh giá:</b>&nbsp;&nbsp;
-                                <div class="form-group" >
-                                    <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                                        <option >Ðánh giá sao cho tour </option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5" selected>5</option>
-                                    </select>
-                                </div>
-                                <br>
+                            <b>Đánh giá:</b>&nbsp;&nbsp;
+                            <div class="form-group" >
+                                <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <option >Ðánh giá sao cho tour </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5" selected>5</option>
+                                </select>
+                            </div>
+                            <br>
 
 
-                                <center><button type="submit" class="btn" style="padding-right: 160px;padding-left: 160px; border-radius: 100px; background-color: #7AB730">Bình luận</button></center>
+                            <center><button type="submit" class="btn" style="padding-right: 160px;padding-left: 160px; border-radius: 100px; background-color: #7AB730">Bình luận</button></center>
 
-                            </form>
-                            <br><br>
-                        </div>
+                        </form>
+                        <br><br>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <c:if test="${total == 0}">
-                <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
-            </c:if>        
-            <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
-                <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">${total} Comments</h4>
-                <c:if test="${acc != null}">
+        <c:if test="${total == 0}">
+            <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
+        </c:if>        
+        <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
+            <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">${total} Comments</h4>
+            <c:if test="${acc != null}">
 
-                    <a data-toggle="modal" data-dismiss="modal" data-target="#feedback">
-                        <h4 >
-                            Viết nhận xét của bạn
-                        </h4>
-                    </a>
-                </c:if>
-                <c:forEach items="${listfeedbackbyproduct}" var="f">
-                    <div class="media mb-4">
-                        <img src="img/${f.avatar}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 65px;">
+                <a data-toggle="modal" data-dismiss="modal" data-target="#feedback">
+                    <h4 >
+                        Viết nhận xét của bạn
+                    </h4>
+                </a>
+            </c:if>
+            <c:forEach items="${listfeedbackbyproduct}" var="f">
+                <div class="media mb-4">
+                    <img src="img/${f.avatar}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 65px;">
 
-                        <br/>
-                        <div class="media-body">
-                            <h6><a href="">${f.username}</a> <small><i>${f.date}</i></small></h6>
-                            <c:if test="${f.u_id eq acc.id}">
-                                <a href="delete-feedback?id=${f.id}" class="float-right btn btn-outline-danger">Xóa</a>
+                    <br/>
+                    <div class="media-body">
+                        <h6><a href="">${f.username}</a> <small><i>${f.date}</i></small></h6>
+                        <c:if test="${f.u_id eq acc.id}">
+                            <a href="delete-feedback?id=${f.id}" class="float-right btn btn-outline-danger">Xóa</a>
 
-                            </c:if>                          
-                            <p class="mb-0">${f.feedback}</p>
+                        </c:if>                          
+                        <p class="mb-0">${f.feedback}</p>
 
-                            <c:forEach var="i" begin="0" end="4">
-                                <c:if test="${(f.rated_star - i) >= 1}">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                </c:if>    
-                                <c:if test="${(f.rated_star - i) < 1 && (f.rated_star - i) > 0}">
-                                    <div class="reviews-rating__star is-active is-half"></div> 
-                                </c:if>
-                                <c:if test="${(f.rated_star - i) <= 0}">
-                                    <div class="reviews-rating__star"></div> 
-                                </c:if>
-                            </c:forEach>
-                        </div>
-
+                        <c:forEach var="i" begin="0" end="4">
+                            <c:if test="${(f.rated_star - i) >= 1}">
+                                <div class="reviews-rating__star is-active"></div> 
+                            </c:if>    
+                            <c:if test="${(f.rated_star - i) < 1 && (f.rated_star - i) > 0}">
+                                <div class="reviews-rating__star is-active is-half"></div> 
+                            </c:if>
+                            <c:if test="${(f.rated_star - i) <= 0}">
+                                <div class="reviews-rating__star"></div> 
+                            </c:if>
+                        </c:forEach>
                     </div>
-                </c:forEach>
 
+                </div>
+            </c:forEach>
 
-            </div>
 
         </div>
 
-        <%@include file="includes/footer.jsp" %>
+    </div>
 
-    </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://web8802.com/wp-content/themes/hienads/assets/js/quanhuyen.js"></script>
-    <script>
-                                            // Kiểm tra số chỗ còn trống
-                                            var seatCount = ${detail.seat};
-                                            if (seatCount === 0) {
-                                                // Hiển thị thông báo "Tour đã hết chỗ"
-                                                alert("Tour đã hết chỗ");
-                                            }
+    <%@include file="includes/footer.jsp" %>
 
-    </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<!-- Chart JS Plugin for displaying text over chart -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
-                                            var citis = document.getElementById("city");
-                                            var districts = document.getElementById("district");
-                                            var wards = document.getElementById("ward");
-                                            var Parameter = {
-                                                url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-                                                method: "GET",
-                                                responseType: "application/json",
-                                            };
-                                            var promise = axios(Parameter);
-                                            promise.then(function (result) {
-                                                renderCity(result.data);
-                                            });
 
-                                            function renderCity(data) {
-                                                for (const x of data) {
-                                                    citis.options[citis.options.length] = new Option(x.Name, x.Name); // Lưu trữ tên thay vì Id
-                                                }
-                                                citis.onchange = function () {
-                                                    district.length = 1;
-                                                    ward.length = 1;
-                                                    if (this.value != "") {
-                                                        const result = data.filter(n => n.Name === this.value); // So sánh với tên thay vì Id
+<%@include file="includes/single_script.jsp" %>
 
-                                                        for (const k of result[0].Districts) {
-                                                            district.options[district.options.length] = new Option(k.Name, k.Name); // Lưu trữ tên thay vì Id
-                                                        }
-                                                    }
-                                                };
-                                                district.onchange = function () {
-                                                    ward.length = 1;
-                                                    const dataCity = data.filter((n) => n.Name === citis.value); // So sánh với tên thay vì Id
-                                                    if (this.value != "") {
-                                                        const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards; // So sánh với tên thay vì Id
-
-                                                        for (const w of dataWards) {
-                                                            wards.options[wards.options.length] = new Option(w.Name, w.Name); // Lưu trữ tên thay vì Id
-                                                        }
-                                                    }
-                                                };
-                                            }
-
-    </script>
-
-    <%@include file="includes/foot.jsp" %>
+<%@include file="includes/foot.jsp" %>
 
 </html>

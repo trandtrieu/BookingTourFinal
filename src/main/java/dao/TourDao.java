@@ -64,6 +64,10 @@ public class TourDao {
 
                 if (tourDate.equals(currentDate)) {
                     tour.setStatusTour(true);
+                } else if (currentDate.after(tourDate)) {
+                    tour.setStatusTour(true);
+                } else {
+                    tour.setStatusTour(false);
                 }
                 tours.add(tour);
             }
@@ -148,8 +152,7 @@ public class TourDao {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                // Lấy dữ liệu từ ResultSet và thêm vào list
-                // ...
+
                 Tour row = new Tour();
                 row.setTourId(rs.getInt("tourId"));
                 row.setTourName(rs.getString("name"));
@@ -232,7 +235,6 @@ public class TourDao {
                 }
             }
         }
-
         return searchResults;
     }
 
@@ -581,6 +583,8 @@ public class TourDao {
         tourDate = removeTimeFromDate(tourDate);
 
         if (tourDate.equals(currentDate)) {
+            tour.setStatusTour(true);
+        } else if (currentDate.after(tourDate)) {
             tour.setStatusTour(true);
         } else {
             tour.setStatusTour(rs.getBoolean("status"));

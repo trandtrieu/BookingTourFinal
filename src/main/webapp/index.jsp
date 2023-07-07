@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Home </title>
+        <title>Home Page</title>
         <%@include file="includes/head.jsp" %>
 
     </head>
@@ -81,7 +81,7 @@
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Khám phá</h6>
                     <h1>Danh sách tour</h1>
-                                        <%@include file="includes/sort.jsp" %>
+                    <%@include file="includes/sort.jsp" %>
 
                 </div>
 
@@ -175,6 +175,7 @@
                 </div>
             </div>
         </div>
+
 
 
 

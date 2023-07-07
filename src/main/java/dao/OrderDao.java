@@ -4,6 +4,7 @@
  */
 package dao;
 
+import connection.DbCon;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,5 +101,17 @@ public class OrderDao {
             result = false;
         }
         return result;
+    }
+
+    public void deleteOrder(String orderId) {
+        query = "delete from bookTour \n"
+                + "where orderId = ?";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, orderId);
+            pst.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 }

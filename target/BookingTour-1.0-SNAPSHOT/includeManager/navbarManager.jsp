@@ -21,7 +21,7 @@
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
                     <a class="nav-link " href="HomeController">
-                        <i class="fa fa-browser"></i> Website 
+                       <i class="fas fa-angle-down"></i> Website
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>   
@@ -37,7 +37,7 @@
 
        
 
-                <li class="nav-item dropdown">
+<!--                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i class="far fa-file-alt"></i>
@@ -48,7 +48,7 @@
                         <a class="dropdown-item" href="#">Weekly Report</a>
                         <a class="dropdown-item" href="#">Yearly Report</a>
                     </div>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link " href="ManagerTour">
                         <i class="fas fa-shopping-cart"></i> Tours
@@ -60,7 +60,7 @@
                         <i class="far fa-user"></i> Accounts
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+<!--                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-cog"></i>
@@ -71,7 +71,7 @@
                         <a class="dropdown-item" href="#">Billing</a>
                         <a class="dropdown-item" href="#">Customize</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

@@ -80,7 +80,8 @@
                             <div class="img-circle text-center mb-3">
                                 <img src="img/${account.getAvatar()}" alt="Image" class="shadow" />
                             </div>
-                            <a href="uploadImg">Upload</a>
+                            <a href="">Upload</a>
+
                             <h4 class="text-center">${account.getUsername()}</h4>
                             <h4 class="text-center">${account.getAvatar()}</h4>
 
@@ -157,6 +158,16 @@
                                                 type="text"
                                                 class="form-control"
                                                 value="${account.getPhone()}"
+                                                />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Upload avatar</label>
+                                            <input
+                                                type="file"
+                                                class="form-control"
+                                                value="${account.getAvatar()}"
                                                 />
                                         </div>
                                     </div>
@@ -283,60 +294,7 @@
                                 <button class="btn btn-light">Cancel</button>
                             </div>
                         </div>
-                        <div
-                            class="tab-pane fade"
-                            id="notification"
-                            role="tabpanel"
-                            aria-labelledby="notification-tab"
-                            >
-                            <h3 class="mb-4">Notification Settings</h3>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="notification1"
-                                        />
-                                    <label class="form-check-label" for="notification1">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Dolorum accusantium accusamus, neque cupiditate quis
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="notification2"
-                                        />
-                                    <label class="form-check-label" for="notification2">
-                                        hic nesciunt repellat perferendis voluptatum totam porro
-                                        eligendi.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="notification3"
-                                        />
-                                    <label class="form-check-label" for="notification3">
-                                        commodi fugiat molestiae tempora corporis. Sed dignissimos
-                                        suscipit
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary">Update</button>
-                                <button class="btn btn-light">Cancel</button>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>

@@ -16,14 +16,14 @@
     <body>
         <%@include file="includes/topbar.jsp" %>
         <div class="container mt-5">
-        <div class="alert alert-warning d-flex justify-content-center align-items-center" role="alert">
-            <div class="text-center">
-                <h1 class="alert-heading mb-3">Đặt vé tour thành công!</h1>
-            <a href="OrderListServlet">Chuyen huong den Order</a>
+            <div class="alert alert-warning d-flex justify-content-center align-items-center" role="alert">
+                <div class="text-center">
+                    <h1 class="alert-heading mb-3">Đặt vé tour thành công!</h1>
+                    <a href="OrderListServlet">Chuyen huong den Order</a>
+                </div>
             </div>
-        </div></div>
+        </div>
         <%@include file="includes/footer.jsp" %>
-
     </body>
     <%@include file="includes/foot.jsp" %>
 

@@ -68,8 +68,9 @@
                                         <td><c:out value="${String.format('%.0f', c.totalAmount)} VND" /></td>
                                         <td>${c.note}</td>
                                         <td>
-                                            <a href="UpdateTour?tid=${x.tourId}" class="edit" data-toggle=""><i class="fa fa-pen" style="color: #ffae00;"></i></a>
-                                            <a href="#" onclick="showMess(${x.orderId})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
+                                            <a href="DeleteOrder?oid=${c.orderId}" class="delete" data-toggle="" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">
+                                                <i class="fa fa-trash" style="color: #ffae00;"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -103,4 +104,5 @@
             });
         });
     </script>
+
 </html>

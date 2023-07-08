@@ -46,18 +46,13 @@
                 <div  class="col-md-9">
 
                     <div class="table-responsive">
-                        <!--                        <div class="row mb-3">
-                                                    <div class="col-sm-6">
-                                                        <h2>List <b>User</b></h2>
-                                                    </div>
-                                                    <div class="col-sm-6 ">
-                                                        <a href="AddAccount.jsp" class="btn btn-success" data-toggle=""><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                        
-                                                    </div>
-                        
-                        
-                                                </div>-->
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <h2>List User</h2>
+                            </div>
+                        </div>
                         <input class="form-control bg-dark" id="myInput" type="text" placeholder="Search..">
+                                <a href="AddAccount.jsp" class="btn btn-success" data-toggle=""><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 
                         <table class="table  table-hover">
                             <thead>
@@ -109,8 +104,8 @@
                                                 </c:when>                                                   
                                                 <c:otherwise>
                                                     <a href="#" onclick="showMess(${a.id})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                    </c:otherwise>
+                                                </c:choose>
                                         </td>
                                     </tr>
                                 </c:forEach>

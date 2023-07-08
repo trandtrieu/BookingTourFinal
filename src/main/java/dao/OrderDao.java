@@ -104,8 +104,8 @@ public class OrderDao {
     }
 
     public void deleteOrder(String orderId) {
-        query = "delete from bookTour \n"
-                + "where orderId = ?";
+        query = "delete from bookTour\n"
+                + "where o_id = ?";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);

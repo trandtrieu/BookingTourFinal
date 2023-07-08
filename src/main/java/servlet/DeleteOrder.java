@@ -38,12 +38,11 @@ public class DeleteOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //get tid from jsp 
         String orderId = request.getParameter("oid");
-        //pass tid to dao
         OrderDao dao = new OrderDao();
         dao.deleteOrder(orderId);
-        response.sendRedirect("ManagerTour");
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer);
     }
 
     @Override

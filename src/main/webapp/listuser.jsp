@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <input class="form-control bg-dark" id="myInput" type="text" placeholder="Search..">
-                                <a href="AddAccount.jsp" class="btn btn-success" data-toggle=""><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+                        <a href="AddAccount.jsp" class="btn btn-success" data-toggle=""><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 
                         <table class="table  table-hover">
                             <thead>

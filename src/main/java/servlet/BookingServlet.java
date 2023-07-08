@@ -112,9 +112,9 @@ public class BookingServlet extends HttpServlet {
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
 //                                request.setAttribute("notification", "thanh toán thành công");
 
-                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
+//                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
 
-//                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
+                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");
                 }

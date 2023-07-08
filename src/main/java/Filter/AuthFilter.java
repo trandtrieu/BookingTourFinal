@@ -24,7 +24,6 @@ import model.AccountDTO;
  *
  * @author linh2
  */
-//@WebFilter(filterName = "AuthFilter", urlPatterns = {"/admin.jsp"})
 @WebFilter(filterName = "AuthFilter", urlPatterns = {"/ManagerTour"})
 
 public class AuthFilter implements Filter {

@@ -131,7 +131,7 @@ public class AccountDAO {
                     + "where u_id=?";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
-            ps.setString(1, id);
+            ps.setString(1, id);    
             ps.executeUpdate();
         } catch (Exception e) {
         }

@@ -28,6 +28,11 @@
 
 
                     <ul class="list-group">
+                        <a href="ListUser">
+                            <li class=" d-flex justify-content-between align-items-center dropdown-item">
+                                T?t c?
+                            </li>
+                        </a>
                         <c:forEach var="r" items="${roles}" varStatus="status">
 
                             <a href="ListUserByRole?role=${r.role}">
@@ -66,7 +71,7 @@
 
                                     <th scope="col">ID</th>
                                     <th scope="col">User Name</th>
-<!--                                    <th scope="col">Password </th>-->
+                                    <!--                                    <th scope="col">Password </th>-->
                                     <th scope="col">Email </th>
                                     <th scope="col">Phone</th>
                                     <th scope="col">Role</th>
@@ -82,9 +87,9 @@
 
                                         <td>${a.id}</td>
                                         <td>${a.username}</td>
-<!--                                        <td>
-                                            ${a.password}
-                                        </td>-->
+                                        <!--                                        <td>
+                                        ${a.password}
+                                    </td>-->
                                         <td>${a.email}</td>
                                         <td>${a.phone}</td>
                                         <td>

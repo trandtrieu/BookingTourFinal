@@ -206,12 +206,12 @@
                             <input type="hidden" name="tid" value="${detail.tourId}"/>
                             <b>Viết bình luận:</b>&nbsp;&nbsp;
                             <div class="form-group">
-                                <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px;" ></textarea>
+                                <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px;" required="" ></textarea>
                             </div>
 
                             <b>Đánh giá:</b>&nbsp;&nbsp;
                             <div class="form-group" >
-                                <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example " required="">
                                     <option >Ðánh giá sao cho tour </option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>

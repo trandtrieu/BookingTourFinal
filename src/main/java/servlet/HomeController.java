@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Region;
 import dao.RegionDao;
+import dao.ViewDao;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import model.AccountDTO;
 import model.Place;
@@ -32,7 +34,6 @@ public class HomeController extends HttpServlet {
             RegionDao r = new RegionDao(DbCon.getConnection());
             PlaceDao p = new PlaceDao(DbCon.getConnection());
             FeedbackDao feedbackDao = new FeedbackDao();
-
             List<Tour> tours = t.getAllTours();
             List<Region> regions = r.getAllRegions();
             List<Place> places = p.getAllPlaces();
@@ -43,7 +44,7 @@ public class HomeController extends HttpServlet {
                 tour.setAverageStar(averageStar);
             }
             int tourCount = t.getAllToursCount();
-
+           
             request.getServletContext().setAttribute("myRegions", regions);
             request.getServletContext().setAttribute("myPlaces", places);
 

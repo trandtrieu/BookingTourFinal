@@ -28,6 +28,11 @@
 
 
                     <ul class="list-group">
+                         <a href="ListUser">
+                            <li class=" d-flex justify-content-between align-items-center dropdown-item">
+                                T?t c?
+                            </li>
+                        </a><
                         <c:forEach var="r" items="${roles}" varStatus="status">
 
                             <a href="ListUserByRole?role=${r.role}">
@@ -37,7 +42,6 @@
                                 </li>
                             </a>
                         </c:forEach>
-
                     </ul>
                 </div>
 

@@ -4,6 +4,7 @@
     Author     : DELL
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <nav class="navbar navbar-expand-xl">
@@ -21,7 +22,7 @@
             <ul class="navbar-nav mx-auto h-100">
                 <li class="nav-item">
                     <a class="nav-link " href="HomeController">
-                       <i class="fas fa-angle-down"></i> Website
+                        <i class="fas fa-angle-down"></i> Website
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>   
@@ -35,20 +36,6 @@
                     </li>
                 </c:if>
 
-       
-
-<!--                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-file-alt"></i>
-                        <span> Reports <i class="fas fa-angle-down"></i> </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Daily Report</a>
-                        <a class="dropdown-item" href="#">Weekly Report</a>
-                        <a class="dropdown-item" href="#">Yearly Report</a>
-                    </div>
-                </li>-->
                 <li class="nav-item">
                     <a class="nav-link " href="ManagerTour">
                         <i class="fas fa-shopping-cart"></i> Tours
@@ -60,24 +47,28 @@
                         <i class="far fa-user"></i> Accounts
                     </a>
                 </li>
-<!--                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                        <span> Settings <i class="fas fa-angle-down"></i> </span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Billing</a>
-                        <a class="dropdown-item" href="#">Customize</a>
-                    </div>
-                </li>-->
+
             </ul>
             <ul class="navbar-nav">
+
                 <li class="nav-item">
-                    <a class="nav-link d-block" href="LogoutServlet">
-                        Admin, <b>Logout</b>
-                    </a>
+                    <c:if test="${sessionScope.acc  == null}"> 
+                        <a class="nav-link d-block" href="LoginServlet">
+
+                            <b>Login</b>
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.acc  != null}"> 
+                        <a class="nav-link d-block" href="LogoutServlet">
+                            <c:if test="${acc.role == 1}">
+                               Hello Admin,
+                            </c:if>
+                            <c:if test="${acc.role == 3}">
+                              Hello Owner,
+                            </c:if>
+                            <b>Logout</b>
+                        </a>
+                    </c:if>
                 </li>
             </ul>
         </div>

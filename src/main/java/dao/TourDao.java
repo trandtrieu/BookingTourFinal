@@ -55,10 +55,9 @@ public class TourDao {
 
             while (rs.next()) {
                 TourSchedule tour = extractTourFromResultSet(rs);
-                java.util.Date currentDate = new java.util.Date(); // Ngày hiện tại
+                java.util.Date currentDate = new java.util.Date();
                 java.util.Date tourDate = tour.getDateStart();
 
-                // Chỉ lấy ngày từ ngày hiện tại
                 currentDate = removeTimeFromDate(currentDate);
                 tourDate = removeTimeFromDate(tourDate);
 
@@ -82,7 +81,7 @@ public class TourDao {
     public int getAllToursCount() {
         int count = 0;
         try {
-            query = "SELECT COUNT(*) AS count FROM tour";
+            query = "SELECT COUNT(*) AS count FROM tour where status = 'false' ";
             pst = this.con.prepareStatement(query);
             rs = pst.executeQuery();
 

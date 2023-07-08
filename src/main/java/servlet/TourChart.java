@@ -6,16 +6,19 @@ package servlet;
 
 import connection.DbCon;
 import dao.ChartDAO;
+import dao.ViewDao;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AmountByMonth;
+import model.AmountByRegion;
 import model.CustomerByMonth;
 
 /**
@@ -29,15 +32,34 @@ public class TourChart extends HttpServlet {
         try {
             response.setContentType("text/html;charset=UTF-8");
             ChartDAO chartDAO = new ChartDAO(DbCon.getConnection());
+            ViewDao viewDao = new ViewDao(DbCon.getConnection());
+
+            HttpSession session = request.getSession();
+            if (session.isNew()) {
+                viewDao.updateView();
+            }
 
             // Lấy danh sách khách hàng theo tháng
             List<CustomerByMonth> customersByMonth = chartDAO.getCustomersByMonth();
             List<AmountByMonth> amountsByMonth = chartDAO.getAmountsByMonth();
+            List<AmountByRegion> amountsByRegion1 = chartDAO.getAmountsByRegion(1);
+            List<AmountByRegion> amountsByRegion2 = chartDAO.getAmountsByRegion(2);
+            List<AmountByRegion> amountsByRegion3 = chartDAO.getAmountsByRegion(3);
+           
+
             int totalCus = chartDAO.getTotalAdults();
             int totalChilrens = chartDAO.getTotalChildrens();
+            int view = viewDao.getView();
+            String formartted = String.format("%05d", view);
+
+            request.setAttribute("view", formartted);
 
             request.setAttribute("customersByMonth", customersByMonth);
             request.setAttribute("amountsByMonth", amountsByMonth);
+            request.setAttribute("amountsByRegion1", amountsByRegion1);
+            request.setAttribute("amountsByRegion2", amountsByRegion2);
+            request.setAttribute("amountsByRegion3", amountsByRegion3);
+
             request.setAttribute("totalCus", totalCus);
             request.setAttribute("totalChilrens", totalChilrens);
 

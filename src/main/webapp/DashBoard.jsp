@@ -24,9 +24,7 @@
                         <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
                     </div>
                 </div>
-                <!--                <div class="col-md-5">
-                                    <canvas id="myChart"></canvas>
-                                </div>-->
+
                 <!-- row -->
                 <div class="row tm-content-row">
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
@@ -63,6 +61,12 @@
                                     <span class="input-group-text">Trẻ em</span>
                                 </div> 
                                 <span class="form-control">${totalChilrens}</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Lượng truy cập</span>
+                                </div> 
+                                <span class="form-control">${view}</span>
                             </div>
                         </div>
 
@@ -160,10 +164,14 @@
             var myLineChart = new Chart(ctxL, {
             type: 'line',
                     data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    labels: ["2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12"],
                             datasets: [{
-                            label: "Tour miền Trung",
-                                    data: [65, 59, 80, 81, 56, 55, 40],
+                            label: "Miền Trung",
+                                    data: [
+            <c:forEach var="r" items="${amountsByRegion2}">
+                ${r.totalAmount / 1000000},
+            </c:forEach>
+                                    ],
                                     backgroundColor: [
                                             'rgba(105, 0, 132, .2)',
                                     ],
@@ -173,8 +181,12 @@
                                     borderWidth: 2
                             },
                             {
-                            label: "Tour miền Nam",
-                                    data: [28, 48, 40, 19, 86, 27, 90],
+                            label: "Miền Nam",
+                                    data: [
+            <c:forEach var="r" items="${amountsByRegion3}">
+                ${r.totalAmount / 1000000},
+            </c:forEach>
+                                    ],
                                     backgroundColor: [
                                             'rgba(0, 137, 132, .2)',
                                     ],
@@ -184,8 +196,12 @@
                                     borderWidth: 2
                             },
                             {
-                            label: "Tour miền Băc",
-                                    data: [78, 98, 70, 19, 26, 47, 9],
+                            label: "Miền Bắc",
+                                    data: [
+            <c:forEach var="r" items="${amountsByRegion1}">
+                ${r.totalAmount / 1000000},
+            </c:forEach>
+                                    ],
                                     backgroundColor: [
                                             'rgba(255, 99, 71, 0.2)',
                                     ],

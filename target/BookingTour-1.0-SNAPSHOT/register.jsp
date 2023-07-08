@@ -1,108 +1,178 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Register Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--===============================================================================================-->	
-        <link rel="icon" type="image/png" href="img/icons/favicon.ico"/>
+        <title>Login</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="icon" type="image/png" href="img/icons/favicon.ico" />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="vendor/bootstrap/css/bootstrap.min.css"
+            />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+            />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->	
-        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css"
+            />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->	
-        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="vendor/css-hamburgers/hamburgers.min.css"
+            />
         <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="css/util.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="vendor/animsition/css/animsition.min.css"
+            />
+        <!--===============================================================================================-->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="vendor/select2/select2.min.css"
+            />
+        <!--===============================================================================================-->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="vendor/daterangepicker/daterangepicker.css"
+            />
+        <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css" />
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
         <!--===============================================================================================-->
     </head>
     <body>
-
         <div class="limiter">
-            <div class="container-login100" style="background-image: url('img/bg-01.jpg');">
+            <div
+                class="container-login100"
+                style="background-image: url('img/bg-01.jpg')"
+                >
                 <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                    <form class="login100-form validate-form flex-sb flex-w" action="RegisterServlet" method="get" >
-                        <span class="login100-form-title p-b-53">
-                            Sign Up
-                        </span>
+                    <form
+                        class="login100-form validate-form flex-sb flex-w"
+                        action="RegisterServlet"
+                        method="get"
+                        onsubmit="return validateInputs()"
+                        id="form"
+                        >
+                        <span class="login100-form-title p-b-53"> Sign Up </span>
                         <div class="p-t-31 p-b-9">
-                            <span class="txt1" >
-                                Username
-                            </span>
+                            <span class="txt1"> Username </span>
                         </div>
-                        <div class="wrap-input100 validate-input" data-validate = "Username is required">
-                            <input class="input100" type="text" name="username" >
-                            <span class="focus-input100"></span>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                >
+                                <input
+                                    class="input100"
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    value="${requestScope.USERNAME}"
+                                    />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
+                            <c:if test="${requestScope.TAKENUSERNAME}"><div><span style="color: red ; margin-top: 5px">Username already taken</span></div></c:if>
                         </div>
 
                         <div class="p-t-13 p-b-9">
-                            <span class="txt1" >
-                                Password
-                            </span>
-                        </div> 
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="password" >
-                            <span class="focus-input100"></span>
+                            <span class="txt1"> Password </span>
+                        </div>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                data-validate="Password is required"
+                                >
+                                <input
+                                    class="input100"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    value="${requestScope.PASSWORD}"
+                                    />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
                         </div>
                         <div class="p-t-13 p-b-9">
-                            <span class="txt1" >
-                                Re-Password
-                            </span>
-                        </div> 
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="re_pass" >
-                            <span class="focus-input100"></span>
+                            <span class="txt1"> Re-Password </span>
+                        </div>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                data-validate="Password is required"
+                                >
+                                <input
+                                    class="input100"
+                                    type="password"
+                                    name="re_pass"
+                                    id="re_pass"
+                                    value="${requestScope.REPASS}"
+                                    />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
                         </div>
                         <div class="p-t-13 p-b-9">
-                            <span class="txt1" >
-                                Email
-                            </span>
-                        </div> 
-                        <div class="wrap-input100 validate-input" data-validate = "Email is required">
-                            <input class="input100" type="text" name="email" >
-                            <span class="focus-input100"></span>
+                            <span class="txt1"> Email </span>
+                        </div>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                data-validate="Email is required"
+                                >
+                                <input class="input100" type="text" value="${requestScope.EMAIL}" name="email" id="email" />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
                         </div>
                         <div class="p-t-13 p-b-9">
-                            <span class="txt1" >
-                                Phone
-                            </span>
-                        </div> 
-
-                        <div class="wrap-input100 validate-input" data-validate = "Phone is required">
-                            <input class="input100" type="text" name="phone" >
-                            <span class="focus-input100"></span>
+                            <span class="txt1"> Phone </span>
                         </div>
-                        
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                data-validate="Phone is required"
+                                >
+                                <input class="input100" type="text" name="phone" id="phone" value="${requestScope.PHONE}"/>
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
+                        </div>
                         <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn" type="submit">
+                            <button
+                                class="login100-form-btn"
+                                onclick="validateInputs()"
+                                type="submit"
+                                >
                                 Sign up
                             </button>
                         </div>
 
                         <div class="w-full text-center p-t-55">
-                             <span class="txt2">
-                                You have account?
-                            </span>
-                            <a href="login.jsp" class="txt2 bo1">
-                                Sign In now
-                            </a>
+                            <span class="txt2"> You have account? </span>
+                            <a href="login.jsp" class="txt2 bo1"> Sign In now </a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
 
         <div id="dropDownSelect1"></div>
 
@@ -122,6 +192,6 @@
         <script src="vendor/countdowntime/countdowntime.js"></script>
         <!--===============================================================================================-->
         <script src="js/mainlogin.js"></script>
-
+        <script src="js/register.js"></script>
     </body>
 </html>

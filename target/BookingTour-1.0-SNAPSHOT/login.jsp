@@ -26,49 +26,55 @@
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <!--===============================================================================================-->
+
     </head>
     <body>
 
         <div class="limiter">
             <div class="container-login100" style="background-image: url('img/bg-01.jpg');">
                 <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                    <form class="login100-form validate-form flex-sb flex-w" action="Login" method="post" >
+                    <form class="login100-form validate-form flex-sb flex-w" action="Login" method="post" onsubmit="return validateLogin()" id="form">
                         <span class="login100-form-title p-b-53">
-                            Sign In With
+                            Sign In 
                         </span>
 
-                        <a href="#" class="btn-face m-b-20" style="text-decoration: none">
-                           <i class="fab fa-facebook-f"></i>
-                            Facebook
-                        </a>
-
-                        <a href="#" class="btn-google m-b-20" style="text-decoration: none">
-                            <img src="img/icons/icon-google.png" alt="GOOGLE">
-                            Google
-                        </a>
-
                         <div class="p-t-31 p-b-9">
-                            <span class="txt1" >
-                                Username
-                            </span>
+                            <span class="txt1" >Username</span>
                         </div>
-                        <div class="wrap-input100 validate-input" data-validate = "Username is required">
-                            <input class="input100" type="text" name="username" value="${username}">
-                            <span class="focus-input100"></span>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input">
+                                <input
+                                    class="input100"
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
                         </div>
 
                         <div class="p-t-13 p-b-9">
-                            <span class="txt1" >
-                                Password
-                            </span>
-                        </div> 
-
-                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input class="input100" type="password" name="password" value="${password}">
-                            <span class="focus-input100"></span>
+                            <span class="txt1"> Password </span>
+                        </div>
+                        <div style="width: 100%">
+                            <div
+                                class="wrap-input100 validate-input"
+                                data-validate="Password is required"
+                                >
+                                <input
+                                    class="input100"
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    />
+                                <span class="focus-input100"></span>
+                            </div>
+                            <div class="errortext" style="color: red ; margin-top: 5px"></div>
                         </div>
                         <div class="p-t-13 p-b-9">
-                            <a href="#" class="txt2 bo1 m-l-5" style="text-decoration: none">
+                            <a href="forgotPassword.jsp" class="txt2 bo1 m-l-5" style="text-decoration: none">
                                 Forgot Password  ?
                             </a>
                         </div>
@@ -76,7 +82,7 @@
                             <input name="remember"value="1" type="checkbox" >Remember Me
                         </div>
                         <div class="container-login100-form-btn m-t-17">
-                            <button class="login100-form-btn" type="submit">
+                            <button class="login100-form-btn" onclick="validateLogin()" type="submit">
                                 Sign In
                             </button>
                         </div>
@@ -86,7 +92,7 @@
                                 Not a member?
                             </span>
 
-                            <a href="register.jsp" class="txt2 bo1">
+                            <a href="register.jsp" class="txt2 bo1" style="text-decoration: none">
                                 Sign up now
                             </a>
                         </div>
@@ -114,6 +120,6 @@
         <script src="vendor/countdowntime/countdowntime.js"></script>
         <!--===============================================================================================-->
         <script src="js/mainlogin.js"></script>
-
+        <script src="js/login.js"></script>
     </body>
 </html>

@@ -57,6 +57,7 @@
                     <h1>Khám phá 3 miền</h1>
                     <p>Hiện đang có : ${tourCount}</p>
 
+
                 </div>
                 <div class="row">
                     <c:forEach var="r" items="${myRegions}" varStatus="status">

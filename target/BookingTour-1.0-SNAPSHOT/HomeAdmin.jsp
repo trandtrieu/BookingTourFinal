@@ -42,6 +42,7 @@
                         <input class="form-control bg-dark" id="myInput" type="text" placeholder="Search..">
 
                         <table class="table" >
+
                             <thead>
                                 <tr>
                                     <th scope="col">Mã đặt vé</th>
@@ -55,8 +56,10 @@
                                     <th scope="col">Action</th>
 
                                 </tr>
+
                             </thead>
                             <tbody id="myOrders">
+
                                 <c:forEach items="${listH}" var="c">
                                     <tr>     
                                         <td>${c.orderId}</td>
@@ -74,8 +77,17 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
+
+
                             </tbody>
                         </table>
+                        <c:if test="${empty listH}">
+                            <div class="alert alert-warning d-flex justify-content-center align-items-center" role="alert">
+                                <div class="text-center">
+                                    <p class="mb-0">Danh sách đặt vé hiện đang trống</p>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

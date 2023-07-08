@@ -65,6 +65,7 @@
                                             <label for="status">Status
                                             </label>
                                             <input value="${tt.statusTour}" id="status" name="status" type="text" class="form-control validate" />
+                                            
                                         </div>
                                         
                                         <div class="form-group mb-3 col-xs-12 col-sm-6" id="place">

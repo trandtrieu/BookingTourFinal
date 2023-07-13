@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <nav class="navbar navbar-expand-xl">
     <div class="container h-100">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="HomeController">
             <h1 class="tm-site-title mb-0">Tour Booking Admin</h1>
         </a>
         <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
@@ -45,6 +45,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="ListUser">
                         <i class="far fa-user"></i> Accounts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="RequestListManage">
+                        <i class="far fa-user"></i> Requests
                     </a>
                 </li>
 

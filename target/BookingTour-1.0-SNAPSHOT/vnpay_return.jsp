@@ -27,8 +27,10 @@
         <!-- Custom styles for this template -->
         <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet"> 
         <script src="/vnpay_jsp/assets/jquery-1.11.3.min.js"></script>
+
     </head>
     <body>
+
         <%
             //Begin process return from VNPAY
             Map fields = new HashMap();
@@ -51,6 +53,7 @@
 
         %>
         <!--Begin display -->
+        <a href="HomeController">back</a>
         <div class="container">
             <div class="header clearfix">
                 <h3 class="text-muted">INVOICE DETAILS</h3>
@@ -110,4 +113,5 @@
             </footer>
         </div>  
     </body>
+
 </html>

@@ -55,12 +55,11 @@ public class TourDao {
 
             while (rs.next()) {
                 TourSchedule tour = extractTourFromResultSet(rs);
+
                 java.util.Date currentDate = new java.util.Date();
                 java.util.Date tourDate = tour.getDateStart();
-
                 currentDate = removeTimeFromDate(currentDate);
                 tourDate = removeTimeFromDate(tourDate);
-
                 if (tourDate.equals(currentDate)) {
                     tour.setStatusTour(true);
                 } else if (currentDate.after(tourDate)) {
@@ -68,6 +67,9 @@ public class TourDao {
                 } else {
                     tour.setStatusTour(false);
                 }
+
+                updateTourStatus(con, tour);
+                
                 tours.add(tour);
             }
         } catch (SQLException e) {
@@ -622,4 +624,14 @@ public class TourDao {
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
+    private void updateTourStatus(Connection con, TourSchedule tour) throws SQLException {
+    int tourId = tour.getTourId();
+    boolean status = tour.getStatusTour();
+
+    String updateQuery = "UPDATE tour SET status = ? WHERE tourId = ?";
+    PreparedStatement updatePst = con.prepareStatement(updateQuery);
+    updatePst.setBoolean(1, status);
+    updatePst.setInt(2, tourId);
+    updatePst.executeUpdate();
+}
 }

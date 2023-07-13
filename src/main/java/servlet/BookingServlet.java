@@ -22,7 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AccountDTO;
 import model.BookTour;
-import model.EmailSender;
+import Email.EmailSender;
 import model.Tour;
 import model.TourSchedule;
 
@@ -93,7 +93,8 @@ public class BookingServlet extends HttpServlet {
                 float totalAmount = (adultPrice * adults) + (childrenPrice * children);
                 if ((adults + children) > remainingSeats) {
                     response.getWriter().println("The number of adults and children exceeds the available seats.");
-                    request.setAttribute("exceedSeats", true);
+//                    String referer = request.getHeader("Referer");
+//                    response.sendRedirect(referer);
                     return;
                 }
                 orderModel.setTotalAmount(totalAmount);
@@ -102,7 +103,7 @@ public class BookingServlet extends HttpServlet {
                 boolean result = orderDao.insertOrder(orderModel);
 
                 if (result) {
-                    // Update the remaining seats in the tour
+
                     remainingSeats = tour.getSeat();
                     remainingSeats -= (adults + children);
                     tour.setSeat(remainingSeats);
@@ -110,11 +111,9 @@ public class BookingServlet extends HttpServlet {
                     request.setAttribute("orderModel", orderModel);
 
                     EmailSender.sendConfirmationEmail(email, orderModel, tour);
-//                                request.setAttribute("notification", "thanh toán thành công");
+                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
 
 //                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
-
-                    request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
                 } else {
                     response.getWriter().println("Order failed");
                 }

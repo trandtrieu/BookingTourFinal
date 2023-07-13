@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package servlet;
 
 import dao.AccountDAO;
@@ -12,23 +11,25 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import model.AccountDTO;
 
 /**
  *
  * @author DELL
  */
 public class AddAccountServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String ausername = request.getParameter("username");
         String apassword = request.getParameter("password");
@@ -36,15 +37,21 @@ public class AddAccountServlet extends HttpServlet {
         String aphone = request.getParameter("phone");
         String arole = request.getParameter("role");
         String aavatar = request.getParameter("avatar");
-        
+
         AccountDAO dao = new AccountDAO();
-        dao.insertAccount(ausername, apassword, aemail, aphone, arole, aavatar);
-        response.sendRedirect("ListUser");
-    } 
+        AccountDTO a = AccountDAO.checkAccountExist(ausername);
+        if (a == null) {
+            dao.insertAccount(ausername, apassword, aemail, aphone, arole, aavatar);
+            response.sendRedirect("ListUser");
+        } else {
+            response.sendRedirect("AddManager.jsp");
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -52,12 +59,13 @@ public class AddAccountServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -65,7 +73,7 @@ public class AddAccountServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
 //        processRequest(request, response);
         String ausername = request.getParameter("username");
         String apassword = request.getParameter("password");
@@ -73,14 +81,23 @@ public class AddAccountServlet extends HttpServlet {
         String aphone = request.getParameter("phone");
         String arole = request.getParameter("role");
         String aavatar = request.getParameter("avatar");
-        
+
         AccountDAO dao = new AccountDAO();
-        dao.insertAccount(ausername, apassword, aemail, aphone, arole, aavatar);
-        response.sendRedirect("ListUser");
+        AccountDTO a = AccountDAO.checkAccountExist(ausername);
+        if (a == null) {
+            dao.insertAccount(ausername, apassword, aemail, aphone, arole, aavatar);
+
+            response.sendRedirect("ListUser");
+        } else {
+            request.getServletContext().setAttribute("notification", "Tên đăng nhập đã tồn tại");
+
+            response.sendRedirect("AddAccount.jsp");
+        }
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

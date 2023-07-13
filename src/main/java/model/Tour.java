@@ -28,8 +28,7 @@ public class Tour {
     private int seat;
     private int placeId;
     private int regionId;
-        private int averageStar;
-
+    private int averageStar;
 
     //index.jsp
     public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
@@ -95,9 +94,6 @@ public class Tour {
         this.placeId = placeId;
         this.regionId = regionId;
     }
-    
-    
-    
 
     public Tour(int tourId) {
         this.tourId = tourId;

@@ -112,7 +112,8 @@
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
-
+                                            
+                                            
                                         </div>
                                         <div  class= "link-margin text-center">
                                             <a class="h5 text-decoration-none " href="detail?tid=${t.tourId}">${t.tourName}</a>

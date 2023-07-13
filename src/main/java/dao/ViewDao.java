@@ -45,7 +45,7 @@ public class ViewDao {
         }
         return count;
     }
-      public void updateView() {
+     public void updateView() {
         int count = 0;
         try {
             query = "  update [view] set viewed = viewed + 1";

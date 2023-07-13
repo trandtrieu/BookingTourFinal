@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("ListJobGuide");
                 return;
             }
-            response.sendRedirect("HomeController");
+            response.sendRedirect("BookingCustomServlet");
 
         }
     }

@@ -69,14 +69,16 @@
                                 <a href="HomeController" class="nav-item nav-link">Trang chủ</a>
                                 <a href="AboutServlet" class="nav-item nav-link">Giới thiệu</a>
                                 <a href="blog" class="nav-item nav-link">Blog</a>
+                                <a href="blog" class="nav-item nav-link">Build</a>
 
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gói tour</a>
                                     <div class="dropdown-menu border-0 rounded-0 m-0">
+                                        <a href="ListAllTour" class="dropdown-item">Toàn bộ tour</a>
+
                                         <c:forEach var="r" items="${myRegions}" varStatus="status">
                                             <a href="regionList?rid=${r.regionId}" class="dropdown-item">${r.regionName}</a>
                                         </c:forEach>
-                                        <a href="ListAllTour" class="dropdown-item">Toàn b? tour</a>
 
                                     </div>
                                 </div>

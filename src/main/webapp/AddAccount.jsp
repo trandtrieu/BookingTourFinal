@@ -36,6 +36,8 @@
                                     <div class="form-group mb-3">
                                         <label for="username">User Name</label>
                                         <input id="username" name="username" type="text" class="form-control validate" required/>
+                                        <h2 class="tm-block-title d-inline-block text-danger">${notification}</h2>
+
                                     </div>
                                     <div class="form-group mb-3">
                                         <label for="password">Password</label>

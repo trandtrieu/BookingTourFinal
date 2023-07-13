@@ -34,6 +34,7 @@ public class RegisterServlet extends HttpServlet {
             AccountDTO a = AccountDAO.checkAccountExist(user);
             if (a == null) {
                 dao.register(user, pass, email, phone);
+                
                 response.sendRedirect("login.jsp");
             } else {
                 response.sendRedirect("register.jsp");

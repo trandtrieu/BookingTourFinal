@@ -15,10 +15,12 @@
         <title>List Tour Page</title>
         <%@include file="includeManager/headManager.jsp" %>
     </head>
-    <style>.tm-product-table-container {
+    <style>
+        .tm-product-table-container {
             max-height: 520px;
 
-        }</style>
+        }
+    </style>
     <body id="reportsPage">
         <%@include file="includeManager/navbarManager.jsp" %>
         <div class="container-fluid">

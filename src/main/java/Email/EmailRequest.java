@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package Email;
 
 /**
  *
@@ -13,17 +13,20 @@ import jakarta.mail.internet.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+import model.BookTour;
+import model.RequestCreateTour;
+import model.Tour;
 
-public class EmailSender {
+public class EmailRequest {
 
-    public static void sendConfirmationEmail(String email, BookTour order, Tour tour) throws MessagingException {
+    public static void sendConfirmationEmail(String email, RequestCreateTour order) throws MessagingException {
         // Cấu hình thông tin liên quan đến thư
         String host = "smtp.gmail.com";
         String port = "587";
         final String username = "trieudz02@gmail.com";
         final String password = "hylpmfiuezpxbxia";
         String fromEmail = "trieudz02@gmail.com";
-        String subject = "Xac nhan dat tour";
+        String subject = "Xac nhan yeu cau";
         // Tạo đối tượng Session từ thông tin cấu hình
         java.util.Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
@@ -35,12 +38,7 @@ public class EmailSender {
                 return new PasswordAuthentication(username, password);
             }
         });
-        double totalAmount = order.getTotalAmount();
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-        DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
-        decimalFormat.applyPattern("#,###");
-        String formattedTotalAmount = decimalFormat.format(totalAmount);
-        // Xây dựng nội dung email
+
         String content = "<html><head>"
                 + "<style>"
                 + "table {"
@@ -57,18 +55,18 @@ public class EmailSender {
                 + "}"
                 + "</style>"
                 + "</head><body>"
-                + "<h1>Xin chào, " + order.getName() + "</h1>"
-                + "<p>Tour của bạn đã được đặt thành công.</p>"
+                //                + "<h1>Xin chào, " + order.getName() + "</h1>"
+                + "<p>Yêu cầu của bạn đã gửi thành công.</p>"
                 + "<h2>Thông tin tour:</h2>"
                 + "<table>"
-                + "<tr><th>Tên khách hàng</th><td>" + order.getName() + "</td></tr>"
-                + "<tr><th>Tên tour</th><td>" + tour.getTourName() + "</td></tr>"
-                + "<tr><th>Ngày khởi hành</th><td>" + tour.getDateStart() + "</td></tr>"
-                + "<tr><th>Ngày kết thúc</th><td>" + tour.getDateEnd() + "</td></tr>"
-                + "<tr><th>Ngày đặt vé</th><td>" + order.getDate() + "</td></tr>"
-                + "<tr><th>Số lượng người lớn</th><td>" + order.getQuantityAd() + "</td></tr>"
-                + "<tr><th>Số lượng trẻ em</th><td>" + order.getQuantityChildren() + "</td></tr>"
-                + "<tr><th>Tổng tiền</th><td>" + formattedTotalAmount + " VND </td></tr>"
+                + "<tr><th>Tên người đại diện</th><td>" + order.getName() + "</td></tr>"
+                + "<tr><th>Tên doanh nghiệp tổ chức</th><td>" + order.getNameGroup() + "</td></tr>"
+                + "<tr><th>Tên tour du lịch mong muốn</th><td>" + order.getTourName() + "</td></tr>"
+                + "<tr><th>Số điện thoại</th><td>" + order.getPhone() + "</td></tr>"
+                + "<tr><th>Ngày khởi hành dự kiến</th><td>" + order.getDateStart() + "</td></tr>"
+                + "<tr><th>Ngày kết thúc dự kiến</th><td>" + order.getDateEnd() + "</td></tr>" 
+                + "<tr><th>Chi phí ước tính cho mỗi người</th><td>" + order.getName() + "</td></tr>"
+                + "<tr><th>Số lượng người lớn tham gia gồm </th><td>" + order.getQuantityAd() + " người lớn và" + order.getQuantityChild()+ " trẻ em </td></tr>"
                 + "</table>"
                 + "</body></html>";
 

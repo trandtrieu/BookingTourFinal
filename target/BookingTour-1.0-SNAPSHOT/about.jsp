@@ -17,7 +17,7 @@
         <style>
         .img-fixed-size {
             width: 100%;
-            height: 390px; /* Định rõ chiều cao */
+            height: 390px;
         }
         .link-margin {
             font-size: 1px;
@@ -31,7 +31,7 @@
                 <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                     <h3 class="display-4 text-white text-uppercase">About</h3>
                     <div class="d-inline-flex text-white">
-                        <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                        <p class="m-0 text-uppercase"><a class="text-white" href="HomeController">Home</a></p>
                         <i class="fa fa-angle-double-right pt-1 px-3"></i>
                         <p class="m-0 text-uppercase">About</p>
                     </div>
@@ -51,6 +51,7 @@
                     <h1>Our Travel Guides</h1>
                 </div>
                 <div class="row" id="guidesContainer">
+                    
                     <c:forEach var="g" items="${myGuides}" varStatus="status">
                         <div class="col-lg-4 col-md-4 col-sm-6 pb-1">
                             <div class="team-item bg-white mb-4">

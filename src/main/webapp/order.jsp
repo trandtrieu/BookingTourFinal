@@ -3,6 +3,7 @@
     Created on : Jun 5, 2023, 10:38:10 AM
     Author     : DELL
 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
                 <tbody>
                     <c:forEach items="${myOrders}" var="o">
                         <tr>     
-                            <td><a href="detail?tid=${o.tourId}">${o.tourId}</a></td>
+                            <td><a href="detail?tid=${o.tourId}">${o.orderId}</a></td>
                             <td>${o.date}</td>
                             <td>${o.name}</td>
 
@@ -44,7 +45,7 @@
 
                             <td>${o.quantityAd} - ${o.quantityChildren}</td>
                             <td>${o.tourId}</td>
-                            <td><c:out value="${String.format('%.0f', o.totalAmount)} VND" /></td>
+                            <td><fmt:formatNumber value="${o.totalAmount}" pattern="#,##0" /> VND</td>
                             <td>${o.note}</td>
 
 

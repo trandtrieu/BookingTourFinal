@@ -36,6 +36,7 @@
                                 Chưa khởi hành
                             </c:if>
                         </h3>
+                        <h3 class="tm-block-title">mã tour: ${detail.dateStart}</h3>
 
 
 

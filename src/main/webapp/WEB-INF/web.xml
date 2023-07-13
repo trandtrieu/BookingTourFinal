@@ -176,6 +176,18 @@
         <servlet-name>DeleteOrder</servlet-name>
         <servlet-class>servlet.DeleteOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomTour</servlet-name>
+        <servlet-class>servlet.CustomTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingCustomServlet</servlet-name>
+        <servlet-class>servlet.BookingCustomServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestListManage</servlet-name>
+        <servlet-class>servlet.RequestListManage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -351,6 +363,18 @@
     <servlet-mapping>
         <servlet-name>DeleteOrder</servlet-name>
         <url-pattern>/DeleteOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomTour</servlet-name>
+        <url-pattern>/CustomTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingCustomServlet</servlet-name>
+        <url-pattern>/BookingCustomServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestListManage</servlet-name>
+        <url-pattern>/RequestListManage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -25,8 +25,8 @@
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
-                        <h1 class=" text-white mb-md-4">Mùa hè sôi động</h1>
-                        <a href="#tour-card" class="btn btn-primary py-md-3 px-md-5 mt-2">Đặt vé ngay</a>
+                        <h1 class=" text-white mb-md-4">Đặt vé dành cho khách đoàn</h1>
+                        <a href="BookingCustomServlet" class="btn btn-primary py-md-3 px-md-5 mt-2">Đặt vé ngay</a>
                     </div>
                 </div>
             </div>

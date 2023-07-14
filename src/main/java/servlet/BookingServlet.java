@@ -84,8 +84,10 @@ public class BookingServlet extends HttpServlet {
 
                 // Calculate and set the total amount
                 TourDao tourDao = new TourDao(DbCon.getConnection());
+                
                 int tId = Integer.parseInt(tourId);
                 Tour tour = tourDao.getSingleTour(tId);
+                
                 int remainingSeats = tour.getSeat();
 
                 float adultPrice = tour.getPrice();
@@ -114,6 +116,7 @@ public class BookingServlet extends HttpServlet {
                     request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
 
 //                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
+
                 } else {
                     response.getWriter().println("Order failed");
                 }

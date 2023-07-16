@@ -69,7 +69,7 @@ public class TourDao {
                 }
 
                 updateTourStatus(con, tour);
-                
+
                 tours.add(tour);
             }
         } catch (SQLException e) {
@@ -322,6 +322,32 @@ public class TourDao {
     public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
         query = "insert into tour\n"
                 + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?, '30')";
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, tourName);
+            pst.setString(2, price);
+            pst.setString(3, dateStart);
+            pst.setString(4, dateEnd);
+            pst.setString(5, detailTour);
+            pst.setString(6, imageTour);
+            pst.setString(7, statusTour);
+            pst.setString(8, placeId);
+            pst.setString(9, guideId);
+            pst.setString(10, regionId);
+//            pst.setString(8, placeName);
+//            pst.setString(9, regionName);
+
+            //pst.setString(11, guideName);
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public void insertTourForGroup(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
+        query = "insert into tour\n"
+                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?, '0')";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
@@ -624,14 +650,15 @@ public class TourDao {
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
-    private void updateTourStatus(Connection con, TourSchedule tour) throws SQLException {
-    int tourId = tour.getTourId();
-    boolean status = tour.getStatusTour();
 
-    String updateQuery = "UPDATE tour SET status = ? WHERE tourId = ?";
-    PreparedStatement updatePst = con.prepareStatement(updateQuery);
-    updatePst.setBoolean(1, status);
-    updatePst.setInt(2, tourId);
-    updatePst.executeUpdate();
-}
+    private void updateTourStatus(Connection con, TourSchedule tour) throws SQLException {
+        int tourId = tour.getTourId();
+        boolean status = tour.getStatusTour();
+
+        String updateQuery = "UPDATE tour SET status = ? WHERE tourId = ?";
+        PreparedStatement updatePst = con.prepareStatement(updateQuery);
+        updatePst.setBoolean(1, status);
+        updatePst.setInt(2, tourId);
+        updatePst.executeUpdate();
+    }
 }

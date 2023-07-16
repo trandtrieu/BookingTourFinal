@@ -59,7 +59,7 @@ public class OrderListServlet extends HttpServlet {
                 List<BookTour> or = orderDao.userOrders(acc.getId());
                 request.getServletContext().setAttribute("myOrders", or);
 
-                response.sendRedirect("order.jsp"); // Redirect after retrieving orders
+                response.sendRedirect("order.jsp");
 
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(OrderListServlet.class.getName()).log(Level.SEVERE, null, ex);

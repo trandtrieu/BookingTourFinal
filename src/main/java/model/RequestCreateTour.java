@@ -21,11 +21,12 @@ public class RequestCreateTour {
     private String quantityAd, quantityChild;
     private String note;
     private int user_id;
+    private Boolean status;
 
     public RequestCreateTour() {
     }
 
-    public RequestCreateTour(int requestId, String nameGroup, String name, String phone, String email, String tourName, String dateStart, String dateEnd, String price, String quantityAd, String quantityChild, String note, int user_id) {
+    public RequestCreateTour(int requestId, String nameGroup, String name, String phone, String email, String tourName, String dateStart, String dateEnd, String price, String quantityAd, String quantityChild, String note, int user_id, Boolean status) {
         this.requestId = requestId;
         this.nameGroup = nameGroup;
         this.name = name;
@@ -39,10 +40,10 @@ public class RequestCreateTour {
         this.quantityChild = quantityChild;
         this.note = note;
         this.user_id = user_id;
-
+        this.status = status;
     }
 
-    public RequestCreateTour(String nameGroup, String name, String phone, String email, String tourName, String dateStart, String dateEnd, String price, String quantityAd, String quantityChild, String note, int user_id) {
+    public RequestCreateTour(String nameGroup, String name, String phone, String email, String tourName, String dateStart, String dateEnd, String price, String quantityAd, String quantityChild, String note, int user_id, Boolean status) {
         this.nameGroup = nameGroup;
         this.name = name;
         this.phone = phone;
@@ -55,6 +56,7 @@ public class RequestCreateTour {
         this.quantityChild = quantityChild;
         this.note = note;
         this.user_id = user_id;
+        this.status = status;
     }
 
     public int getRequestId() {
@@ -161,7 +163,12 @@ public class RequestCreateTour {
         this.user_id = user_id;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
 
-    
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
 }

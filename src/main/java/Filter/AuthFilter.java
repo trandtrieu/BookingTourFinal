@@ -24,7 +24,7 @@ import model.AccountDTO;
  *
  * @author linh2
  */
-@WebFilter(filterName = "AuthFilter", urlPatterns = {"/ManagerTour"})
+@WebFilter(filterName = "AuthFilter", urlPatterns = {"/ManagerTour", "/AddTourServlet", "/UpdateTour", "/TourChart", "/ListUser", "/ListUserByRole", "/RequestListManage", "/HistoryServlet"})
 
 public class AuthFilter implements Filter {
 
@@ -44,7 +44,7 @@ public class AuthFilter implements Filter {
         }
         if (user.getRole() == 1 || user.getRole() == 3) {
             chain.doFilter(request, response);
-        } else if (user.getRole() == 2 ) {
+        } else if (user.getRole() == 2) {
             chain.doFilter(request, response);
         } else {
             res.sendRedirect("HomeController");

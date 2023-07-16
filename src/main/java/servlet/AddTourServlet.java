@@ -33,7 +33,6 @@ import model.Tour;
  */
 public class AddTourServlet extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         HttpSession session = request.getSession();
@@ -50,8 +49,8 @@ public class AddTourServlet extends HttpServlet {
             List<Tour> tours = t.getAllTours();
             List<Region> regions = r.getAllRegions();
             List<GuideTour> guides = g.getAllGuides();
-
             List<Place> places = p.getAllPlaces();
+
             request.getServletContext().setAttribute("myTours", tours);
             request.getServletContext().setAttribute("myRegions", regions);
             request.getServletContext().setAttribute("myGuides", guides);
@@ -63,7 +62,6 @@ public class AddTourServlet extends HttpServlet {
 
         }
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

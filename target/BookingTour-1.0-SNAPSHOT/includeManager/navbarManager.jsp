@@ -49,7 +49,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="RequestListManage">
-                        <i class="far fa-user"></i> Requests
+                        <i class="fa-sharp fa-solid fa-envelope"></i> Requests
                     </a>
                 </li>
 
@@ -58,7 +58,7 @@
 
                 <li class="nav-item">
                     <c:if test="${sessionScope.acc  == null}"> 
-                        <a class="nav-link d-block" href="LoginServlet">
+                        <a class="nav-link d-block" href="Login">
 
                             <b>Login</b>
                         </a>

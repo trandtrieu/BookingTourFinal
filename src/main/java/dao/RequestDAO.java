@@ -62,6 +62,7 @@ public class RequestDAO {
                 row.setNote(rs.getString("note"));
                 row.setPrice(rs.getString("priceEstimated"));
                 row.setTourName(rs.getString("tourName"));
+                row.setStatus(rs.getBoolean("status"));
 
                 requests.add(row);
             }
@@ -75,7 +76,7 @@ public class RequestDAO {
 
     public void insertRequest(String nameGroup, String name, String phone, String email, String tourName, String price, String dateStart, String dateEnd, String quantityAd, String quantityChildren, String note, int user_id) {
         query = "INSERT INTO [orderRequest]\n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'false')";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
@@ -91,6 +92,7 @@ public class RequestDAO {
             pst.setString(10, quantityChildren);
             pst.setString(11, note);
             pst.setInt(12, user_id);
+
             pst.executeUpdate();
 
         } catch (Exception e) {
@@ -98,14 +100,12 @@ public class RequestDAO {
         }
     }
 
-    public RequestCreateTour getRequestById(int requestId) {
+    public RequestCreateTour getRequestById(String requestId) {
         RequestCreateTour row = null;
         try {
-
             query = "SELECT * from orderRequest where id = ?";
-
             pst = this.con.prepareStatement(query);
-            pst.setInt(1, requestId);
+            pst.setString(1, requestId);
             rs = pst.executeQuery();
             while (rs.next()) {
                 row = new RequestCreateTour();
@@ -123,7 +123,6 @@ public class RequestDAO {
                 row.setNote(rs.getString("note"));
                 row.setPrice(rs.getString("priceEstimated"));
                 row.setTourName(rs.getString("tourName"));
-
             }
 
         } catch (SQLException e) {

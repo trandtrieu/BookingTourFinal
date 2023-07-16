@@ -182,15 +182,23 @@
     </servlet>
     <servlet>
         <servlet-name>BookingCustomServlet</servlet-name>
-        <servlet-class>servlet.BookingCustomServlet</servlet-class>
+        <servlet-class>servlet.RequestManage.BookingCustomServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestListManage</servlet-name>
-        <servlet-class>servlet.RequestListManage</servlet-class>
+        <servlet-class>servlet.RequestManage.RequestListManage</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DenyRequestServlet</servlet-name>
-        <servlet-class>servlet.DenyRequestServlet</servlet-class>
+        <servlet-class>servlet.RequestManage.DenyRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmRequestServlet</servlet-name>
+        <servlet-class>servlet.RequestManage.ConfirmRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTourByRequest</servlet-name>
+        <servlet-class>servlet.RequestManage.AddTourByRequest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -383,6 +391,14 @@
     <servlet-mapping>
         <servlet-name>DenyRequestServlet</servlet-name>
         <url-pattern>/DenyRequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmRequestServlet</servlet-name>
+        <url-pattern>/ConfirmRequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTourByRequest</servlet-name>
+        <url-pattern>/AddTourByRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

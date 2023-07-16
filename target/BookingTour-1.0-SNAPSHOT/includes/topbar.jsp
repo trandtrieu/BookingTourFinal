@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : topbar
     Created on : May 20, 2023, 10:02:33 PM
     Author     : DELL
@@ -20,9 +20,9 @@
                     <div class="row">
                         <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                             <div class="d-inline-flex align-items-center">
-                                <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
+                                <p><i class="fa fa-envelope mr-2"></i>trieudz02@gmail.com</p>
                                 <p class="text-body px-3">|</p>
-                                <p><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</p>
+                                <p><i class="fa fa-phone-alt mr-2"></i>0789458707</p>
                             </div>
                         </div>
                         <div class="col-lg-6 text-center text-lg-right">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Topbar End -->  
+            <!-- Topbar End -->
             <!-- Navbar Start -->
             <div class="container-fluid position-relative nav-bar p-0">
                 <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package servlet;
+package servlet.RequestManage;
 
 import Email.EmailRequest;
 import connection.DbCon;
@@ -90,7 +90,7 @@ public class BookingCustomServlet extends HttpServlet {
                 RequestDAO dao = new RequestDAO();
                 dao.insertRequest(nameGroup, name, phone, email, tourName, priceString, dateStart, dateEnd, quantityAd, quantityChildren, note, acc.getId());
                 RequestCreateTour requestC = new RequestCreateTour();
-                
+
                 requestC.setNameGroup(nameGroup);
                 requestC.setName(name);
                 requestC.setPhone(phone);
@@ -102,7 +102,6 @@ public class BookingCustomServlet extends HttpServlet {
                 requestC.setQuantityChild(quantityChildren);
                 requestC.setPrice(priceString);
                 requestC.setNote(note);
-                
 
                 EmailRequest.sendConfirmationEmail(email, requestC);
 

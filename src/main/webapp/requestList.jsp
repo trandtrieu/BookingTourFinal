@@ -28,7 +28,7 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Tour ID</th>
+                                        <th scope="col">Request ID</th>
                                         <th scope="col">Tour Name</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Date Start</th>
@@ -49,6 +49,10 @@
                                             <td>${x.dateStart}</td>
                                             <td>${x.dateEnd}</td>
 
+                                            <td>
+                                                <a href="ConfirmRequest?rid=${x.requestId}" class="button confirm" data-toggle="">Xác nhận</a>
+                                                <a href="DenyRequestServlet?rid=${x.requestId}" onclick="" class="button deny" data-toggle="">Từ chối</a>
+                                            </td>
 
 
 
@@ -85,28 +89,6 @@
         </footer>
 
         <%@include file="includeManager/footManager.jsp" %>
-        <script>
-            $(function () {
-                $(".tm-product-name").on("click", function () {
-                    window.location.href = "UpdateManager.jsp";
-                });
-            });
-            function  showMess(tourId) {
-                var option = confirm('are you sure delete');
-                if (option === true) {
-                    window.location.href = 'DeleteTour?tid=' + tourId;
-                }
-            }
-        </script>
-        <script>
-            $(document).ready(function () {
-                $("#myInput").on("keyup", function () {
-                    var value = $(this).val().toLowerCase();
-                    $("#myTours tr").filter(function () {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
-            });
-        </script>
+
     </body>
 </html>

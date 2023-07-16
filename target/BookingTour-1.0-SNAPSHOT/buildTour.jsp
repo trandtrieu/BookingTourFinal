@@ -22,7 +22,7 @@
                         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                             <div class="row">
                                 <div class="col-12 text-center mb-3" >
-                                    <h2 class="tm-block-title d-inline-block ">Build Your Tour</h2>
+                                    <h2 class="tm-block-title d-inline-block ">Liên hệ đặt tour theo đoàn</h2>
                                 </div>
                             </div>
                             <form action="BookingCustomServlet" method="post">
@@ -39,7 +39,7 @@
 
                                         <div class="row">
                                             <div class="form-group mb-3 col-xs-3 col-sm-4">
-                                                <label for="name">Tên người đại diện</label>
+                                                <label for="name">Tên người đại diện(*)</label>
                                                 <input
                                                     id="name"
                                                     name="name"
@@ -49,7 +49,7 @@
                                                     />
                                             </div>
                                             <div class="form-group mb-3 col-xs-3 col-sm-4">
-                                                <label for="phone">Số điện thoại người đại diện </label>
+                                                <label for="phone">Số điện thoại người đại diện(*) </label>
                                                 <input
                                                     id="phone"
                                                     name="phone"
@@ -59,7 +59,7 @@
                                                     />
                                             </div>
                                             <div class="form-group mb-3 col-xs-3 col-sm-4">
-                                                <label for="email">Email người đại diện </label>
+                                                <label for="email">Email người đại diện(*) </label>
                                                 <input
                                                     id="email"
                                                     name="email"
@@ -80,7 +80,7 @@
                                         <div class="form-group mb-3">
                                             <label
                                                 for="name"
-                                                >Tên Tour
+                                                >Tour  (*)
                                             </label>
                                             <select class="custom-select "  name="tourName">
                                                 <c:forEach var="p" items="${myTours}" varStatus="status">
@@ -127,7 +127,7 @@
                                                 name="price"
                                                 type="text"
                                                 class="form-control validate"
-                                                
+                                                placeholder="VNÐ"
                                                 />
                                         </div>
 
@@ -135,7 +135,7 @@
                                             <div class="form-group mb-3 col-xs-12 col-sm-6">
                                                 <label
                                                     for="name" 
-                                                    > Số lượng người lớn
+                                                    > Số lượng người lớn(*)
                                                 </label>
                                                 <input
                                                     id="quantity"
@@ -148,7 +148,7 @@
                                             <div class="form-group mb-3 col-xs-12 col-sm-6">
                                                 <label
                                                     for="name"
-                                                    >Số lượng trẻ em
+                                                    >Số lượng trẻ em(*)
                                                 </label>
                                                 <input
                                                     id="quantity"
@@ -170,7 +170,7 @@
                                         <textarea type="text" name="note" class="form-control validate" placeholder="Vui lòng bổ sung thêm về tour( lịch trình, các hoạt động, dịch vụ,...)" ></textarea>
                                     </div>
                                     <div class="col-12 mt-5">
-                                        <button type="submit" class="btn btn-primary btn-block text-uppercase">Create Tour Now</button>
+                                        <button type="submit" class="btn btn-primary btn-block text-uppercase">Xác nhận</button>
                                     </div>
                                 </div>  
 

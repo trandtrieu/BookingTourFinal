@@ -20,13 +20,13 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item">     
                 <img class="w-100" src="img/bien.jpg" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
                         <h1 class=" text-white mb-md-4">Đặt vé dành cho khách đoàn</h1>
-                        <a href="BookingCustomServlet" class="btn btn-primary py-md-3 px-md-5 mt-2">Đặt vé ngay</a>
+                        <a href="BookingCustomServlet" class="btn btn-primary py-md-3 px-md-5 mt-2">Liên hệ ngay</a>
                     </div>
                 </div>
             </div>

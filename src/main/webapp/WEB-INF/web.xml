@@ -188,6 +188,10 @@
         <servlet-name>RequestListManage</servlet-name>
         <servlet-class>servlet.RequestListManage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DenyRequestServlet</servlet-name>
+        <servlet-class>servlet.DenyRequestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -375,6 +379,10 @@
     <servlet-mapping>
         <servlet-name>RequestListManage</servlet-name>
         <url-pattern>/RequestListManage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DenyRequestServlet</servlet-name>
+        <url-pattern>/DenyRequestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

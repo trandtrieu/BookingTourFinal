@@ -48,7 +48,7 @@ public class RequestDAO {
 
             while (rs.next()) {
                 RequestCreateTour row = new RequestCreateTour();
-                                row.setRequestId(rs.getInt("id"));
+                row.setRequestId(rs.getInt("id"));
 
                 row.setName(rs.getString("cusName"));
                 row.setNameGroup(rs.getString("groupName"));
@@ -98,4 +98,38 @@ public class RequestDAO {
         }
     }
 
+    public RequestCreateTour getRequestById(int requestId) {
+        RequestCreateTour row = null;
+        try {
+
+            query = "SELECT * from orderRequest where id = ?";
+
+            pst = this.con.prepareStatement(query);
+            pst.setInt(1, requestId);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                row = new RequestCreateTour();
+                row.setRequestId(rs.getInt("id"));
+
+                row.setName(rs.getString("cusName"));
+                row.setNameGroup(rs.getString("groupName"));
+                row.setEmail(rs.getString("email"));
+                row.setPhone(rs.getString("phone"));
+                row.setQuantityAd(rs.getString("quantityAd"));
+                row.setQuantityChild(rs.getString("quantityChildren"));
+                row.setDateEnd(rs.getString("dateEnd"));
+                row.setDateStart(rs.getString("dateStart"));
+                row.setQuantityChild(rs.getString("quantityChildren"));
+                row.setNote(rs.getString("note"));
+                row.setPrice(rs.getString("priceEstimated"));
+                row.setTourName(rs.getString("tourName"));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        return row;
+    }
 }

@@ -65,7 +65,7 @@ public class EmailRequest {
                 + "<tr><th>Số điện thoại</th><td>" + order.getPhone() + "</td></tr>"
                 + "<tr><th>Ngày khởi hành dự kiến</th><td>" + order.getDateStart() + "</td></tr>"
                 + "<tr><th>Ngày kết thúc dự kiến</th><td>" + order.getDateEnd() + "</td></tr>" 
-                + "<tr><th>Chi phí ước tính cho mỗi người</th><td>" + order.getName() + "</td></tr>"
+                + "<tr><th>Chi phí ước tính cho mỗi người</th><td>" + order.getPrice() + "</td></tr>"
                 + "<tr><th>Số lượng người lớn tham gia gồm </th><td>" + order.getQuantityAd() + " người lớn và" + order.getQuantityChild()+ " trẻ em </td></tr>"
                 + "</table>"
                 + "</body></html>";

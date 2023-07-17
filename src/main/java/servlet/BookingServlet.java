@@ -24,7 +24,6 @@ import model.AccountDTO;
 import model.BookTour;
 import Email.EmailSender;
 import model.Tour;
-import model.TourSchedule;
 
 /**
  *
@@ -84,10 +83,10 @@ public class BookingServlet extends HttpServlet {
 
                 // Calculate and set the total amount
                 TourDao tourDao = new TourDao(DbCon.getConnection());
-                
+
                 int tId = Integer.parseInt(tourId);
                 Tour tour = tourDao.getSingleTour(tId);
-                
+
                 int remainingSeats = tour.getSeat();
 
                 float adultPrice = tour.getPrice();
@@ -95,8 +94,6 @@ public class BookingServlet extends HttpServlet {
                 float totalAmount = (adultPrice * adults) + (childrenPrice * children);
                 if ((adults + children) > remainingSeats) {
                     response.getWriter().println("The number of adults and children exceeds the available seats.");
-//                    String referer = request.getHeader("Referer");
-//                    response.sendRedirect(referer);
                     return;
                 }
                 orderModel.setTotalAmount(totalAmount);
@@ -116,7 +113,6 @@ public class BookingServlet extends HttpServlet {
                     request.getRequestDispatcher("paymentSelect.jsp").forward(request, response);
 
 //                    request.getRequestDispatcher("orderNoti.jsp").forward(request, response);
-
                 } else {
                     response.getWriter().println("Order failed");
                 }

@@ -77,12 +77,13 @@ public class ListDao {
         }
         return list;
     }
-        public static void main(String[] args) {
+
+    public static void main(String[] args) {
         ListDao dao = new ListDao();
-        List<BookTour> list = dao.getListOrder(3);   
-            for (BookTour o : list) {
-                System.out.println(o);
-            }
+        List<BookTour> list = dao.getListOrder(3);
+        for (BookTour o : list) {
+            System.out.println(o);
+        }
     }
 // public List<BookTour> historyOder(){
 //        List<BookTour> listS = new ArrayList<>();

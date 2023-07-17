@@ -12,42 +12,42 @@
         <!-- Bootstrap core CSS -->
         <link href="/vnpay_jsp/assets/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet">      
+        <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet">
         <script src="/vnpay_jsp/assets/jquery-1.11.3.min.js"></script>
     </head>
 
     <body>
 
-         <div class="container">
-           <div class="header clearfix">
+        <div class="container">
+            <div class="header clearfix">
 
                 <h3 class="text-muted">VNPAY</h3>
             </div>
-                <div class="form-group">
-                    <button onclick="pay()">Giao dịch thanh toán</button><br>
-                </div>
-                <div class="form-group">
-                    <button onclick="querydr()">API truy vấn kết quả thanh toán</button><br>
-                </div>
-                <div class="form-group">
-                    <button onclick="refund()">API hoàn tiền giao dịch</button><br>
-                </div>
+            <div class="form-group">
+                <button onclick="pay()">Giao dịch thanh toán</button><br>
+            </div>
+            <div class="form-group">
+                <button onclick="querydr()">API truy vấn kết quả thanh toán</button><br>
+            </div>
+            <div class="form-group">
+                <button onclick="refund()">API hoàn tiền giao dịch</button><br>
+            </div>
             <p>
                 &nbsp;
             </p>
             <footer class="footer">
                 <p>&copy; VNPAY 2020</p>
             </footer>
-        </div> 
+        </div>
         <script>
-             function pay() {
-              window.location.href = "/vnpay_jsp/vnpay_pay.jsp";
+            function pay() {
+                window.location.href = "/BookingTour/vnpay_pay.jsp";
             }
             function querydr() {
-              window.location.href = "/vnpay_jsp/vnpay_querydr.jsp";
+                window.location.href = "/BookingTour/vnpay_querydr.jsp";
             }
-             function refund() {
-              window.location.href = "/vnpay_jsp/vnpay_refund.jsp";
+            function refund() {
+                window.location.href = "/BookingTour/vnpay_refund.jsp";
             }
         </script>
     </body>

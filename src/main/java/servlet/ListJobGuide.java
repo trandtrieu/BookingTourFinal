@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import model.AccountDTO;
 import model.BookTour;
 import model.GuideTour;
-import model.TourSchedule;
+import model.Tour;
 
 /**
  *
@@ -44,7 +44,7 @@ public class ListJobGuide extends HttpServlet {
             try {
                 con = DbCon.getConnection();
                 GuideDao g = new GuideDao(con);
-                List<TourSchedule> job = g.getGuideJob(acc.getId());
+                List<Tour> job = g.getGuideJob(acc.getId());
                 request.getServletContext().setAttribute("job", job);
 
                 ListDao dao = new ListDao(con);

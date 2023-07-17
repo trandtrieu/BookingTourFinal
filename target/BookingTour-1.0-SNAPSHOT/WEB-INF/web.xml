@@ -200,6 +200,10 @@
         <servlet-name>AddTourByRequest</servlet-name>
         <servlet-class>servlet.RequestManage.AddTourByRequest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateStatusRequest</servlet-name>
+        <servlet-class>servlet.RequestManage.UpdateStatusRequest</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/HomeController</url-pattern>
@@ -399,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>AddTourByRequest</servlet-name>
         <url-pattern>/AddTourByRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusRequest</servlet-name>
+        <url-pattern>/UpdateStatusRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

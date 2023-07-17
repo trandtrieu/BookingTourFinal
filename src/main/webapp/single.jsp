@@ -12,14 +12,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Single Tour Detail</title>
         <%@include file="includes/head.jsp" %>
-
     </head>
 
     <body>
@@ -64,15 +62,13 @@
 
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div id="home" class="container tab-pane active"><br>
-                            <h3>Schedule</h3>
-                            <p> ${detail.day1}</p> <br>
-                            <p> ${detail.day2}</p> <br>
-                            <p> ${detail.day3}</p> <br>
-                            <p> ${detail.day4}</p> <br>
-                            <p> ${detail.day5}</p> <br>
-                            <p> ${detail.day6}</p> <br>
-                            <p> ${detail.day7}</p> <br>
+                        <div id="home" class="container tab-pane active p-0"><br>
+
+                            <h2>Schedule</h2>
+                            <div class="list-group">
+                                ${detail.schedule}
+                            </div>
+
                         </div>
 
                         <%@include file="includes/policies.jsp" %>
@@ -109,7 +105,7 @@
                                     <input type="text" name="fullName" class="form-control" id="fullName" placeholder="Nhập họ tên" value="" minlength="3"  required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Số điện thoại:</label> 
+                                    <label for="phone">Số điện thoại:</label>
                                     <input type="number" class="form-control"  name="phone" id="phone" pattern="[-+]?[0-9]" placeholder="Nhập số điện thoại" minlength="10" maxlength="10" value="" required>
                                 </div>
                                 <div class="form-group">
@@ -122,7 +118,7 @@
                                     <label for="address">Địa chỉ: </label>
 
                                     <select class="form-select form-select-sm mb-3 form-control" id="city" aria-label=".form-select-sm" name="city">
-                                        <option value="" selected>Chọn tỉnh thành</option>           
+                                        <option value="" selected>Chọn tỉnh thành</option>
                                     </select>
 
                                     <select class="form-select form-select-sm mb-3 form-control" id="district" aria-label=".form-select-sm" name="district" >
@@ -158,10 +154,10 @@
 
                                 <div class="col-md-12 mt-5">
 
-                                </div> 
+                                </div>
                             </form>
                         </div>
-                        
+
 
 
                         <div class="col-md-12 mt-5">
@@ -177,7 +173,7 @@
                             </c:forEach>
                         </div>
 
-                    </div>     
+                    </div>
 
 
 

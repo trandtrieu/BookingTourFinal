@@ -23,10 +23,10 @@
         <meta name="author" content="">
         <title>Invoice Details</title>
         <!-- Bootstrap core CSS -->
-        <link href="/vnpay_jsp/assets/bootstrap.min.css" rel="stylesheet"/>
+        <link href="/BookingTour/assets/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="/vnpay_jsp/assets/jumbotron-narrow.css" rel="stylesheet"> 
-        <script src="/vnpay_jsp/assets/jquery-1.11.3.min.js"></script>
+        <link href="/BookingTour/assets/jumbotron-narrow.css" rel="stylesheet">
+        <script src="/BookingTour/assets/jquery-1.11.3.min.js"></script>
 
     </head>
     <body>
@@ -53,7 +53,6 @@
 
         %>
         <!--Begin display -->
-        <a href="HomeController">back</a>
         <div class="container">
             <div class="header clearfix">
                 <h3 class="text-muted">INVOICE DETAILS</h3>
@@ -62,31 +61,31 @@
                 <div class="form-group">
                     <label >Merchant Transaction Code:</label>
                     <label><%=request.getParameter("vnp_TxnRef")%></label>
-                </div>    
+                </div>
                 <div class="form-group">
                     <label >Amount:</label>
                     <label><%=request.getParameter("vnp_Amount")%></label>
-                </div>  
+                </div>
                 <div class="form-group">
                     <label >Order info:</label>
                     <label><%=request.getParameter("vnp_OrderInfo")%></label>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label >VNPAY Response Code:</label>
                     <label><%=request.getParameter("vnp_ResponseCode")%></label>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label >VNPAY Transaction Code:</label>
                     <label><%=request.getParameter("vnp_TransactionNo")%></label>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label >Bank Code:</label>
                     <label><%=request.getParameter("vnp_BankCode")%></label>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label >Pay Date:</label>
                     <label><%=request.getParameter("vnp_PayDate")%></label>
-                </div> 
+                </div>
                 <div class="form-group">
                     <label >Payment Status:</label>
                     <label>
@@ -102,7 +101,7 @@
                                 out.print("invalid signature");
                             }
                         %></label>
-                </div> 
+                </div>
                 <button style="background-color:#7AB730; border: none; "><a href="HomeController" style="text-decoration: none; color: #fff; font-size: 20px; ">Trở Về Trang Chủ</a></button>
             </div>
             <p>
@@ -111,7 +110,7 @@
             <footer class="footer">
                 <p>&copy; VNPAY 2020</p>
             </footer>
-        </div>  
+        </div>
     </body>
 
 </html>

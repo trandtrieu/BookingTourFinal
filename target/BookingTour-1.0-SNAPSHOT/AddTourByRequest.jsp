@@ -6,6 +6,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -23,7 +25,7 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                         <div class="row">
                             <div class="col-12">
-                                <h2 class="tm-block-title d-inline-block">Create New Tour hello</h2>
+                                <h2 class="tm-block-title d-inline-block">Create New Tour For Group Inclusive Tour</h2>
                             </div>
                         </div>
                         <form action="AddTourByRequest" method="post">
@@ -48,14 +50,14 @@
                                     <div class="form-group mb-3">
                                         <label
                                             for="price"
-                                            >Price
+                                            >Price (VND)
                                         </label>
                                         <input
                                             id="price"
                                             name="price"
                                             type="text"
                                             class="form-control validate"
-                                            value="${detail.price}"
+                                            value="<fmt:formatNumber value="${detail.price}" pattern="#,##0" />"
 
                                             required
                                             />
@@ -153,7 +155,22 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <label
+                                            for="schedule"
+                                            >Schedule</label
+                                        >
+                                        <textarea
+                                            class="form-control validate"
+                                            name="schedule"
+
+                                            type="text"
+                                            required
+                                            rows="4"
+                                            ></textarea>
+                                    </div>
                                 </div>
+
                                 <div class="form-group mb-3">
                                     <label for="image">Image</label>
                                     <input id="image" name="image" type="file" class="form-control validate" required />

@@ -28,7 +28,7 @@
 
 
                     <ul class="list-group">
-                         <a href="ListUser">
+                        <a href="ListUser">
                             <li class=" d-flex justify-content-between align-items-center dropdown-item">
                                 Tất cả
                             </li>
@@ -38,7 +38,6 @@
                             <a href="ListUserByRole?role=${r.role}">
                                 <li class=" d-flex justify-content-between align-items-center dropdown-item">
                                     ${r.roleName}
-                                    <span class="badge badge-primary badge-pill">${r.role}</span>
                                 </li>
                             </a>
                         </c:forEach>
@@ -91,13 +90,13 @@
                                             </c:if>
                                             <c:if test="${a.role == 0}">
                                                 Customer
-                                            </c:if>  
+                                            </c:if>
                                             <c:if test="${a.role == 2}">
                                                 Tour guide
-                                            </c:if>  
+                                            </c:if>
                                             <c:if test="${a.role == 3}">
                                                 Owner
-                                            </c:if>  
+                                            </c:if>
                                         </td>
                                         <td>
 
@@ -105,7 +104,7 @@
                                                 <c:choose>
                                                     <c:when test="${a.role == 1 || a.role == 3 }">
                                                     <!-- Ẩn thẻ <a> khi role = 1 -->
-                                                </c:when>                                                   
+                                                </c:when>
                                                 <c:otherwise>
                                                     <a href="#" onclick="showMess(${a.id})" class="delete" data-toggle=""><i class="fa fa-trash" style="color: #ffae00;"></i></a>
                                                     </c:otherwise>
@@ -118,7 +117,7 @@
                     </div>
                 </div>
 
-            </div>        
+            </div>
         </div>
 
     </body>

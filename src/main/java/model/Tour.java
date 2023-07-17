@@ -29,9 +29,10 @@ public class Tour {
     private int placeId;
     private int regionId;
     private int averageStar;
+    private String schedule;
 
     //index.jsp
-    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat) {
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat, String schedule) {
         this.tourId = tourId;
         this.tourName = tourName;
         this.price = price;
@@ -45,6 +46,7 @@ public class Tour {
         this.guideId = guideId;
         this.guideName = guideName;
         this.seat = seat;
+        this.schedule = schedule;
 
     }
 
@@ -93,6 +95,26 @@ public class Tour {
         this.seat = seat;
         this.placeId = placeId;
         this.regionId = regionId;
+    }
+
+    public Tour(int tourId, String tourName, float price, Date dateStart, Date dateEnd, String detailTour, String imageTour, Boolean statusTour, String placeName, String regionName, int guideId, String guideName, int seat, int placeId, int regionId, String schedule) {
+        this.tourId = tourId;
+        this.tourName = tourName;
+        this.price = price;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.detailTour = detailTour;
+        this.imageTour = imageTour;
+        this.statusTour = statusTour;
+        this.placeName = placeName;
+        this.regionName = regionName;
+        this.guideId = guideId;
+        this.guideName = guideName;
+        this.seat = seat;
+        this.placeId = placeId;
+        this.regionId = regionId;
+        this.averageStar = averageStar;
+        this.schedule = schedule;
     }
 
     public Tour(int tourId) {
@@ -236,6 +258,14 @@ public class Tour {
 
     public void setAverageStar(int averageStar) {
         this.averageStar = averageStar;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
     }
 
 }

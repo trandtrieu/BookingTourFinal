@@ -61,7 +61,6 @@
                                                 </c:if>
                                             </td>
 
-<!--                                            <td><fmt:formatNumber value="${x.price}" pattern="#,##0" /> VND</td>-->
 
                                             <td class="text-center">
                                                 <div class="button-group"  >
@@ -74,6 +73,9 @@
 
                                                     <a href="DenyRequestServlet?rid=${x.requestId}" class="btn">
                                                         <i class="fas fa-times"></i>
+                                                    </a>
+                                                    <a href="UpdateStatusRequest?rid=${x.requestId}" class="btn">
+                                                        <i class="fas fa-pen"></i>
                                                     </a>
                                                 </div>
                                             </td>

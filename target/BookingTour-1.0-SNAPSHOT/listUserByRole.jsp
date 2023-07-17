@@ -38,7 +38,6 @@
                             <a href="ListUserByRole?role=${r.role}">
                                 <li class=" d-flex justify-content-between align-items-center dropdown-item">
                                     ${r.roleName}
-                                    <span class="badge badge-primary badge-pill">${r.role}</span>
                                 </li>
                             </a>
                         </c:forEach>
@@ -57,10 +56,10 @@
                                                     </div>
                                                     <div class="col-sm-6 ">
                                                         <a href="AddAccount.jsp" class="btn btn-success" data-toggle=""><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                        
+
                                                     </div>
-                        
-                        
+
+
                                                 </div>-->
                         <input class="form-control bg-dark" id="myInput" type="text" placeholder="Search..">
 
@@ -98,13 +97,13 @@
                                             </c:if>
                                             <c:if test="${a.role == 0}">
                                                 Customer
-                                            </c:if>  
+                                            </c:if>
                                             <c:if test="${a.role == 2}">
                                                 Tour guide
-                                            </c:if>  
+                                            </c:if>
                                             <c:if test="${a.role == 3}">
                                                 Owner
-                                            </c:if>  
+                                            </c:if>
                                         </td>
                                         <td>
 
@@ -127,7 +126,7 @@
                     </div>
                 </div>
 
-            </div>        
+            </div>
         </div>
 
     </body>

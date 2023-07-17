@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : index.jsp
     Created on : May 20, 2023, 9:55:05 PM
     Author     : DELL
@@ -55,7 +55,7 @@
                 <div class="text-center mb-3 pb-3">
                     <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Destination</h6>
                     <h1>Khám phá 3 miền</h1>
-                    <p>Hiện đang có : ${tourCount}</p>
+<!--                    <p>Hiện đang có : ${tourCount}</p>-->
 
 
                 </div>
@@ -69,7 +69,7 @@
                                     <h5 class="text-white">${r.regionName}</h5>
                                 </a>
                             </div>
-                        </div> 
+                        </div>
                     </c:forEach>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                                     <img class="img-fluid img-fixed-size" src="img/${t.imageTour}" alt="">
                                     <div class="p-4">
                                         <div class="d-flex justify-content-between mb-3">
-                                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${t.placeName}                                            
+                                            <small class="m-0"><i class="fa fa-map-marker-alt text-primary mr-2"></i>${t.placeName}
                                             </small>
                                             <small class="m-0"><i class="fa fa-user text-primary mr-2"></i>1 Person</small>
                                         </div>
@@ -112,8 +112,8 @@
                                         <div class="d-flex justify-content-between mb-3">
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>${t.regionName}</small>
                                             <small class="m-0"><i class="fa fa-map text-primary mr-2"></i>Còn ${t.seat} chỗ</small>
-                                            
-                                            
+
+
                                         </div>
                                         <div  class= "link-margin text-center">
                                             <a class="h5 text-decoration-none " href="detail?tid=${t.tourId}">${t.tourName}</a>

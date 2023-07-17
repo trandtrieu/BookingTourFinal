@@ -90,9 +90,11 @@ public class AddTourServlet extends HttpServlet {
         String tregionId = request.getParameter("regionId");
         //        String tregionName = request.getParameter("regionName");
         String tguideId = request.getParameter("guideId");
+        String tschedule = request.getParameter("schedule");
+
 //    String tguideName = request.getParameter("guideName");
         TourDao dao = new TourDao();
-        dao.insertTour(tname, tprice, tdateStart, tdateEnd, tdetails, timage, tstatus, tguideId, tplaceId, tregionId);
+        dao.insertTour(tname, tprice, tdateStart, tdateEnd, tdetails, timage, tstatus, tguideId, tplaceId, tregionId, tschedule);
 //dao.insertTour(tname, tprice, tdateStart, tdateEnd, tdetails, timage);
         response.sendRedirect("ManagerTour");
 

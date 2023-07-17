@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : AddManager
     Created on : Jun 16, 2023, 10:50:00 AM
     Author     : DELL
@@ -146,11 +146,25 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <label
+                                            for="schedule"
+                                            >Schedule</label
+                                        >
+                                        <textarea
+                                            class="form-control validate"
+                                            name="schedule"
+
+                                            type="text"
+                                            required
+                                            ></textarea>
+                                    </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="image">Image</label>
                                     <input id="image" name="image" type="file" class="form-control validate" required />
                                 </div>
+
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase">Create Tour Now</button>
                                 </div>

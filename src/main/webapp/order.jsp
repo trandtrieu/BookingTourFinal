@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : order
     Created on : Jun 5, 2023, 10:38:10 AM
     Author     : DELL
@@ -14,6 +14,19 @@
         <%@include file="includes/head.jsp" %>
 
     </head>
+    <style>
+        .btn a{
+            text-decoration: none;
+
+
+        }
+        .btn{
+            border: 1px solid #333;
+            width: 100px;
+            margin: 10px 0px;
+            background: #FFF;
+        }
+    </style>
     <body>
         <%@include file="includes/topbar.jsp" %>
 
@@ -30,13 +43,13 @@
                         <th scope="col">Mã tour</th>
                         <th scope="col">Thành tiền</th>
                         <th scope="col">Ghi chú</th>
-
+                        <td>Action</td>
 
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${myOrders}" var="o">
-                        <tr>     
+                        <tr>
                             <td><a href="detail?tid=${o.tourId}">${o.orderId}</a></td>
                             <td>${o.date}</td>
                             <td>${o.name}</td>
@@ -47,7 +60,10 @@
                             <td>${o.tourId}</td>
                             <td><fmt:formatNumber value="${o.totalAmount}" pattern="#,##0" /> VND</td>
                             <td>${o.note}</td>
-
+                            <td>
+                                <button class="btn"><a href="rules.jsp">Hủy Tour</a></button>
+                                <button class="btn"><a href="rules.jsp">Đổi Tour</a></button>
+                            </td>
 
                         </tr>
                     </c:forEach>

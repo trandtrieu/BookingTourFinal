@@ -69,7 +69,6 @@
                                 <a href="HomeController" class="nav-item nav-link">Trang chủ</a>
                                 <a href="AboutServlet" class="nav-item nav-link">Giới thiệu</a>
                                 <a href="blog" class="nav-item nav-link">Blog</a>
-                                <a href="blog" class="nav-item nav-link">Build</a>
 
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gói tour</a>

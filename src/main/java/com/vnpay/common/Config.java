@@ -1,4 +1,3 @@
-    
 package com.vnpay.common;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_Returnurl = "http://localhost:9999/vnpay_jsp/vnpay_return.jsp";
+    public static String vnp_Returnurl = "http://localhost:9999/BookingTour/vnpay_return.jsp";
     public static String vnp_TmnCode = "P2KKI321";
     public static String vnp_HashSecret = "VBNBEOJONVYSOQXMFKSLKILIKZNVIWWC";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
@@ -81,9 +80,9 @@ public class Config {
                 sb.append("&");
             }
         }
-        return hmacSHA512(vnp_HashSecret,sb.toString());
+        return hmacSHA512(vnp_HashSecret, sb.toString());
     }
-    
+
     public static String hmacSHA512(final String key, final String data) {
         try {
 

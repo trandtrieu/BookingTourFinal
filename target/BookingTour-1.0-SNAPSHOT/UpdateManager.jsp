@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : UpdateManager
     Created on : Jun 16, 2023, 11:05:58 AM
     Author     : DELL
@@ -65,9 +65,9 @@
                                             <label for="status">Status
                                             </label>
                                             <input value="${tt.statusTour}" id="status" name="status" type="text" class="form-control validate" />
-                                            
+
                                         </div>
-                                        
+
                                         <div class="form-group mb-3 col-xs-12 col-sm-6" id="place">
                                             <label for="placeId">Place ID
                                             </label>
@@ -83,6 +83,11 @@
                                             </label>
                                             <input value="${tt.guideId}" id="guideId" name="guideId" type="text" class="form-control validate" />
                                         </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="schedule">Schedule</label>
+<!--                                        <input value="${tt.schedule}" id="details" name="details" type="text" class="form-control validate" />-->
+                                        <textarea id="schedule" name="schedule" type="text" class="form-control validate" rows="5" cols="10">${tt.schedule}</textarea>
                                     </div>
 
                                 </div>

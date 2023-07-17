@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : ManageTour
     Created on : Jun 16, 2023, 10:42:19 AM
     Author     : DELL
@@ -40,7 +40,6 @@
                                         <th scope="col">Price</th>
                                         <th scope="col">Date Start</th>
                                         <th scope="col">Date End</th>
-                                        <!--                                        <th scope="col">Details</th>-->
                                         <th scope="col">Image</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Place Name</th>
@@ -63,11 +62,15 @@
 
                                             <td>${x.dateStart}</td>
                                             <td>${x.dateEnd}</td>
-<!--                                                <td >${x.detailTour}</td>                                            -->
                                             <td >
                                                 ${x.imageTour}
                                             </td>
-                                            <td>${x.statusTour}</td>
+                                            <td>  <c:if test="${x.statusTour == true}">
+                                                    Đã khởi hành
+                                                </c:if>
+                                                <c:if test="${x.statusTour == false}">
+                                                    Chưa khởi hành
+                                                </c:if></td>
                                             <td>${x.placeName}</td>
                                             <td>${x.regionName}</td>
                                             <td>${x.guideName}</td>

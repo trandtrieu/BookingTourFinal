@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Tour;
-import model.TourSchedule;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,7 +53,7 @@ public class TourDao {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                TourSchedule tour = extractTourFromResultSet(rs);
+                Tour tour = extractTourFromResultSet(rs);
 
                 java.util.Date currentDate = new java.util.Date();
                 java.util.Date tourDate = tour.getDateStart();
@@ -269,7 +268,8 @@ public class TourDao {
                         rs.getString("regionName"),
                         rs.getInt("guideId"),
                         rs.getString("guideName"),
-                        rs.getInt("seat"));
+                        rs.getInt("seat"),
+                        rs.getString("schedule"));
                 tours.add(tour);
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -319,9 +319,9 @@ public class TourDao {
         }
     }
 
-    public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
+    public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId, String schedule) {
         query = "insert into tour\n"
-                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?, '30')";
+                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,?, ?, '30')";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
@@ -334,7 +334,8 @@ public class TourDao {
             pst.setString(7, statusTour);
             pst.setString(8, placeId);
             pst.setString(9, guideId);
-            pst.setString(10, regionId);
+            pst.setString(10, schedule);
+            pst.setString(11, regionId);
 //            pst.setString(8, placeName);
 //            pst.setString(9, regionName);
 
@@ -345,9 +346,35 @@ public class TourDao {
         }
     }
 
-    public void insertTourForGroup(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId) {
+//    public void insertTour(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId, String schedule) {
+//        query = "insert into tour\n"
+//                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,?, ?, '0')";
+//        try {
+//            con = new DbCon().getConnection();
+//            pst = con.prepareStatement(query);
+//            pst.setString(1, tourName);
+//            pst.setString(2, price);
+//            pst.setString(3, dateStart);
+//            pst.setString(4, dateEnd);
+//            pst.setString(5, detailTour);
+//            pst.setString(6, imageTour);
+//            pst.setString(7, statusTour);
+//            pst.setString(8, placeId);
+//            pst.setString(9, guideId);
+//            pst.setString(10, schedule);
+//            pst.setString(11, regionId);
+////            pst.setString(8, placeName);
+////            pst.setString(9, regionName);
+//
+//            //pst.setString(11, guideName);
+//            pst.executeUpdate();
+//
+//        } catch (Exception e) {
+//        }
+//    }
+    public void insertTourForGroup(String tourName, String price, String dateStart, String dateEnd, String detailTour, String imageTour, String statusTour, String guideId, String placeId, String regionId, String schedule) {
         query = "insert into tour\n"
-                + "values(?, ?,?, ?, ?, ?, ?, ?,? ,'1', ?, '0')";
+                + "values(?,?,?, ?, ?, ?, ?, ?,? ,?, ?, '0')";
         try {
             con = new DbCon().getConnection();
             pst = con.prepareStatement(query);
@@ -360,7 +387,8 @@ public class TourDao {
             pst.setString(7, statusTour);
             pst.setString(8, placeId);
             pst.setString(9, guideId);
-            pst.setString(10, regionId);
+            pst.setString(10, schedule);
+            pst.setString(11, regionId);
 //            pst.setString(8, placeName);
 //            pst.setString(9, regionName);
 
@@ -376,7 +404,6 @@ public class TourDao {
                 + "FROM tour\n"
                 + "JOIN place ON tour.placeId = place.placeId \n"
                 + "JOIN region ON tour.regionId = region.regionId\n"
-                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
                 + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
                 + "where tourId = ?";
         try {
@@ -385,15 +412,7 @@ public class TourDao {
             pst.setString(1, tourId);
             rs = pst.executeQuery();
             while (rs.next()) {
-                return new TourSchedule(
-                        rs.getInt("scheduleId"),
-                        rs.getString("day1"),
-                        rs.getString("day2"),
-                        rs.getString("day3"),
-                        rs.getString("day4"),
-                        rs.getString("day5"),
-                        rs.getString("day6"),
-                        rs.getString("day7"),
+                return new Tour(
                         rs.getInt("tourId"),
                         rs.getString("name"),
                         rs.getFloat("price"),
@@ -404,11 +423,12 @@ public class TourDao {
                         rs.getBoolean("status"),
                         rs.getString("placeName"),
                         rs.getString("regionName"),
-                        rs.getString("guideName"),
                         rs.getInt("guideId"),
+                        rs.getString("guideName"),
+                        rs.getInt("seat"),
                         rs.getInt("placeId"),
                         rs.getInt("regionId"),
-                        rs.getInt("seat"));
+                        rs.getString("schedule"));
 
             }
         } catch (Exception e) {
@@ -423,7 +443,6 @@ public class TourDao {
                 + "FROM tour\n"
                 + "JOIN place ON tour.placeId = place.placeId \n"
                 + "JOIN region ON tour.regionId = region.regionId\n"
-                + "JOIN schedule ON tour.scheduleId = schedule.scheduleId\n"
                 + "JOIN tourGuider ON tour.guideId = tourGuider.guideId\n"
                 + "where tourId = ?";
         try {
@@ -433,15 +452,7 @@ public class TourDao {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                return new TourSchedule(
-                        rs.getInt("scheduleId"),
-                        rs.getString("day1"),
-                        rs.getString("day2"),
-                        rs.getString("day3"),
-                        rs.getString("day4"),
-                        rs.getString("day5"),
-                        rs.getString("day6"),
-                        rs.getString("day7"),
+                return new Tour(
                         rs.getInt("tourId"),
                         rs.getString("name"),
                         rs.getFloat("price"),
@@ -454,7 +465,9 @@ public class TourDao {
                         rs.getString("regionName"),
                         rs.getInt("guideId"),
                         rs.getString("guideName"),
-                        rs.getInt("seat"));
+                        rs.getInt("seat"),
+                        rs.getString("schedule")
+                );
 
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -463,7 +476,7 @@ public class TourDao {
     }
 
     public void updateTour(String tourId, String tourName, String price, String dateStart, String dateEnd,
-            String detailTour, String imageTour, String statusTour, String placeId, String regionId, String guideId) {
+            String detailTour, String imageTour, String statusTour, String placeId, String regionId, String guideId, String schedule) {
         query = "update tour\n"
                 + "set name = ?,\n"
                 + "price = ?,\n"
@@ -474,7 +487,7 @@ public class TourDao {
                 + "status= ?,\n"
                 + "placeId = ?,\n"
                 + "guideId = ?,\n"
-                + "scheduleId = '1',\n"
+                + "schedule = ?,\n"
                 + "regionId = ?,\n"
                 + "seat = '30'\n"
                 + "where tourId = ?";
@@ -490,8 +503,10 @@ public class TourDao {
             pst.setString(7, statusTour);
             pst.setString(8, placeId);
             pst.setString(9, guideId);
-            pst.setString(10, regionId);
-            pst.setString(11, tourId);
+            pst.setString(10, schedule);
+
+            pst.setString(11, regionId);
+            pst.setString(12, tourId);
             pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(); // In thông báo lỗi ra màn hình
@@ -590,8 +605,8 @@ public class TourDao {
         return tours;
     }
 
-    private TourSchedule extractTourFromResultSet(ResultSet rs) throws SQLException {
-        TourSchedule tour = new TourSchedule();
+    private Tour extractTourFromResultSet(ResultSet rs) throws SQLException {
+        Tour tour = new Tour();
         tour.setTourId(rs.getInt("tourId"));
         tour.setTourName(rs.getString("name"));
         tour.setImageTour(rs.getString("image"));
@@ -602,7 +617,8 @@ public class TourDao {
         tour.setDateStart(rs.getDate("dateStart"));
         tour.setDateEnd(rs.getDate("dateEnd"));
         tour.setDetailTour(rs.getString("detail"));
-        java.util.Date currentDate = new java.util.Date(); // Ngày hiện tại
+        tour.setSchedule(rs.getString("schedule"));
+        java.util.Date currentDate = new java.util.Date();
         java.util.Date tourDate = tour.getDateStart();
 
         // Chỉ lấy ngày từ ngày hiện tại
@@ -620,7 +636,6 @@ public class TourDao {
         tour.setRegionName(rs.getString("regionName"));
         tour.setSeat(rs.getInt("seat"));
 
-        // Tính toán lịch trình từ dateStart đến dateEnd
         Date startDate = rs.getDate("dateStart");
         Date endDate = rs.getDate("dateEnd");
         tour.setGuideId(rs.getInt("guideId"));
@@ -630,7 +645,6 @@ public class TourDao {
         tour.setGuideName(rs.getString("guideName"));
         int numberOfDays = calculateNumberOfDays(startDate, endDate);
 
-        // Thiết lập lịch trình và số ngày chuyến đi
         tour.setNumberDay(numberOfDays);
 
         return tour;
@@ -651,7 +665,7 @@ public class TourDao {
         return calendar.getTime();
     }
 
-    private void updateTourStatus(Connection con, TourSchedule tour) throws SQLException {
+    private void updateTourStatus(Connection con, Tour tour) throws SQLException {
         int tourId = tour.getTourId();
         boolean status = tour.getStatusTour();
 

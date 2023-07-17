@@ -78,6 +78,7 @@ public class ConfirmRequestServlet extends HttpServlet {
             confirm.setContent(content);
             confirm.setEmail(email);
             EmailConfirmRequest.sendConfirmCreateTour(email, confirm, t);
+            response.sendRedirect("RequestListManage");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConfirmRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

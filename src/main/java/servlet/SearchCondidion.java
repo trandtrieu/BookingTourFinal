@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 import model.Blog;
 import model.Place;
 import model.Tour;
-import model.TourSchedule;
 
 /**
  *
@@ -47,7 +46,6 @@ public class SearchCondidion extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,10 +57,10 @@ public class SearchCondidion extends HttpServlet {
             String dateStartSearch = request.getParameter("dateStartSearch");
             String priceSearch = request.getParameter("priceSearch");
             float price = Float.parseFloat(priceSearch);
-            
+
             List<Place> places = p.getAllPlaces();
             TourDao t = new TourDao(DbCon.getConnection());
-            
+
             List<Tour> searchResults = t.searchTours(placeSearch, dateStartSearch, price);
 
             for (Tour tour : searchResults) {
@@ -70,8 +68,7 @@ public class SearchCondidion extends HttpServlet {
                 int averageStar = feedbackDao.getAVGStar(tourId);
                 tour.setAverageStar(averageStar);
             }
-            
-            
+
             request.setAttribute("listS", searchResults);
             request.getServletContext().setAttribute("myPlaces", places);
 

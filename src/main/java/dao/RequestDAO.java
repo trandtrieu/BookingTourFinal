@@ -123,6 +123,8 @@ public class RequestDAO {
                 row.setNote(rs.getString("note"));
                 row.setPrice(rs.getString("priceEstimated"));
                 row.setTourName(rs.getString("tourName"));
+                row.setStatus(rs.getBoolean("status"));
+
             }
 
         } catch (SQLException e) {
@@ -131,4 +133,20 @@ public class RequestDAO {
         }
         return row;
     }
+
+    public void updateRequestStatus(String status, String id) {
+        query = "UPDATE orderRequest SET status = ? WHERE id = ?";
+
+        try {
+            con = new DbCon().getConnection();
+            pst = con.prepareStatement(query);
+            pst.setString(1, status);
+            pst.setString(2, id);
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

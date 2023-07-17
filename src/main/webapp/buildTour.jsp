@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : buildTour
     Created on : Jul 10, 2023, 10:45:14 AM
     Author     : DELL
@@ -93,19 +93,26 @@
                                             <div class="form-group mb-3 col-xs-12 col-sm-6">
                                                 <label for="dateStart">Date Start </label>
                                                 <input
+                                                    id="minDateStart"
+
                                                     name="dateStart"
                                                     type="date"
                                                     class="form-control validate"
                                                     data-large-mode="true"
+                                                    required=""
                                                     />
+
                                             </div>
                                             <div class="form-group mb-3 col-xs-12 col-sm-6">
                                                 <label  for="dateEnd">Date End</label>
                                                 <input
+                                                    id="minDateEnd"
+
                                                     name="dateEnd"
                                                     type="date"
                                                     class="form-control validate"
-                                                    
+                                                    required=""
+
                                                     />
                                             </div>
 
@@ -114,13 +121,11 @@
 
 
                                     </div>
-
                                     <div class="col-xl-6 col-lg-6 col-md-12">
-
                                         <div class="form-group mb-3">
                                             <label
                                                 for="price"
-                                                >Chi phí dự tính đầu người
+                                                >Chi phí dự tính đầu người(*)
                                             </label>
                                             <input
                                                 id="price"
@@ -134,7 +139,7 @@
                                         <div class="row">
                                             <div class="form-group mb-3 col-xs-12 col-sm-6">
                                                 <label
-                                                    for="name" 
+                                                    for="name"
                                                     > Số lượng người lớn(*)
                                                 </label>
                                                 <input
@@ -172,7 +177,7 @@
                                     <div class="col-12 mt-5">
                                         <button type="submit" class="btn btn-primary btn-block text-uppercase">Xác nhận</button>
                                     </div>
-                                </div>  
+                                </div>
 
                             </form>
 
@@ -191,5 +196,15 @@
 
     </body>
     <%@include file="includes/foot.jsp" %>
+    <script>
+        $(document).ready(function () {
+            var today = new Date().toISOString().split('T')[0];
+            $("#minDateStart").attr('min', today);
+        });
+        $(document).ready(function () {
+            var today = new Date().toISOString().split('T')[0];
+            $("#minDateEnd").attr('min', today);
+        });
 
+    </script>
 </html>
